@@ -4,26 +4,28 @@
 %Each link in RobotLinks has the following fields:
 %   - mass:    mass of the link (kg)
 %   - I_MAT:   3D mass inertia matrix (kg*m^2), defined about link COM in link Coordinates
+%   - I_MAT_spatial:   6D spatial mass inertia matrix (kg*m^2), defined about link COM in link Coordinates
 %   - pi_r_i:  position of origin  of link frame in the parent link frame (m)
 %   - pi_R0_i: Default/Initial Rotation Matrix from link frame to parent frame
-%   - i_c_i:   Position of link COM in link frame (m)
+%   - i_rCOM_i:   Position of link COM in link frame (m)
 %   - jtype:   Type of joint: 1=Revolute
-%   - Parent:  number label of parent joint
+%   - PARENTi:  number label of parent joint
 %   - i_X0_pi: Default/Initial Spatial transformation matrix from parent frame to link frame 
 %   - NC:      Number of contact points on the link
-%   - Pc_i:    3D contact points on link, in link coordinates
+%   - Pc_i:    3D contact points on link, in link coordinates [3xNC]
 %   - ic:      vector of link number labels for the contact points
 
 %RobotParam has the following fields:
-%   - NB:        number of linkd in the robot
+%   - NB:        number of links in the robot
 %   - n:         number of degrees of freedom/generalized variables
 %   - m:         number of system inputs
 %   - TotalMass: TotalMass of the Robot
+%   - i_DI_i:    Diagonal matrix of Inertia matrices for robot
 %   - c:         number of contact points on robot
 %   - ic:        vector of link number labels for all contact points
 %   - Pci:       positions of contact points in their body frames
 
-function [RobotLinks, RobotParam] = PendRobot(P, PARENT, KINE, INER, CNCTPTS)
+function [RobotLinks, RobotParam] = PendRobot(PARAMS, PARENTi, KINE, INER, CNCTPTS)
     % Helper Functions
     Rxd = @ (theta) [1 0 0 ; 0 cosd(theta) -sind(theta); 0 sind(theta) cosd(theta)];
     Ryd = @ (theta) [cosd(theta) 0 sind(theta); 0 1 0 ; -sind(theta) 0 cosd(theta)];
@@ -36,11 +38,12 @@ function [RobotLinks, RobotParam] = PendRobot(P, PARENT, KINE, INER, CNCTPTS)
         RobotLinks(j).I_MAT = [INER(j,5:7); INER(j,6) INER(j,8:9); INER(j,7) INER(j,9) INER(j,10)]; 
         RobotLinks(j).pi_r_i = KINE(j,1:3)'; 
         RobotLinks(j).pi_R0_i = Rzd(KINE(j,4))*Ryd(KINE(j,5))*Rxd(KINE(j,6)); 
-        RobotLinks(j).i_c_i = INER(j,2:4)'; 
+        RobotLinks(j).i_rCOM_i = INER(j,2:4)'; 
         RobotLinks(j).jtype = 1; 
-        RobotLinks(j).Parent = PARENT(j); 
+        RobotLinks(j).PARENTi = PARENTi(j); 
         %Spatial Transforms
-        RobotLinks(j).i_X0_pi = SpatialTransform(RobotLinks(j).pi_R0_i',RobotLinks(j).pi_r_i);
+        RobotLinks(j).i_X0_pi = STconstructor_SpatialTransform(RobotLinks(j).pi_R0_i',RobotLinks(j).pi_r_i);
+        RobotLinks(j).I_MAT_spatial = STconstructor_SpatialInertia(RobotLinks(j).I_MAT,RobotLinks(j).mass,RobotLinks(j).i_rCOM_i);
         %Set Contact Points on this link
         RobotLinks(j).Pc_i = [];
         for c = 1:size(CNCTPTS,1)
@@ -53,11 +56,17 @@ function [RobotLinks, RobotParam] = PendRobot(P, PARENT, KINE, INER, CNCTPTS)
     end 
     
     %Robot Details
+    RobotParam.i_DI_i = zeros(6*NB);
+    spots = @(i) [6*i-5:6*i];
+    for i = 1:NB
+        RobotParam.i_DI_i(spots(i),spots(i)) = RobotLinks(i).I_MAT_spatial;
+    end
     RobotParam.TotalMass = sum([RobotLinks.mass]);
     RobotParam.NB = NB;
-    RobotParam.m = P.m;
-    RobotParam.n = P.n;
-    RobotParam.c = P.c;
+    RobotParam.m = PARAMS.m;
+    RobotParam.n = PARAMS.n;
+    RobotParam.N = PARAMS.N;
+    RobotParam.c = PARAMS.c;
     RobotParam.ic = CNCTPTS(:,1)';
     RobotParam.Pci = CNCTPTS(:,2:4)';
 end

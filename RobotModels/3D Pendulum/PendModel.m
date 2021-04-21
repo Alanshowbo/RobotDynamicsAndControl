@@ -14,9 +14,9 @@ function [P, PARENT, KINE, INER, CNCTPTS] = PendModel()
     % Mass and Inertial Properties for each link
     INER =[...%[kg     m       m          m               kg*m^2 ..........                      ]
               %[m      pCoMx   pCoMy      pCoMz           Ixx    Ixy     Ixz     Iyy     Iyz     Izz ] 
-                0      0       0          0               0      0       0        0      0         0;  %dummy
-                5      0       P.Ls/2     0               .3     0.01    0.01    .03     0.01     .3;  %shin
-                10     0       3*P.Lt/4   0               .3     0.01    0.01    .03     0.01     .3];  %thigh
+                0      0       0          0               0      0       0        0      0         0;  %dummy (would be foot)
+                5      0       P.Ls/2     0               .9     0.00    0.00    .1     0.00     .9;  %shin
+                10     0       3*P.Lt/4   0               .9     0.00    0.00    .1     0.00     .9];  %thigh
     % Location of contact points in the rigid body system
     CNCTPTS = [...%Body ID    px   py    pz
                   1           P.Lc P.La  (P.Lf-P.Lb);
@@ -26,8 +26,9 @@ function [P, PARENT, KINE, INER, CNCTPTS] = PendModel()
                   3           0     P.Lt 0];
                     
     P.mTot = sum(INER(:,1));
-    P.NB = 3; %number of joints/bodies 
-    P.n = 3; %number of states
+    P.NB = 3; %number of Coordinate Systems 
+    P.n = 3; %number of joint angles
+    P.N = 3; %number of states
     P.m = 3; %number of inputs
     P.c = size(CNCTPTS,1); %number of contact points
 end

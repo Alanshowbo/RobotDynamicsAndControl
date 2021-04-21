@@ -1,0 +1,183 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+entries:
+- title: sidebar
+  product: Table of Content
+  version:
+  folders:
+
+  - title:
+    output: pdf
+    type: frontmatter
+    folderitems:
+    - title:
+      url: /titlepage.html
+      output: pdf
+      type: frontmatter
+    - title:
+      url: /tocpage.html
+      output: pdf
+      type: frontmatter
+
+  - title: Overview
+    output: web, pdf
+    folderitems:
+
+    - title: Introduction
+      url: /pages/introduction.html
+      output: web, pdf
+      type: homepage
+
+    - title: Installation
+      url: /pages/installation.html
+      output: web, pdf
+
+  - title: Symbolic Math Toolbox
+    output: web, pdf
+    folderitems:
+
+    - title: Overview
+      output: web, pdf
+      url: /pages/symbolic_overview.html
+
+    - title: Utility Functions
+      output: web, pdf
+      url: /pages/symbolic_utility.html
+
+    - title: Symbolic Variables
+      output: web, pdf
+      url: /pages/symbolic_vars.html
+
+    - title: Symbolic Expressions
+      output: web, pdf
+      url: /pages/symbolic_syntax.html
+
+    - title: Exporting Symbolic Functions
+      output: web, pdf
+      url: /pages/export_syms.html
+
+  - title: Dynamical System Model
+    output: web, pdf
+    folderitems:
+
+    - title: Dynamical System
+      output: web, pdf
+      url: /pages/dynamical_system.html
+
+    - title: Hybrid Dynamical System
+      output: web, pdf
+      url: /pages/hybrid_system.html
+
+    - title: Continuous Dynamics
+      output: web, pdf
+      url: /pages/continuous_dynamics.html
+
+    - title: Holonomic Constraints
+      output: web, pdf
+      url: /pages/holonomic_constraints.html
+
+    - title: Unilateral Constraints
+      output: web, pdf
+      url: /pages/unilateral_constraints.html
+
+    - title: Discrete Dynamics
+      output: web, pdf
+      url: /pages/discrete_dynamics.html
+
+  - title: Robot Kinematics and Dynamics
+    output: web, pdf
+    folderitems:
+
+    - title: Coordinate Frame
+      output: web, pdf
+      url: /pages/coordinate_frame.html
+
+    - title: Rigid Joint
+      output: web, pdf
+      url: /pages/rigid_joint.html
+
+    - title: Rigid Body
+      output: web, pdf
+      url: /pages/rigid_link.html
+
+    - title: Contact
+      output: web, pdf
+      url: /pages/contact_frame.html
+
+    - title: Rigid Body System
+      output: web, pdf
+      url: /pages/robot_links.html
+
+    - title: Rigid Impact
+      output: web, pdf
+      url: /pages/rigid_impacts.html
+
+
+  - title: Feedback Control
+    output: web, pdf
+    folderitems:
+
+    - title: Virtual Constraints
+      output: web, pdf
+      url: /pages/virtual_constraints.html
+
+    - title: Feedback Linearization
+      output: web, pdf
+      url: /pages/feedback_linearization.html
+
+    - title: Hybrid Zero Dynamics
+      output: web, pdf
+      url: /pages/zero_dynamics.html
+
+  - title: Nonlinear Program
+    output: web, pdf
+    folderitems:
+
+    - title: NlpVariable
+      output: web, pdf
+      url: /pages/nlp_var.html
+
+    - title: NlpFunction
+      output: web, pdf
+      url: /pages/nlp_func.html
+
+    - title: Nonlinear Program
+      output: web, pdf
+      url: /pages/nlp.html
+
+    - title: Trajectory Optimization
+      output: web, pdf
+      url: /pages/trajectory_optimization.html
+
+    - title: Hybrid Trajectory Optimization
+      output: web, pdf
+      url: /pages/hybrid_trajectory_optimization.html
+
+    - title: Solver Interface
+      output: web, pdf
+      url: /pages/solvers.html
+
+
+  - title: Simulation
+    output: web, pdf
+    folderitems:
+
+    - title: Dynamical System Simulation
+      output: web, pdf
+      url: /pages/dynamical_simulation.html
+
+    - title: Hybrid System Simulation
+      output: web, pdf
+      url: /pages/hybrid_system_simulation.html
+
+  - title: Visualization
+    output: web, pdf
+    folderitems:
+
+    - title: Animation
+      output: web, pdf
+      url: /pages/animation.html
+
+    - title: Others
+      output: web, pdf
+      url: /pages/plotting.html

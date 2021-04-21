@@ -1,0 +1,407 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+entries:
+- title: sidebar
+  product: Table of Content
+  version:
+  folders:
+
+  - title:
+    output: pdf
+    type: frontmatter
+    folderitems:
+    - title:
+      url: /titlepage.html
+      output: pdf
+      type: frontmatter
+    - title:
+      url: /tocpage.html
+      output: pdf
+      type: frontmatter
+
+  - title: Main Page
+    output: web, pdf
+    folderitems:
+
+    - title: Overview
+      url: /pages/html/inherits.html
+      output: web, pdf
+      type: homepage
+
+
+  - title: Classes
+    output: web, pdf
+    folderitems:
+
+    - title: Class List
+      url: /pages/html/annotated.html
+      output: web, pdf
+
+    - title: Class Index
+      url: /pages/html/classes.html
+      output: web, pdf
+
+    - title: Class Hierarchy
+      url: /pages/html/hierarchy.html
+      output: web, pdf
+
+
+      subfolders:
+
+      - title: Class Members
+        output: web, pdf
+        url: /pages/html/functions.html
+        subfolderitems:
+
+        - title: a
+          output: web, pdf
+          url: /pages/html/functions.html
+
+        #- title: b
+        #  output: web, pdf
+        #  url: /pages/html/functions_b.html
+
+        - title: c
+          output: web, pdf
+          url: /pages/html/functions_c.html
+
+        - title: d
+          output: web, pdf
+          url: /pages/html/functions_d.html
+
+        - title: e
+          output: web, pdf
+          url: /pages/html/functions_e.html
+
+        - title: f
+          output: web, pdf
+          url: /pages/html/functions_f.html
+
+        - title: g
+          output: web, pdf
+          url: /pages/html/functions_g.html
+
+        - title: h
+          output: web, pdf
+          url: /pages/html/functions_h.html
+
+        - title: i
+          output: web, pdf
+          url: /pages/html/functions_i.html
+
+        - title: j
+          output: web, pdf
+          url: /pages/html/functions_j.html
+
+        #- title: k
+        #  output: web, pdf
+        #  url: /pages/html/functions_k.html
+
+        - title: l
+          output: web, pdf
+          url: /pages/html/functions_l.html
+
+        - title: m
+          output: web, pdf
+          url: /pages/html/functions_m.html
+
+        - title: n
+          output: web, pdf
+          url: /pages/html/functions_n.html
+
+        - title: o
+          output: web, pdf
+          url: /pages/html/functions_o.html
+
+        - title: p
+          output: web, pdf
+          url: /pages/html/functions_p.html
+
+        #- title: q
+        #  output: web, pdf
+        #  url: /pages/html/functions_q.html
+
+        - title: r
+          output: web, pdf
+          url: /pages/html/functions_r.html
+
+        - title: s
+          output: web, pdf
+          url: /pages/html/functions_s.html
+
+        - title: t
+          output: web, pdf
+          url: /pages/html/functions_t.html
+
+        - title: u
+          output: web, pdf
+          url: /pages/html/functions_u.html
+
+        - title: v
+          output: web, pdf
+          url: /pages/html/functions_v.html
+
+        #- title: w
+        #  output: web, pdf
+        #  url: /pages/html/functions_w.html
+
+        #- title: x
+        #  output: web, pdf
+        #  url: /pages/html/functions_x.html
+
+        - title: y
+          output: web, pdf
+          url: /pages/html/functions_y.html
+
+        #- title: z
+        #  output: web, pdf
+        #  url: /pages/html/functions_z.html
+
+
+
+      - title: Class Methods
+        output: web, pdf
+        url: /pages/html/functions_func.html
+
+        subfolderitems:
+
+        - title: a
+          output: web, pdf
+          url: /pages/html/functions_func.html
+
+        #- title: b
+        #  output: web, pdf
+        #  url: /pages/html/functions_func_b.html
+
+        - title: c
+          output: web, pdf
+          url: /pages/html/functions_func_c.html
+
+        - title: d
+          output: web, pdf
+          url: /pages/html/functions_func_d.html
+
+        - title: e
+          output: web, pdf
+          url: /pages/html/functions_func_e.html
+
+        - title: f
+          output: web, pdf
+          url: /pages/html/functions_func_f.html
+
+        - title: g
+          output: web, pdf
+          url: /pages/html/functions_func_g.html
+
+        - title: h
+          output: web, pdf
+          url: /pages/html/functions_func_h.html
+
+        - title: i
+          output: web, pdf
+          url: /pages/html/functions_func_i.html
+
+        - title: j
+          output: web, pdf
+          url: /pages/html/functions_func_j.html
+
+        #- title: k
+        #  output: web, pdf
+        #  url: /pages/html/functions_func_k.html
+
+        - title: l
+          output: web, pdf
+          url: /pages/html/functions_func_l.html
+
+        - title: m
+          output: web, pdf
+          url: /pages/html/functions_func_m.html
+
+        - title: n
+          output: web, pdf
+          url: /pages/html/functions_func_n.html
+
+        - title: o
+          output: web, pdf
+          url: /pages/html/functions_func_o.html
+
+        - title: p
+          output: web, pdf
+          url: /pages/html/functions_func_p.html
+
+        #- title: q
+        #  output: web, pdf
+        #  url: /pages/html/functions_func_q.html
+
+        - title: r
+          output: web, pdf
+          url: /pages/html/functions_func_r.html
+
+        - title: s
+          output: web, pdf
+          url: /pages/html/functions_func_s.html
+
+        - title: t
+          output: web, pdf
+          url: /pages/html/functions_func_t.html
+
+        - title: u
+          output: web, pdf
+          url: /pages/html/functions_func_u.html
+
+        - title: v
+          output: web, pdf
+          url: /pages/html/functions_func_v.html
+
+        #- title: w
+        #  output: web, pdf
+        #  url: /pages/html/functions_func_w.html
+
+        #- title: x
+        #  output: web, pdf
+        #  url: /pages/html/functions_func_x.html
+
+        #- title: y
+        #  output: web, pdf
+        #  url: /pages/html/functions_func_y.html
+
+        #- title: z
+        #  output: web, pdf
+        #  url: /pages/html/functions_func_z.html
+
+
+
+      - title: Class Properties
+        output: web, pdf
+        url: /pages/html/functions_vars.html
+
+        subfolderitems:
+
+        - title: a
+          output: web, pdf
+          url: /pages/html/functions_vars.html
+
+        #- title: b
+        #  output: web, pdf
+        #  url: /pages/html/functions_vars_b.html
+
+        - title: c
+          output: web, pdf
+          url: /pages/html/functions_vars_c.html
+
+        - title: d
+          output: web, pdf
+          url: /pages/html/functions_vars_d.html
+
+        - title: e
+          output: web, pdf
+          url: /pages/html/functions_vars_e.html
+
+        - title: f
+          output: web, pdf
+          url: /pages/html/functions_vars_f.html
+
+        - title: g
+          output: web, pdf
+          url: /pages/html/functions_vars_g.html
+
+        - title: h
+          output: web, pdf
+          url: /pages/html/functions_vars_h.html
+
+        - title: i
+          output: web, pdf
+          url: /pages/html/functions_vars_i.html
+
+        - title: j
+          output: web, pdf
+          url: /pages/html/functions_vars_j.html
+
+        #- title: k
+        #  output: web, pdf
+        #  url: /pages/html/functions_vars_k.html
+
+        - title: l
+          output: web, pdf
+          url: /pages/html/functions_vars_l.html
+
+        - title: m
+          output: web, pdf
+          url: /pages/html/functions_vars_m.html
+
+        - title: n
+          output: web, pdf
+          url: /pages/html/functions_vars_n.html
+
+        - title: o
+          output: web, pdf
+          url: /pages/html/functions_vars_o.html
+
+        - title: p
+          output: web, pdf
+          url: /pages/html/functions_vars_p.html
+
+        #- title: q
+        #  output: web, pdf
+        #  url: /pages/html/functions_vars_q.html
+
+        - title: r
+          output: web, pdf
+          url: /pages/html/functions_vars_r.html
+
+        - title: s
+          output: web, pdf
+          url: /pages/html/functions_vars_s.html
+
+        - title: t
+          output: web, pdf
+          url: /pages/html/functions_vars_t.html
+
+        - title: u
+          output: web, pdf
+          url: /pages/html/functions_vars_u.html
+
+        - title: v
+          output: web, pdf
+          url: /pages/html/functions_vars_v.html
+
+        #- title: w
+        #  output: web, pdf
+        #  url: /pages/html/functions_vars_w.html
+
+        #- title: x
+        #  output: web, pdf
+        #  url: /pages/html/functions_vars_x.html
+
+        - title: y
+          output: web, pdf
+          url: /pages/html/functions_vars_y.html
+
+        #- title: z
+        #  output: web, pdf
+        #  url: /pages/html/functions_vars_z.html
+
+  - title: Files
+    output: web, pdf
+    folderitems:
+
+    - title: File List
+      url: /pages/html/files.html
+      output: web, pdf
+
+    - title: File Members
+      url: /pages/html/globals.html
+      output: web, pdf
+
+
+  - title: Related Pages
+    output: web, pdf
+    folderitems:
+
+    - title: Todo List
+      url: /pages/html/todo.html
+      output: web, pdf
+
+    - title: New features
+      output: web, pdf
+      url: /pages/html/newfeat1_0.html

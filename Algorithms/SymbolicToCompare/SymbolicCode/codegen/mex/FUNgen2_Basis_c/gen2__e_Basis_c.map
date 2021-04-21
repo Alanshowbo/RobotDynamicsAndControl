@@ -1,0 +1,12 @@
+MEX {
+	global:
+		mexFunction;
+		mexfilerequiredapiversion;
+		emlrtMexFcnProperties;
+		FUNgen2_Basis_c_initialize;
+		FUNgen2_Basis_c_terminate;
+		FUNgen2_Basis_c_atexit;
+		FUNgen2_Basis_c;
+	local:
+		*;
+};
