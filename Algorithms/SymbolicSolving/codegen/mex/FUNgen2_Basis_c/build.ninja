@@ -1,0 +1,50 @@
+# CompilerName=mingw64
+# Mode=optim
+ninja_required_version = 1.3
+
+# Basic folders
+root = .
+builddir = $root/build/win64
+matlabdir = C:/Program Files/MATLAB/R2019b
+startdir = C:/Users/bencb/Documents/A My Documents/A Classes/VT/2019 Fall PhD/Research/DCM 3D walker/3DPendulum.Numerical/SymToConfirm
+
+# Toolchain information
+cc = C:\ProgramData\MATLAB\SupportPackages\R2019b\3P.instrset\mingw_w64.instrset\bin\gcc
+cxx = C:\ProgramData\MATLAB\SupportPackages\R2019b\3P.instrset\mingw_w64.instrset\bin\g++
+linker = C:\ProgramData\MATLAB\SupportPackages\R2019b\3P.instrset\mingw_w64.instrset\bin\gcc
+linkerxx = C:\ProgramData\MATLAB\SupportPackages\R2019b\3P.instrset\mingw_w64.instrset\bin\g++
+
+cflags =  -c -fexceptions -fno-omit-frame-pointer -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c99 -I "C:\Users\bencb\Documents\A My Documents\A Classes\VT\2019 Fall PhD\Research\DCM 3D walker\3DPendulum.Numerical\SymToConfirm\codegen\mex\FUNgen2_Basis_c" -I "C:\Users\bencb\Documents\A My Documents\A Classes\VT\2019 Fall PhD\Research\DCM 3D walker\3DPendulum.Numerical\SymToConfirm" -I "C:\Users\bencb\Documents\A My Documents\A Classes\VT\2019 Fall PhD\Research\DCM 3D walker\3DPendulum.Numerical\SymToConfirm\codegen\mex\FUNgen2_Basis_c\interface" -I "C:\Program Files\MATLAB\R2019b\extern\include" -I "C:\Program Files\MATLAB\R2019b\simulink\include" -I "C:\Program Files\MATLAB\R2019b\rtw\c\src" -I "C:\Program Files\MATLAB\R2019b\rtw\c\src\ext_mode\common" -I "C:\Program Files\MATLAB\R2019b\rtw\c\ert" -I "." -DMODEL=gen2__e_Basis_c -DHAVESTDIO -DUSE_RTMODEL -D__USE_MINGW_ANSI_STDIO=1  
+
+cxxflags =  -c -fexceptions -fno-omit-frame-pointer -std=c++11 -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c++11 -I "C:\Users\bencb\Documents\A My Documents\A Classes\VT\2019 Fall PhD\Research\DCM 3D walker\3DPendulum.Numerical\SymToConfirm\codegen\mex\FUNgen2_Basis_c" -I "C:\Users\bencb\Documents\A My Documents\A Classes\VT\2019 Fall PhD\Research\DCM 3D walker\3DPendulum.Numerical\SymToConfirm" -I "C:\Users\bencb\Documents\A My Documents\A Classes\VT\2019 Fall PhD\Research\DCM 3D walker\3DPendulum.Numerical\SymToConfirm\codegen\mex\FUNgen2_Basis_c\interface" -I "C:\Program Files\MATLAB\R2019b\extern\include" -I "C:\Program Files\MATLAB\R2019b\simulink\include" -I "C:\Program Files\MATLAB\R2019b\rtw\c\src" -I "C:\Program Files\MATLAB\R2019b\rtw\c\src\ext_mode\common" -I "C:\Program Files\MATLAB\R2019b\rtw\c\ert" -I "." -DMODEL=gen2__e_Basis_c -DHAVESTDIO -DUSE_RTMODEL -D__USE_MINGW_ANSI_STDIO=1  
+
+ldflags =  -m64 -Wl,--no-undefined -shared -static -L"C:\Program Files\MATLAB\R2019b\extern\lib\win64\mingw64" -llibmx -llibmex -llibmat -lm -llibmwlapack -llibmwblas -o "gen2__e_Basis_c.mexw64" -llibemlrt -llibcovrt -llibut -llibmwmathutil  -Wl,--version-script,gen2__e_Basis_c.map
+
+# Build Rules
+rule cc
+    command = $cc $cflags $in -o $out
+
+rule cxx
+    command = $cxx $cxxflags $in -o $out
+
+rule link
+    command = $linker @$out.rsp $ldflags
+    rspfile = $out.rsp
+    rspfile_content = $in
+
+rule linkxx
+    command = $linkerxx $in $ldflags
+
+# Build
+build $builddir/rt_nonfinite.o : cc C$:/Users/bencb/Documents/A$ My$ Documents/A$ Classes/VT/2019$ Fall$ PhD/Research/DCM$ 3D$ walker/3DPendulum.Numerical/SymToConfirm/codegen/mex/FUNgen2_Basis_c/rt_nonfinite.c
+build $builddir/FUNgen2_Basis_c_data.o : cc C$:/Users/bencb/Documents/A$ My$ Documents/A$ Classes/VT/2019$ Fall$ PhD/Research/DCM$ 3D$ walker/3DPendulum.Numerical/SymToConfirm/codegen/mex/FUNgen2_Basis_c/FUNgen2_Basis_c_data.c
+build $builddir/FUNgen2_Basis_c_initialize.o : cc C$:/Users/bencb/Documents/A$ My$ Documents/A$ Classes/VT/2019$ Fall$ PhD/Research/DCM$ 3D$ walker/3DPendulum.Numerical/SymToConfirm/codegen/mex/FUNgen2_Basis_c/FUNgen2_Basis_c_initialize.c
+build $builddir/FUNgen2_Basis_c_terminate.o : cc C$:/Users/bencb/Documents/A$ My$ Documents/A$ Classes/VT/2019$ Fall$ PhD/Research/DCM$ 3D$ walker/3DPendulum.Numerical/SymToConfirm/codegen/mex/FUNgen2_Basis_c/FUNgen2_Basis_c_terminate.c
+build $builddir/FUNgen2_Basis_c.o : cc C$:/Users/bencb/Documents/A$ My$ Documents/A$ Classes/VT/2019$ Fall$ PhD/Research/DCM$ 3D$ walker/3DPendulum.Numerical/SymToConfirm/codegen/mex/FUNgen2_Basis_c/FUNgen2_Basis_c.c
+build $builddir/_coder_FUNgen2_Basis_c_api.o : cc C$:/Users/bencb/Documents/A$ My$ Documents/A$ Classes/VT/2019$ Fall$ PhD/Research/DCM$ 3D$ walker/3DPendulum.Numerical/SymToConfirm/codegen/mex/FUNgen2_Basis_c/interface/_coder_FUNgen2_Basis_c_api.c
+build $builddir/_coder_FUNgen2_Basis_c_mex.o : cc C$:/Users/bencb/Documents/A$ My$ Documents/A$ Classes/VT/2019$ Fall$ PhD/Research/DCM$ 3D$ walker/3DPendulum.Numerical/SymToConfirm/codegen/mex/FUNgen2_Basis_c/interface/_coder_FUNgen2_Basis_c_mex.c
+build $builddir/_coder_FUNgen2_Basis_c_info.o : cc C$:/Users/bencb/Documents/A$ My$ Documents/A$ Classes/VT/2019$ Fall$ PhD/Research/DCM$ 3D$ walker/3DPendulum.Numerical/SymToConfirm/codegen/mex/FUNgen2_Basis_c/interface/_coder_FUNgen2_Basis_c_info.c
+build $builddir/c_mexapi_version.o : cc C$:/Program$ Files/MATLAB/R2019b/extern/version/c_mexapi_version.c
+
+# Link
+build $root\gen2__e_Basis_c.mexw64 : link $builddir\rt_nonfinite.o $builddir\FUNgen2_Basis_c_data.o $builddir\FUNgen2_Basis_c_initialize.o $builddir\FUNgen2_Basis_c_terminate.o $builddir\FUNgen2_Basis_c.o $builddir\_coder_FUNgen2_Basis_c_api.o $builddir\_coder_FUNgen2_Basis_c_mex.o $builddir\_coder_FUNgen2_Basis_c_info.o $builddir\c_mexapi_version.o 

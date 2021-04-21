@@ -1,0 +1,11 @@
+# ninja log v5
+19	271	5978630527156466	build/win64/c_mexapi_version.o	3af3d9c916dd380a
+1	278	5978630527186387	build/win64/rt_nonfinite.o	6bcd6f4af2581300
+8	296	5978630527415767	build/win64/FUNgen2_Basis_c_data.o	9a36fcf47a33fa5d
+11	304	5978630527495547	build/win64/FUNgen2_Basis_c_terminate.o	857015a066aa3b87
+4	920	5978630527515502	build/win64/FUNgen2_Basis_c_initialize.o	8ff70f28fa116fdc
+27	921	5978630527605248	build/win64/_coder_FUNgen2_Basis_c_info.o	aa32d0c4f1f5484c
+23	923	5978630527605248	build/win64/_coder_FUNgen2_Basis_c_mex.o	2155b14a639cd48e
+16	924	5978630527635170	build/win64/_coder_FUNgen2_Basis_c_api.o	aa86bebfff5b1a16
+31	1023	5978630528273475	build/win64/FUNgen2_Basis_c.o	73a9ac5b3efb074
+1024	1152	5978630535962894	gen2__e_Basis_c.mexw64	481699e3aba09fff
