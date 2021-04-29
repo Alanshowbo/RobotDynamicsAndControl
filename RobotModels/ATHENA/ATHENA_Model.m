@@ -81,9 +81,11 @@ function [P, PARENT, KINE, INER, CNCTPTS] = ATHENA_Model()
                   18          d6   La    Lb;
                   18          d6  -La    Lb;
                   18          d6   La   -Lb;
-                  18          d6  -La   -Lb];
+                  18          d6  -La   -Lb;
+                  12          d6   0     0 ;
+                  18          d6   0     0];
                     
-    P.mTot = sum(INER(:,1));
+    P.mTot = sum(INER(:,7));
     P.NB = 18; %number of Coordinate Systems 
     P.n = 12; %number of joint angles
     P.N = 18; %number of states

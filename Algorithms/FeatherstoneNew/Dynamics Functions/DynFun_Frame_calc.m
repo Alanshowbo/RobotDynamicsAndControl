@@ -14,6 +14,8 @@
 
 function RobotFrame = Frame_calc(RobotLinks,RobotParam,q)
     %Helper Functions
+    Rx = @ (theta) [1 0 0 ; 0 cos(theta) -sin(theta); 0 sin(theta) cos(theta)];
+    Ry = @ (theta) [cos(theta) 0 sin(theta); 0 1 0 ; -sin(theta) 0 cos(theta)];
     Rz = @ (theta) [cos(theta) -sin(theta) 0; sin(theta) cos(theta) 0; 0 0 1];
     Pos_3D = @(X,r) [1 0 0 0; 0 1 0 0; 0 0 1 0]*STfun_T_from_X(X)*[r; 1];
     
@@ -44,16 +46,34 @@ function RobotFrame = Frame_calc(RobotLinks,RobotParam,q)
         
         
         %Joint space Matrix
-        jtype = 1;
-        if jtype == 1 %revolute
+        %Joint space
+        jointRot = eye(3);
+        jointDisp = [0;0;0];
+        if RobotLinks(i).jtype == 1 %revolute
             RobotFrame.S(spots,i+Si_offset) = [0 0 1 0 0 0]';
-        elseif jtype == 6 %floating Base Jointx
+            jointRot = Rz(q(i));
+        elseif RobotLinks(i).jtype == 2 %rev2
+            RobotFrame.S(spots,i+Si_offset) = [0 1 0 0 0 0]';
+            jointRot = Ry(q(i));
+        elseif RobotLinks(i).jtype == 3 %rev3
+            RobotFrame.S(spots,i+Si_offset) = [1 0 0 0 0 0]';
+            jointRot = Rx(q(i));
+        elseif RobotLinks(i).jtype == 4 %linear
+            RobotFrame.S(spots,i+Si_offset) = [0 0 0 0 0 1]';
+            jointDisp = [0 0 q(i)]';
+        elseif RobotLinks(i).jtype == 5 %linear2
+            RobotFrame.S(spots,i+Si_offset) = [0 0 0 0 1 0]';
+            jointDisp = [0 q(i) 0]';
+        elseif RobotLinks(i).jtype == 6 %linear3
+            RobotFrame.S(spots,i+Si_offset) = [0 0 0 1 0 0]';
+            jointDisp = [q(i) 0 0]';
+        elseif jtype == 0 %floating Base Jointx - Doesn't currently work
             RobotFrame.S(spots,i+Si_offset:(i+Si_offset+5)) = eye(6);
             Si_offset = Si_offset + 5;
         end
         
         %Spatial Transformations
-        RobotFrame.i_X_pi(spots,:) = STconstructor_SpatialTransform((RobotLinks(i).pi_R0_i*Rz(q(i)))',RobotLinks(i).pi_r_i);
+        RobotFrame.i_X_pi(spots,:) = STconstructor_SpatialTransform((RobotLinks(i).pi_R0_i*jointRot)',RobotLinks(i).pi_r_i + jointDisp);
         RobotFrame.pi_X_i(spots,:) = inv(RobotFrame.i_X_pi(spots,:));
         if j == 0
             RobotFrame.O_DX_i(spots,spots) = RobotFrame.pi_X_i(spots,:);
