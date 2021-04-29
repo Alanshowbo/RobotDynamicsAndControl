@@ -13,6 +13,8 @@
 
 function RobotFrame = Frame_calc(RobotLinks,RobotParam,q)
     %Helper Functions
+    Rx = @ (theta) [1 0 0 ; 0 cos(theta) -sin(theta); 0 sin(theta) cos(theta)];
+    Ry = @ (theta) [cos(theta) 0 sin(theta); 0 1 0 ; -sin(theta) 0 cos(theta)];
     Rz = @ (theta) [cos(theta) -sin(theta) 0; sin(theta) cos(theta) 0; 0 0 1];
     Pos_3D = @(X,r) [1 0 0 0; 0 1 0 0; 0 0 1 0]*T_from_X(X)*[r; 1];
     %Initialize Values
@@ -30,12 +32,29 @@ function RobotFrame = Frame_calc(RobotLinks,RobotParam,q)
     for i = 1:RobotParam.NB
         j = RobotLinks(i).PARENTi;
         %Joint space
-        jtype = 1;
-        if jtype == 1 %revolute
+        jointRot = eye(3);
+        jointDisp = [0;0;0];
+        if RobotLinks(i).jtype == 1 %revolute
             RobotFrame.Si(6*i-5:6*i,1) = [0 0 1 0 0 0]';
+            jointRot = Rz(q(i));
+        elseif RobotLinks(i).jtype == 2 %rev2
+            RobotFrame.Si(6*i-5:6*i,1) = [0 1 0 0 0 0]';
+            jointRot = Ry(q(i));
+        elseif RobotLinks(i).jtype == 3 %rev3
+            RobotFrame.Si(6*i-5:6*i,1) = [1 0 0 0 0 0]';
+            jointRot = Rx(q(i));
+        elseif RobotLinks(i).jtype == 4 %linear
+            RobotFrame.Si(6*i-5:6*i,1) = [0 0 0 0 0 1]';
+            jointDisp = [0 0 q(i)]';
+        elseif RobotLinks(i).jtype == 5 %linear2
+            RobotFrame.Si(6*i-5:6*i,1) = [0 0 0 0 1 0]';
+            jointDisp = [0 q(i) 0]';
+        elseif RobotLinks(i).jtype == 6 %linear3
+            RobotFrame.Si(6*i-5:6*i,1) = [0 0 0 1 0 0]';
+            jointDisp = [q(i) 0 0]';
         end
         %Spatial Transformations
-        RobotFrame.i_X_pi(6*i-5:6*i,:) = SpatialTransform((RobotLinks(i).pi_R0_i*Rz(q(i)))',RobotLinks(i).pi_r_i);
+        RobotFrame.i_X_pi(6*i-5:6*i,:) = SpatialTransform((RobotLinks(i).pi_R0_i*jointRot)',RobotLinks(i).pi_r_i+jointDisp);
         RobotFrame.pi_X_i(6*i-5:6*i,:) = inv(RobotFrame.i_X_pi(6*i-5:6*i,:));
         if RobotLinks(i).PARENTi == 0
             RobotFrame.O_X_i(6*i-5:6*i,:) = RobotFrame.pi_X_i(6*i-5:6*i,:);

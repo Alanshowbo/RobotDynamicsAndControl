@@ -39,7 +39,7 @@ function [RobotLinks, RobotParam] = PendRobot(PARAMS, PARENTi, KINE, INER, CNCTP
         RobotLinks(j).pi_r_i = KINE(j,1:3)'; 
         RobotLinks(j).pi_R0_i = Rzd(KINE(j,4))*Ryd(KINE(j,5))*Rxd(KINE(j,6)); 
         RobotLinks(j).i_rCOM_i = INER(j,2:4)'; 
-        RobotLinks(j).jtype = 1; 
+        RobotLinks(j).jtype = PARAMS.jtype(j); 
         RobotLinks(j).PARENTi = PARENTi(j); 
         %Spatial Transforms
         RobotLinks(j).i_X0_pi = STconstructor_SpatialTransform(RobotLinks(j).pi_R0_i',RobotLinks(j).pi_r_i);
