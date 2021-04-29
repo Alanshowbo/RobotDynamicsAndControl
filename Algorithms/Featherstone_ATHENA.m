@@ -9,8 +9,8 @@ format compact
 [RobotLinks, RobotParam] = PendRobot(PARAMS, PARENT, KINE, INER, CNCTPTS);
 %need NB, Parent(i), jtype(i), X_T, Ii
 
-q = zeros(18,1);
-dq = zeros(18,1);
+q = zeros(18,1)+[zeros(6,1); [0 0 0.3 -0.4 0.1 0 0 0 0.3 -0.4 0.1 0]'];
+dq = zeros(18,1)+rand(18,1)-0.5;
 ddq = zeros(18,1);
 
 % q = [0 -0.3 0.6]' + (rand-.5)*4*[(rand-.5)*4,(rand-.5)*4,(rand-.5)*4]';
@@ -32,56 +32,56 @@ fprintf('Elapsed Time for Matrix Frame_calc is: %f \n',toc)
 fprintf('\n')
 
 %Test ID
-tic
-tau2 = gen3_B(q)\(gen3_D(q)*ddq + gen3_Cdq(q,dq) + gen3_G(q));
-fprintf('Elapsed Time for Symbol ID is: %f \n',toc)
+% tic
+% tau2 = gen3_B(q)\(gen3_D(q)*ddq + gen3_Cdq(q,dq) + gen3_G(q));
+% fprintf('Elapsed Time for Symbol ID is: %f \n',toc)
 tic
 tau1 = ID(RobotLinks,RobotParam,q,dq,ddq);
 fprintf('Elapsed Time for Iter.. ID is: %f \n',toc)
 tic
 tau = DynFun_InverseDynamics(RobotLinks,RobotParam,RobotFrame,q,dq,ddq);
 fprintf('Elapsed Time for Matrix ID is: %f \n',toc)
-comparetau = [tau1-tau tau1-tau2]
+% comparetau = [tau1-tau tau1 tau]
 fprintf('\n')
 
 %EOM - M, H(q,dq), B
-tic
-M2 = gen3_D(q);
-fprintf('Elapsed Time for Symbol MassMatrix is: %f \n',toc)
+% tic
+% M2 = gen3_D(q);
+% fprintf('Elapsed Time for Symbol MassMatrix is: %f \n',toc)
 tic
 M1 = MassMatrix_CompositeRigidBody(RobotLinks, RobotParam,q);
 fprintf('Elapsed Time for Iter.. MassMatrix is: %f \n',toc)
 tic
 M = DynFun_MassMatrix_CRB(RobotParam,RobotFrame);
 fprintf('Elapsed Time for Matrix MassMatrix is: %f \n',toc)
-Mcompare = [M1-M M1-M2]
+% Mcompare = [M1-M M M1]
 fprintf('\n')
 
-tic
-H2 = gen3_Cdq(q,dq) + gen3_G(q);
-fprintf('Elapsed Time for Symbol H is: %f \n',toc)
+% tic
+% H2 = gen3_Cdq(q,dq) + gen3_G(q);
+% fprintf('Elapsed Time for Symbol H is: %f \n',toc)
 tic
 H1 = ID(RobotLinks, RobotParam,q,dq,ddq) - M1*ddq;
 fprintf('Elapsed Time for Iter.. H is: %f \n',toc)
 tic
 H = DynFun_InverseDynamics(RobotLinks, RobotParam, RobotFrame, q,dq,ddq) - M*ddq;
 fprintf('Elapsed Time for Matrix H is: %f \n',toc)
-Hcompare = [H1-H H1-H2]
+Hcompare = [H1-H H H1]
 fprintf('\n')
 
 B = ones(RobotParam.n);
 
 %% Centroidal momentum matrix - Acmm, dAcmm, h
-tic
-Acmm2 = gen3_Acmm(q);
-Acmm_dot2 = gen3_Acmm_dot(q,dq);
-hG2 = gen3_h(q,dq);
-Sys_h2 = gen3_Sys_h(q,dq);
-Sys_V2 = gen3_Sys_V(q,dq);
-vG2 = gen3_vCOM_Tot(q,dq);
-Jc2 = gen3_Jc(q);
-Jc_dot2 = gen3_Jc_dot(q,dq);
-fprintf('Elapsed Time for Symbol Acmm is: %f \n',toc)
+% tic
+% Acmm2 = gen3_Acmm(q);
+% Acmm_dot2 = gen3_Acmm_dot(q,dq);
+% hG2 = gen3_h(q,dq);
+% Sys_h2 = gen3_Sys_h(q,dq);
+% Sys_V2 = gen3_Sys_V(q,dq);
+% vG2 = gen3_vCOM_Tot(q,dq);
+% Jc2 = gen3_Jc(q);
+% Jc_dot2 = gen3_Jc_dot(q,dq);
+% fprintf('Elapsed Time for Symbol Acmm is: %f \n',toc)
 tic
 [Acmm1,hG1,IG1,vG1,pCOM1] = Centroidal_Momentum_Matrix(RobotLinks, RobotParam,q,dq);
 fprintf('Elapsed Time for Iter.. Acmm is: %f \n',toc)
@@ -89,21 +89,23 @@ tic
 [Acmm,hG,IG,vG,Acmm_dot,Sys_h,i_V_i,Jc_dot] = DynFun_Centroidal_Momentum_Matrix(RobotLinks, RobotParam, RobotFrame,q,dq);
 fprintf('Elapsed Time for Matrix Acmm is: %f \n',toc)
 
-AcmmCompare = [Acmm-Acmm1 Acmm-Acmm2]
-AcmmDotshow = [Acmm_dot [0 0 0 0 0 0]' Acmm_dot2]
-AcmmDotCompare = [Acmm_dot-Acmm_dot2]
+AcmmCompare = [Acmm-Acmm1 Acmm Acmm1]
+AcmmDotshow = [Acmm_dot]
+% AcmmDotCompare = [Acmm_dot-Acmm_dot2]
 % hcompare = [hG1-hG hG1-hG2]
 % hshow = [hG1 hG2 hG]
 
-Sys_hCompare = [Sys_h Sys_h2];
-Sys_V_Compare = [i_V_i Sys_V2];
+% Sys_hCompare = [Sys_h Sys_h2];
+% Sys_V_Compare = [i_V_i Sys_V2];
+Sys_h
+i_V_i
 fprintf('\n')
 
 tic
-[D1,Cdq1,G1] = EOM_num(RobotLinks, RobotParam,q,dq);
+[D1,Cdq1,G1] = EOM_num(RobotLinks, RobotParam,q,dq,18);
 fprintf('Elapsed Time for Iter.. EOM_num is: %f \n',toc)
 tic
-[D,Cdq,G] = EOM_num(RobotLinks, RobotParam,q,dq);
+[D,Cdq,G] = EOM_num(RobotLinks, RobotParam,q,dq,18);
 fprintf('Elapsed Time for Matrix EOM_num is: %f \n',toc)
 fprintf('\n')
 
@@ -115,53 +117,18 @@ tau;
 close all
 p0 = reshape(RobotFrame.O_p_i,[3 RobotParam.NB]);
 Pc = reshape(RobotFrame.O_p_Pc,3,RobotParam.c);
-JntPts = [p0 Pc(:,end)];
-FootPts = [Pc(:,1:2) Pc(:,4) Pc(:,3) Pc(:,1)]; 
+Leg1Pts = [p0(:,6:12) mean(Pc(:,1:4)')'];
+Leg2Pts = [p0(:,6) p0(:,13:18) mean(Pc(:,5:8)')'];
+Foot1Pts = [Pc(:,1:2) Pc(:,4) Pc(:,3) Pc(:,1)]; 
+Foot2Pts = [Pc(:,5:6) Pc(:,8) Pc(:,7) Pc(:,5)]; 
 close all
 figure(1)
 hold on
-plot3(JntPts(1,:),JntPts(2,:),JntPts(3,:),'k.') %Joint Points
-plot3(JntPts(1,:),JntPts(2,:),JntPts(3,:),'b') %Leg Lines
-plot3(FootPts(1,:),FootPts(2,:),FootPts(3,:),'r') %Foot Lines
+plot3(p0(1,:),p0(2,:),p0(3,:),'k.') %Joint Points
+plot3(Leg1Pts(1,:),Leg1Pts(2,:),Leg1Pts(3,:),'b') %Leg Lines
+plot3(Leg2Pts(1,:),Leg2Pts(2,:),Leg2Pts(3,:),'b') %Leg Lines
+plot3(Foot1Pts(1,:),Foot1Pts(2,:),Foot1Pts(3,:),'r') %Foot Lines
+plot3(Foot2Pts(1,:),Foot2Pts(2,:),Foot2Pts(3,:),'r') %Foot Lines
 grid on
 axis equal
 
-
-
-%% Test Reversing of Transformation
-
-RealReverse = [SpatialTransform_reverse(RobotFrame.i_X_O(1:6,:)) ...
-               SpatialTransform_reverse(RobotFrame.i_X_O(7:12,:)) ...
-               SpatialTransform_reverse(RobotFrame.i_X_O(13:18,:))];
- flipeye6 = [zeros(3) eye(3); eye(3) zeros(3)];
-NB=3;
-Dflipeye6 = zeros(6*NB);
-for i = 1:NB
-    Dflipeye6(6*i-5:6*i,6*i-5:6*i) = flipeye6;
-end
-TestReverse = flipeye6*RobotFrame.i_X_O'*Dflipeye6;
-
-RealReverse-TestReverse;
-
-RealReverse2 = [STfun_reverse(RobotFrame.i_X_O(1:6,:)) ...
-               STfun_reverse(RobotFrame.i_X_O(7:12,:)) ...
-               STfun_reverse(RobotFrame.i_X_O(13:18,:))];
-TestReverse2 = STfun_reverse(RobotFrame.i_X_O);
-RealReverse2-TestReverse2;
-TestReverse-TestReverse2;
-
-%%
-spots = @(iii) 6*iii-5:6*iii;
-i = 3;
-%Does 
-pi = RobotLinks(i).PARENTi;
-i_vx_pi = STfun_SpatialCross(RobotFrame.i_X_pi(spots(i),:)*i_V_i(spots(pi),:));
-i_vx_pi2 = RobotFrame.i_X_pi(spots(i),:) * STfun_SpatialCross(i_V_i(spots(pi),:)) * inv(RobotFrame.i_X_pi(spots(i),:)')';
-
-%%
-hdot = Acmm*ddq + Acmm_dot*dq;
-hdot1 = gen3_h_dot(q,dq,ddq);
-hdot2 = Acmm2*ddq + Acmm_dot2*dq;
-hdotCompare = [hdot hdot1 hdot2]
-
-WHAT = [Acmm_dot*dq Acmm_dot2*dq]

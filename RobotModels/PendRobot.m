@@ -34,8 +34,9 @@ function [RobotLinks, RobotParam] = PendRobot(PARAMS, PARENTi, KINE, INER, CNCTP
     NB = size(INER,1); %number of joint variables
     for j = 1:NB
         %Load Link Values from Matrices
-        RobotLinks(j).mass = INER(j,1); 
-        RobotLinks(j).I_MAT = [INER(j,5:7); INER(j,6) INER(j,8:9); INER(j,7) INER(j,9) INER(j,10)]; 
+        RobotLinks(j).mass = INER(j,end-6); 
+        inertia = INER(j,end-5:end);
+        RobotLinks(j).I_MAT = [inertia(1:3); inertia(2) inertia(4:5); inertia(3) inertia(5) inertia(6)]; 
         RobotLinks(j).pi_r_i = KINE(j,1:3)'; 
         RobotLinks(j).pi_R0_i = Rzd(KINE(j,4))*Ryd(KINE(j,5))*Rxd(KINE(j,6)); 
         RobotLinks(j).i_rCOM_i = INER(j,2:4)'; 

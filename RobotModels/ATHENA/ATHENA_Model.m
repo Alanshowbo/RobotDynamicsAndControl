@@ -21,8 +21,8 @@ function [P, PARENT, KINE, INER, CNCTPTS] = ATHENA_Model()
     0       	-d7       	-d1       	0       	0       	180     ; %RHipYaw
     0        	0       	d2       	0       	-90       	0       ; %RHipRoll
     d3         	0       	0       	90        	90       	0       ; %RHipPitch
-    0       	0       	-d4     	0       	0       	0       ; %RKnePitch
-    0       	0        	-d5     	0        	0        	0       ; %RAnkPitch
+    0       	-d4       	0       	0       	0       	0       ; %RKnePitch
+    0       	-d5        	0       	0        	0        	0       ; %RAnkPitch
     0         	0       	0       	-90       	0           90      ];%RLAnkRoll
             
     P.jtype = [6 5 4 3 2 1 1 1 1 1 1 1 1 1 1 1 1 1]';
@@ -78,10 +78,10 @@ function [P, PARENT, KINE, INER, CNCTPTS] = ATHENA_Model()
                   12          d6  -La    Lb;
                   12          d6   La   -Lb;
                   12          d6  -La   -Lb;
-                  18         -d6   La    Lb;
-                  18         -d6  -La    Lb;
-                  18         -d6   La   -Lb;
-                  18         -d6  -La   -Lb];
+                  18          d6   La    Lb;
+                  18          d6  -La    Lb;
+                  18          d6   La   -Lb;
+                  18          d6  -La   -Lb];
                     
     P.mTot = sum(INER(:,1));
     P.NB = 18; %number of Coordinate Systems 
