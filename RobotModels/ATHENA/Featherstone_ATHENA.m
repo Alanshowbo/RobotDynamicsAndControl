@@ -9,10 +9,20 @@ format compact
 [RobotLinks, RobotParam] = PendRobot(PARAMS, PARENT, KINE, INER, CNCTPTS);
 %need NB, Parent(i), jtype(i), X_T, Ii
 
-q = zeros(18,1)+[0 0 1.3 0 0.1 0   0 0 0.7 -0.4 0.1 0 0 0 0.1 -0.4 0.4 0]';
-dq = zeros(18,1)+[0.3 0.1 0.1 0 -0.1 -0.1   0 0 0.3 0.2 -0.1 0 0 0 -0.3 0.2 0.1 0]';
-ddq = zeros(18,1);
-
+switch 1
+    case 1
+        q = zeros(18,1)+[0 0 1.3 0 0.1 0   0 0 0.7 -0.4 0.1 0 0 0 0.1 -0.4 0.4 0]';
+        dq = zeros(18,1)+[0.3 0.1 0.1 0 -0.1 -0.1   0 0 0.3 0.2 -0.1 0 0 0 -0.3 0.2 0.1 0]';
+        ddq = zeros(18,1);
+        h_desired = [1 -1 2 3 0.5 0.2]';
+        a_swing_desired = [0.2 0.04 -0.3 0.5 0.1 0.3];
+    case 2
+        q = zeros(18,1)+[0 0 1.3 0 0 0   0 0 0.5 -0.4 0.2 0 0 0 0.2 -0.4 0.2 0]';
+        dq = zeros(18,1)+[0.3 0.1 0.1 0 -0.1 -0.1   0 0 0.3 0.2 -0.1 0 0 0 -0.3 0.2 0.1 0]';
+        ddq = zeros(18,1);
+        h_desired = [1 0.1 2 3 -0.5 0.2]';
+        a_swing_desired = [-0.2 0 -0.1];
+end
 % q = [0 -0.3 0.6]' + (rand-.5)*4*[(rand-.5)*4,(rand-.5)*4,(rand-.5)*4]';
 % dq = [1 1 1]' + (rand-.5)*4*[(rand-.5)*4,(rand-.5)*4,(rand-.5)*4]';
 % ddq = [1 1 1]' + (rand-.5)*4*[(rand-.5)*4,(rand-.5)*4,(rand-.5)*4]';
@@ -134,11 +144,11 @@ axis equal
 
 
 %% Create variables to save for project
-h_desired = [1 -1 2 3 0.5 0.2]';
-a_swing_desired = [0.2 0.04 -0.3 0.5 0.1 0.3];
 wg = [0 0 0 0 0 -PARAMS.mTot*9.8];
 Jf1_left = RobotFrame.Jc(end-5:end-3,:);
 Jf2_right = RobotFrame.Jc(end-2:end,:);
+Jf1_left_dot = Jc_dot(end-5:end-3,:);
+Jf2_right_dot = Jc_dot(end-2:end,:);
 
 fc = 0.7;
 Beta_c = [fc -fc fc  -fc;
@@ -147,7 +157,9 @@ Beta_c = [fc -fc fc  -fc;
 for i = 1:4
     A_2(1:6,(i*4-3):i*4) = [S(RobotFrame.O_p_COM-Pc(:,i+4))*Beta_c; Beta_c];
 end
+Q = eye(12,12);
+Cb = chol(Q);
 
 ddq_lb = ones(18,1)-5;
 ddq_ub = ones(18,1)+5;
-save('OptProjectVar.mat','q','dq','h_desired','a_swing_desired','Acmm','Acmm_dot','wg','Jf1_left','Jf2_right','A_2','ddq_ub','ddq_lb')
+save('OptProjectVar.mat','q','dq','h_desired','a_swing_desired','Acmm','Acmm_dot','wg','Jf1_left','Jf2_right','A_2','ddq_ub','ddq_lb','Jf1_left_dot','Jf2_right_dot','Q','Cb')

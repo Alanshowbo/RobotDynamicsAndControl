@@ -40,9 +40,11 @@ ddx = SymVariable('ddx');   ddy = SymVariable('ddy');   ddz = SymVariable('ddz')
 ddqR = SymVariable('ddqR'); ddqP = SymVariable('ddqP'); ddqY = SymVariable('ddqY');
 
 %i=1; L(i).q = [x y z qY qP qR];    L(i).dq = [dx dy dz dqY dqP dqR]; L(i).ddq = [ddx ddy ddz ddqY ddqP ddqR];
-i=3; L(i).q = SymVariable('qKP');  L(i).dq = SymVariable('dqKP'); L(i).ddq = SymVariable('ddqKP');
-i=2; L(i).q = SymVariable('qAP');  L(i).dq = SymVariable('dqAP'); L(i).ddq = SymVariable('ddqAP');
-i=1; L(i).q = SymVariable('qAR');  L(i).dq = SymVariable('dqAR'); L(i).ddq = SymVariable('ddqAR');
+for i = 1:3
+    L(i).q = SymVariable(['q' num2str(i)]);  
+    L(i).dq = SymVariable(['dq' num2str(i)]); 
+    L(i).ddq = SymVariable(['ddq' num2str(i)]);
+end
 q_T = [L.q];
 dq_T = [L.dq];
 ddq_T = [L.ddq];
