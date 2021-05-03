@@ -84,7 +84,28 @@ function [P, PARENT, KINE, INER, CNCTPTS] = ATHENA_Model()
                   18          d6  -La   -Lb;
                   12          d6   0     0 ;
                   18          d6   0     0];
-                    
+    
+    P.STLFileNames = {
+        ''
+        ''
+        ''
+        ''
+        ''
+        'Hip_Assembly.stl'
+        'Cross_Gimble.stl'
+        'Thigh_Top_Left_Ass.stl'
+        'Thigh_Left_Assembly.stl'
+        'Left_Shin_Assembly.stl'
+        'Legs_Ankle_CrossGimbal2.stl'
+        'Left_Foot_Assembly.stl'
+        'Cross_Gimble.stl'
+        'Thigh_Right_Top_Bracket.stl'
+        'Thigh_Right_Assembly.stl'
+        'Right_Shin_Assembly.stl'
+        'Legs_Ankle_CrossGimbal2.stl'
+        'Right_Foot_Assembly.stl'
+        };
+    
     P.mTot = sum(INER(:,7));
     P.NB = 18; %number of Coordinate Systems 
     P.n = 12; %number of joint angles

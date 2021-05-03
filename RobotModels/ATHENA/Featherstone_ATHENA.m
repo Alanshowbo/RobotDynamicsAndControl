@@ -9,15 +9,21 @@ format compact
 [RobotLinks, RobotParam] = PendRobot(PARAMS, PARENT, KINE, INER, CNCTPTS);
 %need NB, Parent(i), jtype(i), X_T, Ii
 
-switch 1
+switch 3
     case 1
-        q = zeros(18,1)+[0 0 1.3 0 0.1 0   0 0 0.7 -0.4 0.1 0 0 0 0.1 -0.4 0.4 0]';
+        q = zeros(18,1)+[0 0 1.258 0 0.1 0   0 0 0.7 -0.4 0.1 0 0 0 0.1 -0.4 0.4 0]';
         dq = zeros(18,1)+[0.3 0.1 0.1 0 -0.1 -0.1   0 0 0.3 0.2 -0.1 0 0 0 -0.3 0.2 0.1 0]';
         ddq = zeros(18,1);
         h_desired = [1 -1 2 3 0.5 0.2]';
         a_swing_desired = [0.2 0.04 -0.3 0.5 0.1 0.3];
     case 2
         q = zeros(18,1)+[0 0 1.3 0 0 0   0 0 0.5 -0.4 0.2 0 0 0 0.2 -0.4 0.2 0]';
+        dq = zeros(18,1)+[0.3 0.1 0.1 0 -0.1 -0.1   0 0 0.3 0.2 -0.1 0 0 0 -0.3 0.2 0.1 0]';
+        ddq = zeros(18,1);
+        h_desired = [1 0.1 2 3 -0.5 0.2]';
+        a_swing_desired = [-0.2 0 -0.1];
+    case 3
+        q = zeros(18,1)+[0 0 1.3 0 0 0   0.3 0 1.7 -0.8 0.2 0     0.3 0 0.2 -0.4 0.2 0]';
         dq = zeros(18,1)+[0.3 0.1 0.1 0 -0.1 -0.1   0 0 0.3 0.2 -0.1 0 0 0 -0.3 0.2 0.1 0]';
         ddq = zeros(18,1);
         h_desired = [1 0.1 2 3 -0.5 0.2]';
@@ -142,6 +148,7 @@ plot3(Foot2Pts(1,:),Foot2Pts(2,:),Foot2Pts(3,:),'r') %Foot Lines
 grid on
 axis equal
 
+PlotAthena
 
 %% Create variables to save for project
 wg = [0 0 0 0 0 -PARAMS.mTot*9.8];
