@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Fri 24 Apr 2020 10:16:24 GMT-04:00
+ * Fri 30 Apr 2021 09:00:00 GMT-04:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -48,61 +48,61 @@ inline double Csc(double x) { return 1/sin(x); }
  */
 static void output1(double *p_output1,const double *var1,const double *var2)
 {
-  double t13;
-  double t14;
-  double t15;
-  double t16;
-  double t17;
-  double t20;
-  double t22;
-  double t23;
-  double t24;
-  double t25;
-  double t26;
-  double t27;
-  double t28;
-  double t29;
-  double t30;
-  double t31;
-  double t32;
-  double t33;
-  double t34;
-  double t35;
-  double t36;
-  double t37;
-  double t38;
-  t13 = Cos(var1[0]);
-  t14 = Power(t13,2);
-  t15 = var2[0]*t14;
-  t16 = Sin(var1[0]);
-  t17 = Power(t16,2);
-  t20 = var2[0]*t17;
-  t22 = t15 + t20;
-  t23 = Cos(var1[1]);
-  t24 = Power(t23,2);
-  t25 = var2[1]*t24;
-  t26 = Sin(var1[1]);
-  t27 = Power(t26,2);
-  t28 = var2[1]*t27;
-  t29 = t25 + t28;
-  t30 = -1.*t13*t29;
-  t31 = -1.*t29*t16;
-  t32 = Cos(var1[2]);
-  t33 = Power(t32,2);
-  t34 = var2[2]*t33;
-  t35 = Sin(var1[2]);
-  t36 = Power(t35,2);
-  t37 = var2[2]*t36;
-  t38 = t34 + t37;
-  p_output1[0]=t22;
+  double t507;
+  double t509;
+  double t511;
+  double t512;
+  double t519;
+  double t527;
+  double t533;
+  double t536;
+  double t537;
+  double t541;
+  double t546;
+  double t561;
+  double t565;
+  double t567;
+  double t579;
+  double t582;
+  double t583;
+  double t586;
+  double t587;
+  double t588;
+  double t589;
+  double t596;
+  double t597;
+  t507 = Cos(var1[0]);
+  t509 = Power(t507,2);
+  t511 = var2[0]*t509;
+  t512 = Sin(var1[0]);
+  t519 = Power(t512,2);
+  t527 = var2[0]*t519;
+  t533 = t511 + t527;
+  t536 = Cos(var1[1]);
+  t537 = Power(t536,2);
+  t541 = var2[1]*t537;
+  t546 = Sin(var1[1]);
+  t561 = Power(t546,2);
+  t565 = var2[1]*t561;
+  t567 = t541 + t565;
+  t579 = -1.*t507*t567;
+  t582 = -1.*t512*t567;
+  t583 = Cos(var1[2]);
+  t586 = Power(t583,2);
+  t587 = var2[2]*t586;
+  t588 = Sin(var1[2]);
+  t589 = Power(t588,2);
+  t596 = var2[2]*t589;
+  t597 = t587 + t596;
+  p_output1[0]=t533;
   p_output1[1]=0;
   p_output1[2]=0;
-  p_output1[3]=t22;
-  p_output1[4]=t30;
-  p_output1[5]=t31;
-  p_output1[6]=t22;
-  p_output1[7]=t30 - 1.*t13*t38;
-  p_output1[8]=t31 - 1.*t16*t38;
+  p_output1[3]=t533;
+  p_output1[4]=t579;
+  p_output1[5]=t582;
+  p_output1[6]=t533;
+  p_output1[7]=t579 - 1.*t507*t597;
+  p_output1[8]=t582 - 1.*t512*t597;
 }
 
 
