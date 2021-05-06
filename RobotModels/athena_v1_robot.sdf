@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sdf version="1.5">
+    <model name="athena_v1">
+        <joint name="ll1_hip_yaw" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.6</lower>
+                    <upper>0.6</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+            <child>l_hipgimbal</child>
+            <parent>pelvis</parent>
+        </joint>
+        <joint name="ll2_hip_rol" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.6</lower>
+                    <upper>0.6</upper>
+                    <velocity>10</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+            <child>l_glute</child>
+            <parent>l_hipgimbal</parent>
+        </joint>
+        <joint name="ll3_hip_pit" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.6</lower>
+                    <upper>1.2</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+            <child>l_thigh</child>
+            <parent>l_glute</parent>
+        </joint>
+        <joint name="ll4_kne_pit" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>0</lower>
+                    <upper>1</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+            <child>l_shin</child>
+            <parent>l_thigh</parent>
+        </joint>
+        <joint name="ll5_ank_pit" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.6</lower>
+                    <upper>0.9</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+            <child>l_ankle</child>
+            <parent>l_shin</parent>
+        </joint>
+        <joint name="ll6_ank_rol" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.6</lower>
+                    <upper>0.6</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+            <child>l_foot</child>
+            <parent>l_ankle</parent>
+        </joint>
+        <joint name="rl1_hip_yaw" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.6</lower>
+                    <upper>0.6</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+            <child>r_hipgimbal</child>
+            <parent>pelvis</parent>
+        </joint>
+        <joint name="rl2_hip_rol" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.6</lower>
+                    <upper>0.6</upper>
+                    <velocity>10</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+            <child>r_glute</child>
+            <parent>r_hipgimbal</parent>
+        </joint>
+        <joint name="rl3_hip_pit" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.6</lower>
+                    <upper>1.2</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+            <child>r_thigh</child>
+            <parent>r_glute</parent>
+        </joint>
+        <joint name="rl4_kne_pit" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>0</lower>
+                    <upper>1</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+            <child>r_shin</child>
+            <parent>r_thigh</parent>
+        </joint>
+        <joint name="rl5_ank_pit" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.6</lower>
+                    <upper>0.9</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+            <child>r_ankle</child>
+            <parent>r_shin</parent>
+        </joint>
+        <joint name="rl6_ank_rol" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.6</lower>
+                    <upper>0.6</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+            <child>r_foot</child>
+            <parent>r_ankle</parent>
+        </joint>
+        <pose>0 0 0.93 0 0 0</pose>
+    </model>
+</sdf>

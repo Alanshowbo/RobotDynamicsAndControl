@@ -5,7 +5,6 @@
 %constraint is a link can only be added after its parent link has been.
 %Each link has a corresponding joint and coordinate system that is located
 %at that joint.
-%added
 % INER - Matrix giving pose of inertial coordinate system for the link, wrt. the joint coordinate system
 % KINE - Matrix giving pose of each joint coordinate system wrt. its parent
 % PARENT - 

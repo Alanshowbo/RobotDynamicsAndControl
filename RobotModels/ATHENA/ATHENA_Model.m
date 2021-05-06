@@ -1,4 +1,4 @@
-function [P, PARENT, KINE, INER, CNCTPTS] = ATHENA_Model()
+function [P, PARENT, KINE, INER, CNCTPTS, VISUALS] = ATHENA_Model()
     %% m
     d1 = 0.275;     d2 = 0;     d3 = 0.055;     d4 = 0.448;       d5 = 0.435;
     d6 = 0.050;     d7 = 0.119;
@@ -73,19 +73,20 @@ function [P, PARENT, KINE, INER, CNCTPTS] = ATHENA_Model()
 
     La = 0.05;  Lb = 0.05;
     % Location of contact points in the rigid body system
-    CNCTPTS = [...%Body ID    px   py    pz
-                  12          d6   La    Lb;
-                  12          d6  -La    Lb;
-                  12          d6   La   -Lb;
-                  12          d6  -La   -Lb;
-                  18          d6   La    Lb;
-                  18          d6  -La    Lb;
-                  18          d6   La   -Lb;
-                  18          d6  -La   -Lb;
-                  12          d6   0     0 ;
-                  18          d6   0     0];
+    CNCTPTS = [
+      %Body ID    px   py    pz
+      12          d6   La    Lb;
+      12          d6  -La    Lb;
+      12          d6   La   -Lb;
+      12          d6  -La   -Lb;
+      18          d6   La    Lb;
+      18          d6  -La    Lb;
+      18          d6   La   -Lb;
+      18          d6  -La   -Lb;
+      12          d6   0     0 ;
+      18          d6   0     0];
     
-    P.STLFileNames = {
+    VISUALS.STLFileNames = {
         ''
         ''
         ''
@@ -105,11 +106,28 @@ function [P, PARENT, KINE, INER, CNCTPTS] = ATHENA_Model()
         'Legs_Ankle_CrossGimbal2.stl'
         'Right_Foot_Assembly.stl'
         };
+    %Displacement to be applied to all the points in the STL file such that
+    %the origin of the stl file matches the origin of the joint Coordinates
+    VISUALS.STLOriginOffset = [
+       %X       Y   Z
+        0       0   0; %Pelvis floating Base link
+        0       0   0; %Pelvis floating Base link
+        0       0   0; %Pelvis floating Base link
+        0       0   0; %Pelvis floating Base link
+        0       0   0; %Pelvis floating Base link
+        0       0   -231.7; %Pelvis
+        0       -6  -8; %LHipGim
+        -120     3  43.5; %LGlute
+        -120     0  100; %LThigh
+        -1      -25 0; %Lshin
+        0       0   -6; %LankGim
+        -120    6   980; %Lfoot
+        0       -6  -8; %RHipGim
+        120     -2  44; %RGlute
+        120     0   100; %RThigh
+        -1      -25 0; %Rshin
+        0       0   -6; %RankGim
+        120     6   980]; %Rfoot
     
-    P.mTot = sum(INER(:,7));
-    P.NB = 18; %number of Coordinate Systems 
-    P.n = 12; %number of joint angles
-    P.N = 18; %number of states
-    P.m = 12; %number of inputs
-    P.c = size(CNCTPTS,1); %number of contact points
+    
 end
