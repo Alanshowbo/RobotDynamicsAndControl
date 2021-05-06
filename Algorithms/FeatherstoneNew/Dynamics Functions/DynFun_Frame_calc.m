@@ -67,7 +67,7 @@ function RobotFrame = Frame_calc(RobotLinks,RobotParam,q)
         elseif RobotLinks(i).jtype == 6 %linear3
             RobotFrame.S(spots,i+Si_offset) = [0 0 0 1 0 0]';
             jointDisp = [q(i) 0 0]';
-        elseif jtype == 0 %floating Base Jointx - Doesn't currently work
+        elseif RobotLinks(i).jtype == 0 %floating Base Jointx - Doesn't currently work
             RobotFrame.S(spots,i+Si_offset:(i+Si_offset+5)) = eye(6);
             Si_offset = Si_offset + 5;
         end

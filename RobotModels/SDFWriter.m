@@ -7,7 +7,19 @@ clear
 ATHENARobotParameters
 
 %% Robot Parameters
+
+
+[RobotLinks, RobotParam] = PendRobot(P, PARENT, KINE, INER, CNCTPTS);
+q = zeros(18,1);
+RobotFrame = DynFun_Frame_calc(RobotLinks,RobotParam,q);
 robotPose = '0 0 0.93 0 0 0';
+
+for i = 1:P.NB
+    spots = [6*i-5:6*i];
+    O_X_i = RobotFrame.O_DX_i(spots,spots);
+    O_R_i = O_X_i(1:3,1:3);
+    joint_RPY(i,:) = extractRPY_deg(O_R_i);
+end
 
 %% Open File
 ind0 = '';
@@ -63,10 +75,9 @@ for i = 1:P.NB
             printSDFLine(ind5,['<iyz>' num2str(INER(i,12)) '</iyz>']);
             printSDFLine(ind5,['<izz>' num2str(INER(i,13)) '</izz>']);
         printSDFLine(ind4,'</inertia>');
-        printSDFLine(ind4,['<mass>' num2str(JointAxis(i,1)) ' ' num2str(JointAxis(i,2)) ' ' num2str(JointAxis(i,3)) '</xyz>']);
+        printSDFLine(ind4,['<mass>' num2str(INER(i,7)) '</xyz>']);
+        printSDFLine(ind4,['<pose>' num2str(JointAxis(i,1)) ' ' num2str(JointAxis(i,2)) ' ' num2str(JointAxis(i,3)) '</pose>']);
     printSDFLine(ind3,'</inertial>');
-    printSDFLine(ind3,['<child>' NAMES{i,1} '</child>']);
-    printSDFLine(ind3,['<parent>' NAMES{PARENT(i),1} '</parent>']);
     printSDFLine(ind2,'</joint>');
 end
 
@@ -96,4 +107,12 @@ thz = atan2(Rin(2,1),Rin(1,1));
 thx = atan2(Rin(3,2),Rin(3,3));
 thy = atan2(-Rin(3,1),sqrt(Rin(3,2)^2+Rin(3,3)^2));
 RPY = [thx thy thz];
+end
+
+function RPY = extractRPY_deg(Rin)
+thz = atan2(Rin(2,1),Rin(1,1));
+thx = atan2(Rin(3,2),Rin(3,3));
+thy = atan2(-Rin(3,1),sqrt(Rin(3,2)^2+Rin(3,3)^2));
+conv = 180/pi;
+RPY = [thx*conv thy*conv thz*conv];
 end

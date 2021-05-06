@@ -205,6 +205,16 @@
             <child>r_foot</child>
             <parent>r_ankle</parent>
         </joint>
-        <pose>0 0 0.93 0 0 0</pose>
-    </model>
-</sdf>
+        <link name="pelvis">
+            <inertial>
+                <inertia>
+                    <ixx>0.5</ixx>
+                    <ixy>0.05</ixy>
+                    <ixz>0.05</ixz>
+                    <iyy>0.5</iyy>
+                    <iyz>0.05</iyz>
+                    <izz>0.5</izz>
+                </inertia>
+                <mass>0 0 0</xyz>
+            </inertial>
+            <child>pelvis</child>

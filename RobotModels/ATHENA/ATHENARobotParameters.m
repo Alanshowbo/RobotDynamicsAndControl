@@ -30,6 +30,14 @@ P.isFloatingBase = true;
 
 P.RobotName = 'athena';
 P.VersionName = 'v1';
+%Type of each joint. 1 - revolute about z axis
+%                    2 - revolute about y axis
+%                    3 - revolute about z axis
+%                    4 - prismatic along z axis
+%                    5 - prismatic along y axis
+%                    6 - prismatic along x axis
+%                    0 - floating base
+P.jtype = [0 1 1 1 1 1 1 1 1 1 1 1 1]';
 
 NAMES = {
     %name       J_name          type        parent
@@ -66,7 +74,7 @@ INER = [%                   kg      kg*m^2......
 
 
 KINE = [ %Parameterized Positions and Angles in degrees
-    %Jnt X   	Jnt Y   	Jnt Z   	Jnt Roll	Jnt Pitch	Jnt Yaw 	Link Name
+    %Jnt X   	Jnt Y   	Jnt Z   	Jnt Yaw	Jnt Pitch	Jnt Roll 	Link Name
     0           0           0           0           0           0       ; %Pelvis6
     0       	P.d7       	-P.d1      	0       	0       	0       ; %LHipYaw
     0        	0       	-P.d2      	0       	90       	0       ; %LHipRoll
@@ -83,16 +91,16 @@ KINE = [ %Parameterized Positions and Angles in degrees
 
 CNCTPTS = [
     %Body ID    px     py       pz
-    12          P.d6   P.La    P.Lb;
-    12          P.d6  -P.La    P.Lb;
-    12          P.d6   P.La   -P.Lb;
-    12          P.d6  -P.La   -P.Lb;
-    18          P.d6   P.La    P.Lb;
-    18          P.d6  -P.La    P.Lb;
-    18          P.d6   P.La   -P.Lb;
-    18          P.d6  -P.La   -P.Lb;
-    12          P.d6   0       0 ;
-    18          P.d6   0       0];
+    7          P.d6   P.La    P.Lb;
+    7          P.d6  -P.La    P.Lb;
+    7          P.d6   P.La   -P.Lb;
+    7          P.d6  -P.La   -P.Lb;
+    13          P.d6   P.La    P.Lb;
+    13          P.d6  -P.La    P.Lb;
+    13          P.d6   P.La   -P.Lb;
+    13          P.d6  -P.La   -P.Lb;
+    7          P.d6   0       0 ;
+    13          P.d6   0       0];
 
 PARENT = [
     %P  J  Link Name	Parent
