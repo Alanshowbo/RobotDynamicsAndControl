@@ -19,6 +19,7 @@ for i = 1:P.NB
     O_X_i = RobotFrame.O_DX_i(spots,spots);
     O_R_i = O_X_i(1:3,1:3);
     joint_RPY(i,:) = extractRPY_deg(O_R_i);
+    joint_O_p_i(i,:) = RobotFrame.O_p_i(3*i-2:3*i,1)';
 end
 
 %% Open File
@@ -103,16 +104,30 @@ end
 
 %% Rotation Matrix function
 function RPY = extractRPY(Rin)
-thz = atan2(Rin(2,1),Rin(1,1));
-thx = atan2(Rin(3,2),Rin(3,3));
-thy = atan2(-Rin(3,1),sqrt(Rin(3,2)^2+Rin(3,3)^2));
+if (Rin(3,1)==1)||(Rin(3,1)==-1)
+    %Then problem is redundant and can be represented as thx = 0, thz != 0
+    thy = -Rin(3,1)*pi/2;
+    thx = 0;
+    thz = atan2(Rin(2,3),Rin(2,2));
+else
+    thz = atan2(Rin(2,1),Rin(1,1));
+    thx = atan2(Rin(3,2),Rin(3,3));
+    thy = atan2(-Rin(3,1),sqrt(Rin(3,2)^2+Rin(3,3)^2));
+end
 RPY = [thx thy thz];
 end
 
 function RPY = extractRPY_deg(Rin)
-thz = atan2(Rin(2,1),Rin(1,1));
-thx = atan2(Rin(3,2),Rin(3,3));
-thy = atan2(-Rin(3,1),sqrt(Rin(3,2)^2+Rin(3,3)^2));
+if (Rin(3,1)==1)||(Rin(3,1)==-1)
+    %Then problem is redundant and can be represented as thx = 0, thz != 0
+    thy = -Rin(3,1)*pi/2;
+    thx = 0;
+    thz = atan2(Rin(2,3),Rin(2,2));
+else
+    thz = atan2(Rin(2,1),Rin(1,1));
+    thx = atan2(Rin(3,2),Rin(3,3));
+    thy = atan2(-Rin(3,1),sqrt(Rin(3,2)^2+Rin(3,3)^2));
+end
 conv = 180/pi;
 RPY = [thx*conv thy*conv thz*conv];
 end

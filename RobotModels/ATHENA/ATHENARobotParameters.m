@@ -84,7 +84,7 @@ KINE = [ %Parameterized Positions and Angles in degrees
     0         	0       	0       	-90       	0           -90     ; %LAnkRoll
     0       	-P.d7     	-P.d1      	0       	0       	180     ; %RHipYaw
     0        	0       	P.d2       	0       	-90       	0       ; %RHipRoll
-    P.d3        0       	0       	90        	90       	0       ; %RHipPitch
+    P.d3        1       	0       	90        	90       	0       ; %RHipPitch
     0       	-P.d4      	0       	0       	0       	0       ; %RKnePitch
     0       	-P.d5      	0       	0        	0        	0       ; %RAnkPitch
     0         	0       	0       	-90       	0           90      ];%RLAnkRoll

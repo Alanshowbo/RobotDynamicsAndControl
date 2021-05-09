@@ -70,6 +70,8 @@ function RobotFrame = Frame_calc(RobotLinks,RobotParam,q)
         elseif RobotLinks(i).jtype == 0 %floating Base Jointx - Doesn't currently work
             RobotFrame.S(spots,i+Si_offset:(i+Si_offset+5)) = eye(6);
             Si_offset = Si_offset + 5;
+            jointDisp = [q(i) q(i+1) q(i+2)]';
+            jointRot = Rz(q(i+5))*Ry(q(i+4))*Rx(q(i+3));
         end
         
         %Spatial Transformations
