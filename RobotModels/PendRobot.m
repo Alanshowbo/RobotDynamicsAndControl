@@ -32,7 +32,9 @@ function [RobotLinks, RobotParam] = PendRobot(PARAMS, PARENTi, KINE, INER, CNCTP
     Rzd = @ (theta) [cosd(theta) -sind(theta) 0; sind(theta) cosd(theta) 0; 0 0 1];
     % Set up robot
     NB = size(INER,1); %number of joint variables
-    for j = 1:NB
+    for i = 1:NB
+        %get jointNumber for the link
+        j = i;
         %Load Link Values from Matrices
         RobotLinks(j).mass = INER(j,end-6); 
         inertia = INER(j,end-5:end);
