@@ -5,7 +5,7 @@ format compact
 
 %% System Model
 %need NB, Parent(i), jtype(i), X_T, Ii
-[PARAMS, PARENT, KINE, INER, CNCTPTS] = ATHENA_Model();
+[PARAMS, PARENT, KINE, INER, CNCTPTS,VISUALS] = ATHENA_Model();
 [RobotLinks, RobotParam] = PendRobot(PARAMS, PARENT, KINE, INER, CNCTPTS);
 %need NB, Parent(i), jtype(i), X_T, Ii
 

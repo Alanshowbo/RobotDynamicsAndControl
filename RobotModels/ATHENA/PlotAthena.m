@@ -5,7 +5,7 @@ dq = dq;
 for i = 1:RobotParam.NB
     %Transform world to part pose 
     Part(i).O_T_i = STfun_T_from_X(RobotFrame.O_DX_i(6*(i-1)+1:6*i,6*(i-1)+1:6*i)); 
-    Part(i).fileName = PARAMS.STLFileNames(i);
+    Part(i).fileName = VISUALS.STLFileNames(i);
 end
 
 %% Fix Part Orientations

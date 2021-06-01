@@ -129,5 +129,10 @@ function [P, PARENT, KINE, INER, CNCTPTS, VISUALS] = ATHENA_Model()
         0       0   -6; %RankGim
         120     6   980]; %Rfoot
     
-    
+    P.mTot = sum(INER(:,7));
+    P.NB = size(INER,1); %number of Coordinate Systems 
+    P.n = size(INER,1); %number of joint angles
+    P.N = size(INER,1); %number of states
+    P.m = size(INER,1); %number of inputs
+    P.c = size(CNCTPTS,1); %number of contact points
 end
