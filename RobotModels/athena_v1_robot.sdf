@@ -215,6 +215,308 @@
                     <iyz>0.05</iyz>
                     <izz>0.5</izz>
                 </inertia>
-                <mass>0 0 0</xyz>
+                <mass>5</xyz>
+                <pose>0 0 0 0 0 0</pose>
             </inertial>
-            <child>pelvis</child>
+            <pose>0 0 0 0 0 0</pose>
+            <visual name="pelvis_visual_mesh">
+                <geometry>
+                    <mesh>
+                        <scale>0.001 0.001 0.001</scale>
+                        <uri>model://Hip_Assembly.stl</uri>
+                    </mesh>
+                </geometry>
+                <pose>0 0 -0.2317 0 0 90</pose>
+            </visual>
+        </link>
+        <link name="l_hipgimbal">
+            <inertial>
+                <inertia>
+                    <ixx>0.1</ixx>
+                    <ixy>0.01</ixy>
+                    <ixz>0.01</ixz>
+                    <iyy>0.1</iyy>
+                    <iyz>0.01</iyz>
+                    <izz>0.1</izz>
+                </inertia>
+                <mass>0.5</xyz>
+                <pose>0 0 0 0 0 0</pose>
+            </inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <visual name="l_hipgimbal_visual_mesh">
+                <geometry>
+                    <mesh>
+                        <scale>0.001 0.001 0.001</scale>
+                        <uri>model://Cross_Gimble.stl</uri>
+                    </mesh>
+                </geometry>
+                <pose>0 -0.006 -0.008 90 0 0</pose>
+            </visual>
+        </link>
+        <link name="l_glute">
+            <inertial>
+                <inertia>
+                    <ixx>0.1</ixx>
+                    <ixy>0.01</ixy>
+                    <ixz>0.01</ixz>
+                    <iyy>0.1</iyy>
+                    <iyz>0.01</iyz>
+                    <izz>0.1</izz>
+                </inertia>
+                <mass>1</xyz>
+                <pose>0 0 0 0 0 0</pose>
+            </inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <visual name="l_glute_visual_mesh">
+                <geometry>
+                    <mesh>
+                        <scale>0.001 0.001 0.001</scale>
+                        <uri>model://Thigh_Top_Left_Ass.stl</uri>
+                    </mesh>
+                </geometry>
+                <pose>-0.12 0.003 0.0435 -90 0 90</pose>
+            </visual>
+        </link>
+        <link name="l_thigh">
+            <inertial>
+                <inertia>
+                    <ixx>0.3</ixx>
+                    <ixy>0.03</ixy>
+                    <ixz>0.03</ixz>
+                    <iyy>0.3</iyy>
+                    <iyz>0.03</iyz>
+                    <izz>0.3</izz>
+                </inertia>
+                <mass>3</xyz>
+                <pose>0 0 0 0 0 0</pose>
+            </inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <visual name="l_thigh_visual_mesh">
+                <geometry>
+                    <mesh>
+                        <scale>0.001 0.001 0.001</scale>
+                        <uri>model://Thigh_Left_Assembly.stl</uri>
+                    </mesh>
+                </geometry>
+                <pose>-0.12 0 0.1 0 90 90</pose>
+            </visual>
+        </link>
+        <link name="l_shin">
+            <inertial>
+                <inertia>
+                    <ixx>0.3</ixx>
+                    <ixy>0.03</ixy>
+                    <ixz>0.03</ixz>
+                    <iyy>0.3</iyy>
+                    <iyz>0.03</iyz>
+                    <izz>0.3</izz>
+                </inertia>
+                <mass>3</xyz>
+                <pose>0 0 0 0 0 0</pose>
+            </inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <visual name="l_shin_visual_mesh">
+                <geometry>
+                    <mesh>
+                        <scale>0.001 0.001 0.001</scale>
+                        <uri>model://Left_Shin_Assembly.stl</uri>
+                    </mesh>
+                </geometry>
+                <pose>-0.001 -0.025 0 -90 0 -4.5</pose>
+            </visual>
+        </link>
+        <link name="l_ankle">
+            <inertial>
+                <inertia>
+                    <ixx>0.1</ixx>
+                    <ixy>0.01</ixy>
+                    <ixz>0.01</ixz>
+                    <iyy>0.1</iyy>
+                    <iyz>0.01</iyz>
+                    <izz>0.1</izz>
+                </inertia>
+                <mass>0.5</xyz>
+                <pose>0 0 0 0 0 0</pose>
+            </inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <visual name="l_ankle_visual_mesh">
+                <geometry>
+                    <mesh>
+                        <scale>0.001 0.001 0.001</scale>
+                        <uri>model://Legs_Ankle_CrossGimbal2.stl</uri>
+                    </mesh>
+                </geometry>
+                <pose>0 0 -0.006 90 0 0</pose>
+            </visual>
+        </link>
+        <link name="l_foot">
+            <inertial>
+                <inertia>
+                    <ixx>0.2</ixx>
+                    <ixy>0.02</ixy>
+                    <ixz>0.02</ixz>
+                    <iyy>0.2</iyy>
+                    <iyz>0.02</iyz>
+                    <izz>0.2</izz>
+                </inertia>
+                <mass>2</xyz>
+                <pose>0 0 0 0 0 0</pose>
+            </inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <visual name="l_foot_visual_mesh">
+                <geometry>
+                    <mesh>
+                        <scale>0.001 0.001 0.001</scale>
+                        <uri>model://Left_Foot_Assembly.stl</uri>
+                    </mesh>
+                </geometry>
+                <pose>-0.12 0.006 0.98 -90 0 90</pose>
+            </visual>
+        </link>
+        <link name="r_hipgimbal">
+            <inertial>
+                <inertia>
+                    <ixx>0.1</ixx>
+                    <ixy>0.01</ixy>
+                    <ixz>0.01</ixz>
+                    <iyy>0.1</iyy>
+                    <iyz>0.01</iyz>
+                    <izz>0.1</izz>
+                </inertia>
+                <mass>0.5</xyz>
+                <pose>0 0 0 0 0 0</pose>
+            </inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <visual name="r_hipgimbal_visual_mesh">
+                <geometry>
+                    <mesh>
+                        <scale>0.001 0.001 0.001</scale>
+                        <uri>model://Cross_Gimble.stl</uri>
+                    </mesh>
+                </geometry>
+                <pose>0 -0.006 -0.008 -90 0 0</pose>
+            </visual>
+        </link>
+        <link name="r_glute">
+            <inertial>
+                <inertia>
+                    <ixx>0.1</ixx>
+                    <ixy>0.01</ixy>
+                    <ixz>0.01</ixz>
+                    <iyy>0.1</iyy>
+                    <iyz>0.01</iyz>
+                    <izz>0.1</izz>
+                </inertia>
+                <mass>1</xyz>
+                <pose>0 0 0 0 0 0</pose>
+            </inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <visual name="r_glute_visual_mesh">
+                <geometry>
+                    <mesh>
+                        <scale>0.001 0.001 0.001</scale>
+                        <uri>model://Thigh_Right_Top_Bracket.stl</uri>
+                    </mesh>
+                </geometry>
+                <pose>0.12 -0.002 0.044 90 0 -90</pose>
+            </visual>
+        </link>
+        <link name="r_thigh">
+            <inertial>
+                <inertia>
+                    <ixx>0.3</ixx>
+                    <ixy>0.03</ixy>
+                    <ixz>0.03</ixz>
+                    <iyy>0.3</iyy>
+                    <iyz>0.03</iyz>
+                    <izz>0.3</izz>
+                </inertia>
+                <mass>3</xyz>
+                <pose>0 0 0 0 0 0</pose>
+            </inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <visual name="r_thigh_visual_mesh">
+                <geometry>
+                    <mesh>
+                        <scale>0.001 0.001 0.001</scale>
+                        <uri>model://Thigh_Right_Assembly.stl</uri>
+                    </mesh>
+                </geometry>
+                <pose>0.12 0 0.1 0 90 90</pose>
+            </visual>
+        </link>
+        <link name="r_shin">
+            <inertial>
+                <inertia>
+                    <ixx>0.3</ixx>
+                    <ixy>0.03</ixy>
+                    <ixz>0.03</ixz>
+                    <iyy>0.3</iyy>
+                    <iyz>0.03</iyz>
+                    <izz>0.3</izz>
+                </inertia>
+                <mass>3</xyz>
+                <pose>0 0 0 0 0 0</pose>
+            </inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <visual name="r_shin_visual_mesh">
+                <geometry>
+                    <mesh>
+                        <scale>0.001 0.001 0.001</scale>
+                        <uri>model://Right_Shin_Assembly.stl</uri>
+                    </mesh>
+                </geometry>
+                <pose>-0.001 -0.025 0 -90 0 -4.5</pose>
+            </visual>
+        </link>
+        <link name="r_ankle">
+            <inertial>
+                <inertia>
+                    <ixx>0.1</ixx>
+                    <ixy>0.01</ixy>
+                    <ixz>0.01</ixz>
+                    <iyy>0.1</iyy>
+                    <iyz>0.01</iyz>
+                    <izz>0.1</izz>
+                </inertia>
+                <mass>0.5</xyz>
+                <pose>0 0 0 0 0 0</pose>
+            </inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <visual name="r_ankle_visual_mesh">
+                <geometry>
+                    <mesh>
+                        <scale>0.001 0.001 0.001</scale>
+                        <uri>model://Legs_Ankle_CrossGimbal2.stl</uri>
+                    </mesh>
+                </geometry>
+                <pose>0 0 -0.006 90 0 0</pose>
+            </visual>
+        </link>
+        <link name="r_foot">
+            <inertial>
+                <inertia>
+                    <ixx>0.2</ixx>
+                    <ixy>0.02</ixy>
+                    <ixz>0.02</ixz>
+                    <iyy>0.2</iyy>
+                    <iyz>0.02</iyz>
+                    <izz>0.2</izz>
+                </inertia>
+                <mass>2</xyz>
+                <pose>0 0 0 0 0 0</pose>
+            </inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <visual name="r_foot_visual_mesh">
+                <geometry>
+                    <mesh>
+                        <scale>0.001 0.001 0.001</scale>
+                        <uri>model://Right_Foot_Assembly.stl</uri>
+                    </mesh>
+                </geometry>
+                <pose>0.12 0.006 0.98 90 0 -90</pose>
+            </visual>
+        </link>
+        <pose>0 0 0.93 0 0 0</pose>
+    </model>
+</sdf>

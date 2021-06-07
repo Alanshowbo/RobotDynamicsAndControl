@@ -7,17 +7,20 @@
 %at that joint.
 
 % P - struct of the parameters that define the robot
-% NAMES - Cell matrix giving the name of each link, joint and joint type
-% INER - Matrix giving pose of inertial coordinate system for the link,
-%        wrt. the joint coordinate system, as well as the mass and the
-%        Moment of Inertia Matrix.
+
+% jointNames - Cell matrix giving the name of each joint and its parent
 % KINE - Matrix giving pose of each joint coordinate system wrt. its parent
-% CNCTPTS - Location of contact points in the rigid body system
-% PARENT - Vector giving the ID# of the link's parent
 % JointAxis - XYZ vector for each joint giving the direction of the joint
 %             axis
 % JointLimits - Matrix giving the range of motion, velocity, and torque
 %               limits of each joint
+% JointParams - dynamic parameters of each joint
+
+% linkNames - Cell matrix giving the name of each link, joint and joint type
+% INER - Matrix giving pose of inertial coordinate system for the link,
+%        wrt. the joint coordinate system, as well as the mass and the
+%        Moment of Inertia Matrix.
+% CNCTPTS - Location of contact points in the rigid body system
 % Visuals - All parameters that indicate how the robot is visualized in the
 %           SDF or URDF. Has no effect on kinematics and dynamics
 %   
@@ -39,7 +42,7 @@ P.VersionName = 'v1';
 %                    5 - prismatic along y axis
 %                    6 - prismatic along x axis
 %                    0 - floating base
-P.jtype = [0 1 1 1 1 1 1 1 1 1 1 1 1]';
+P.jtype = [1 1 1 1 1 1 1 1 1 1 1 1]';
 
 %% Joint Information
 %Name of each joint (numbered 1 to NB-1}
@@ -52,11 +55,11 @@ jointNames = {
 	5 		'll5_ank_pit'		4;
 	6 		'll6_ank_rol'		5;
 	7 		'rl1_hip_yaw'		0;
-	8 		'rl2_hip_rol'		1;
-	9 		'rl3_hip_pit'		2;
-	10 		'rl4_kne_pit'		3;
-	11 		'rl5_ank_pit'		4;
-	12 		'rl6_ank_rol'		5};
+	8 		'rl2_hip_rol'		7;
+	9 		'rl3_hip_pit'		8;
+	10 		'rl4_kne_pit'		9;
+	11 		'rl5_ank_pit'		10;
+	12 		'rl6_ank_rol'		11};
 %Each Joint is defined at a coordinate system. These coordinates are defined wrt. the coordinates
 %of the parent joint. below is the xyz position of each joint wrt the previous joint coordinates, and the RPY
 %of the rotation from the joint coordinates to the parent joint coordinates. parent_R_child = Rz(Y)*Ry(P)*Rz(R)
@@ -121,7 +124,7 @@ JointParams = [
     0.1		0];		% rl6_ank_rol
 
 
-%%Link Information
+%% Link Information
 %Name of each link (numbered 1 to N)
 linkNames = {
 %LinkID#	LinkName	AttachedJointID#
@@ -158,7 +161,7 @@ INER = [%                   kg      kg*m^2......
 
 
 
-%%Contact point Information
+%% Contact point Information
 CNCTPTS = [
     %Body ID    px     py       pz
     7          P.d6   P.La    P.Lb;
@@ -172,16 +175,11 @@ CNCTPTS = [
     7          P.d6   0       0 ;
     13          P.d6   0       0];
 
-
-
-
-
-
 %% Visuals for Each Link
 %Visual Type to use: 1 - use stl
 %                    2 - use given box
-%                    3 - generate box from this to child
-%                    4 - generate cylinder from this to child
+%                    3 - generate box from this link's parent to child joint
+%                    4 - generate cylinder from this link's parent to child joint
 %                    0 - nothing
 Visuals.Type = [
  %Type	ChildID	AddJointCylinder
@@ -197,7 +195,7 @@ Visuals.Type = [
 	1	0		0; %r_thigh    
 	1	0		0; %r_shin     
 	1	0		0; %r_ankle    
-	1	0		0; %r_foot     
+	1	0		0]; %r_foot     
 Visuals.JointCylinderLength = 0.07;
 Visuals.JointCylinderRadius = 0.03;
 
@@ -234,9 +232,11 @@ Visuals.STL_KINE = [
     120     0   	100		90        	90       	0       ; %r_thigh    
     -1      -25 	0		-4.5       	0       	-90     ; %r_shin     
     0       0   	-6		0        	0        	90      ; %r_ankle    
-    120     6   	980		-90       	0           90      ];%r_foot     
+    120     6   	980		-90       	0           90      ];%r_foot
+%Scaling to apply to meshes to have output in m
+Visuals.STL_scale = 0.001;
 
-BOX = [
+Visuals.BOX = [
     %sizex	sizey	sizez	vpx     vpy         vpz         vproll	vppitch	vpyaw	name
     0		0		0		0		0			0			0		0		0	;%pelvis     
     0		0		0		0		0			0			0		0		0	;%l_hipgimbal
@@ -252,7 +252,7 @@ BOX = [
     0		0		0		0		0			0			0		0		0	;%r_ankle    
     0		0		0		0		0			0			0		0		0	];%r_foot
 
-
+%% Finish Parameters
 P.mTot = sum(INER(:,7));
 P.NB = size(INER,1); %number of Coordinate Systems 
 P.n = size(KINE,1); %number of joint angles
