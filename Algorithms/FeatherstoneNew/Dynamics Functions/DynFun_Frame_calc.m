@@ -38,6 +38,7 @@ function RobotFrame = Frame_calc(RobotLinks,RobotParam,q)
     RobotFrame.P_dual = eye(6*NB);
     
     Si_offset = 0;
+    i_offset = 0;
     
     for i = 1:RobotParam.NB
         j = RobotLinks(i).PARENTi;
@@ -51,27 +52,28 @@ function RobotFrame = Frame_calc(RobotLinks,RobotParam,q)
         jointDisp = [0;0;0];
         if RobotLinks(i).jtype == 1 %revolute
             RobotFrame.S(spots,i+Si_offset) = [0 0 1 0 0 0]';
-            jointRot = Rz(q(i));
+            jointRot = Rz(q(i+i_offset));
         elseif RobotLinks(i).jtype == 2 %rev2
             RobotFrame.S(spots,i+Si_offset) = [0 1 0 0 0 0]';
-            jointRot = Ry(q(i));
+            jointRot = Ry(q(i+i_offset));
         elseif RobotLinks(i).jtype == 3 %rev3
             RobotFrame.S(spots,i+Si_offset) = [1 0 0 0 0 0]';
-            jointRot = Rx(q(i));
+            jointRot = Rx(q(i+i_offset));
         elseif RobotLinks(i).jtype == 4 %linear
             RobotFrame.S(spots,i+Si_offset) = [0 0 0 0 0 1]';
-            jointDisp = [0 0 q(i)]';
+            jointDisp = [0 0 q(i+i_offset)]';
         elseif RobotLinks(i).jtype == 5 %linear2
             RobotFrame.S(spots,i+Si_offset) = [0 0 0 0 1 0]';
-            jointDisp = [0 q(i) 0]';
+            jointDisp = [0 q(i+i_offset) 0]';
         elseif RobotLinks(i).jtype == 6 %linear3
             RobotFrame.S(spots,i+Si_offset) = [0 0 0 1 0 0]';
-            jointDisp = [q(i) 0 0]';
+            jointDisp = [q(i+i_offset) 0 0]';
         elseif RobotLinks(i).jtype == 0 %floating Base Jointx - Doesn't currently work
             RobotFrame.S(spots,i+Si_offset:(i+Si_offset+5)) = eye(6);
             Si_offset = Si_offset + 5;
             jointDisp = [q(i) q(i+1) q(i+2)]';
             jointRot = Rz(q(i+5))*Ry(q(i+4))*Rx(q(i+3));
+            i_offset = i_offset+5;
         end
         
         %Spatial Transformations

@@ -68,7 +68,7 @@ function [RobotLinks, RobotParam] = ProcessRobot(jointNames, linkNames, PARAMS, 
             RobotLinks(i).pi_r_i = [0 0 0]'; 
             RobotLinks(i).pi_R0_i = eye(3);
             RobotLinks(i).jtype = 0; 
-            RobotLinks(i).PARENTi = rootLinkID;
+            RobotLinks(i).PARENTi = 0;
         else
             RobotLinks(i).pi_r_i = KINE(j,1:3)'; 
             RobotLinks(i).pi_R0_i = Rzd(KINE(j,4))*Ryd(KINE(j,5))*Rxd(KINE(j,6));

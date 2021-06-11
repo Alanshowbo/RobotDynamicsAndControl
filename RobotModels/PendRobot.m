@@ -25,29 +25,7 @@
 %   - ic:        vector of link number labels for all contact points
 %   - Pci:       positions of contact points in their body frames
 
-function [RobotLinks, RobotParam] = PendRobot(jointNames, linkNames, PARAMS, PARENTi, KINE, INER, CNCTPTS)
-    %Parents and Children
-    % Get child and parent link ID for each Joint
-    jointChildLinkID = ones(1,P.n);
-    jointParentLinkID = ones(1,P.n);
-    rootLinkID = 0;
-    for i = 1:P.NB
-        attachedJointID = linkNames{i,3};
-        if (attachedJointID==0)
-            rootLinkID = i;
-        else
-            jointChildLinkID(attachedJointID) = i;
-        end
-    end
-    for j = 1:P.n
-        parentJointID = jointNames{j,3};
-        if (parentJointID==0)
-            jointParentLinkID(j) = rootLinkID;
-        else
-            jointParentLinkID(j) = jointChildLinkID(parentJointID);
-        end
-    end
-
+function [RobotLinks, RobotParam] = PendRobot(PARAMS, PARENTi, KINE, INER, CNCTPTS)
     % Helper Functions
     Rxd = @ (theta) [1 0 0 ; 0 cosd(theta) -sind(theta); 0 sind(theta) cosd(theta)];
     Ryd = @ (theta) [cosd(theta) 0 sind(theta); 0 1 0 ; -sind(theta) 0 cosd(theta)];
@@ -94,6 +72,4 @@ function [RobotLinks, RobotParam] = PendRobot(jointNames, linkNames, PARAMS, PAR
     RobotParam.c = PARAMS.c;
     RobotParam.ic = CNCTPTS(:,1)';
     RobotParam.Pci = CNCTPTS(:,2:4)';
-    RobotParam.jointParentLinkID = jointParentLinkID;
-    RobotParam.jointChildLinkID = jointChildLinkID;
 end

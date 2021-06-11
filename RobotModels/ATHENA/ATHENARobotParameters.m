@@ -73,7 +73,7 @@ KINE = [ %Parameterized Positions and Angles in degrees
     0         	0       	0       	-90       	0           -90     ; %'ll6_ank_rol'
     0       	-P.d7     	-P.d1      	0       	0       	180     ; %'rl1_hip_yaw'
     0        	0       	P.d2       	0       	-90       	0       ; %'rl2_hip_rol'
-    P.d3        1       	0       	90        	90       	0       ; %'rl3_hip_pit'
+    P.d3        0       	0       	90        	90       	0       ; %'rl3_hip_pit'
     0       	-P.d4      	0       	0       	0       	0       ; %'rl4_kne_pit'
     0       	-P.d5      	0       	0        	0        	0       ; %'rl5_ank_pit'
     0         	0       	0       	-90       	0           90      ];%'rl6_ank_rol'
@@ -196,8 +196,8 @@ Visuals.Type = [
 	1	0		0; %r_shin     
 	1	0		0; %r_ankle    
 	1	0		0]; %r_foot     
-Visuals.JointCylinderLength = 0.07;
-Visuals.JointCylinderRadius = 0.03;
+Visuals.JointCylinderLength = 0.04;
+Visuals.JointCylinderRadius = 0.015;
 
 %STL fileNames
 Visuals.STLFileNames = {
@@ -218,6 +218,8 @@ Visuals.STLFileNames = {
 
 %Displacement to be applied to all the points in the STL file such that
 %the origin of the stl file matches the origin of the joint Coordinates
+%Then the RPY rotation to be in the joint coordinates
+%   note, the sdf reader in java also does translation and then rotation
 Visuals.STL_KINE = [
     %pRx	pRy		pRz		VisYaw		VisPitch	VisRoll 	LinkName
 	0       0   	-231.7	90			0			0       ; %pelvis     

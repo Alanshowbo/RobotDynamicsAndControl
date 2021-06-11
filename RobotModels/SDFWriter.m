@@ -1,7 +1,12 @@
 clc
 clear
+close all
 %TODO: Add sensors, look in guardianxo and atlas files
 %use i for iteration of links, j for iteration of joints
+
+Rxd = @ (theta) [1 0 0 ; 0 cosd(theta) -sind(theta); 0 sind(theta) cosd(theta)];
+Ryd = @ (theta) [cosd(theta) 0 sind(theta); 0 1 0 ; -sind(theta) 0 cosd(theta)];
+Rzd = @ (theta) [cosd(theta) -sind(theta) 0; sind(theta) cosd(theta) 0; 0 0 1];
 
 %% Load Robot
 
@@ -10,17 +15,21 @@ ATHENARobotParameters
 
 %% Robot Parameters
 [RobotLinks, RobotParam] = ProcessRobot(jointNames, linkNames, P, KINE, INER, CNCTPTS);
-q = zeros(18,1); %zero positon of Robot
+q = [0 0 1.4 0 0 0 zeros(1,12)]'; %zero positon of Robot
 RobotFrame = DynFun_Frame_calc(RobotLinks,RobotParam,q);
-robotPose = '0 0 0.93 0 0 0';
+robotPose = '0 0 0 0 0 0';
 
 %Extract RPY and position from world to each joint
 for i = 1:P.NB
     spots = [6*i-5:6*i];
     O_X_i = RobotFrame.O_DX_i(spots,spots);
     O_R_i = O_X_i(1:3,1:3);
-    linksJoint_RPY(i,:) = extractRPY_deg(O_R_i);
+    linksJoint_RPY(i,:) = extractRPY(O_R_i);
     linksJoint_O_p_i(i,:) = RobotFrame.O_p_i(3*i-2:3*i,1)';
+    j = linkNames{i,3};
+    if j~=0
+        globalJointAxes(:,j) = O_R_i*JointAxis(j,:)';
+    end
 end
 jointParentLinkID = RobotParam.jointParentLinkID;
 jointChildLinkID = RobotParam.jointChildLinkID;
@@ -77,7 +86,7 @@ for j = 1:P.n
             printSDFLine(ind5,['<upper>' num2str(JointLimits(j,2)) '</upper>']);
             printSDFLine(ind5,['<velocity>' num2str(JointLimits(j,4)) '</velocity>']);
         printSDFLine(ind4,'</limit>');
-        printSDFLine(ind4,['<xyz>' num2str(JointAxis(j,1)) ' ' num2str(JointAxis(j,2)) ' ' num2str(JointAxis(j,3)) '</xyz>']);
+        printSDFLine(ind4,['<xyz>' num2str(globalJointAxes(1,j)) ' ' num2str(globalJointAxes(2,j)) ' ' num2str(globalJointAxes(3,j)) '</xyz>']);
     printSDFLine(ind3,'</axis>');
     printSDFLine(ind3,['<child>' linkNames{jointChildLinkID(j),2} '</child>']);
     printSDFLine(ind3,['<parent>' linkNames{jointParentLinkID(j),2} '</parent>']);
@@ -99,7 +108,7 @@ for i = 1:P.NB
             printSDFLine(ind5,['<iyz>' num2str(INER(i,12)) '</iyz>']);
             printSDFLine(ind5,['<izz>' num2str(INER(i,13)) '</izz>']);
         printSDFLine(ind4,'</inertia>');
-        printSDFLine(ind4,['<mass>' num2str(INER(i,7)) '</xyz>']);
+        printSDFLine(ind4,['<mass>' num2str(INER(i,7)) '</mass>']);
         printSDFLine(ind4,['<pose>' num2str(INER(i,1)) ' ' num2str(INER(i,2)) ' ' num2str(INER(i,3)) ...
             ' ' num2str(INER(i,4)) ' ' num2str(INER(i,5)) ' ' num2str(INER(i,6)) '</pose>']);
     printSDFLine(ind3,'</inertial>');
@@ -108,7 +117,9 @@ for i = 1:P.NB
     
     if (Visuals.Type(i,1)==1)
         stlPos = Visuals.STL_KINE(i,1:3)*Visuals.STL_scale;
-        stlPRY = flip(Visuals.STL_KINE(i,4:6));
+        stlRPY = flip(Visuals.STL_KINE(i,4:6))*pi/180;
+        RotMatSTL = Rzd(Visuals.STL_KINE(i,4))*Ryd(Visuals.STL_KINE(i,5))*Rxd(Visuals.STL_KINE(i,6));
+        stlPos = RotMatSTL*stlPos'; %Rotate the displacement to be after rotation applied to stl
         printSDFLine(ind3,['<visual name="' LinkName '_visual_mesh">']);
             printSDFLine(ind4,'<geometry>');
                 printSDFLine(ind5,'<mesh>');
@@ -117,10 +128,24 @@ for i = 1:P.NB
                 printSDFLine(ind5,'</mesh>');
             printSDFLine(ind4,'</geometry>');
             printSDFLine(ind4,['<pose>' num2str(stlPos(1)) ' ' num2str(stlPos(2)) ' ' num2str(stlPos(3)) ...
-            ' ' num2str(stlPRY(1)) ' ' num2str(stlPRY(2)) ' ' num2str(stlPRY(3)) '</pose>']);
+            ' ' num2str(stlRPY(1)) ' ' num2str(stlRPY(2)) ' ' num2str(stlRPY(3)) '</pose>']);
         printSDFLine(ind3,'</visual>');
     end
-        
+    
+    %add joint Cylinder for visual
+    if (Visuals.Type(i,3)==0)
+        printSDFLine(ind3,['<visual name="' LinkName '_visual_jointCylinder">']);
+            printSDFLine(ind4,'<geometry>');
+                printSDFLine(ind5,'<cylinder>');
+                printSDFLine(ind6,['<length>' num2str(Visuals.JointCylinderLength) '</length>']);
+                printSDFLine(ind6,['<radius>' num2str(Visuals.JointCylinderRadius) '</radius>']);
+                printSDFLine(ind5,'</cylinder>');
+            printSDFLine(ind4,'</geometry>');
+            addMaterial_White(printSDFLine,ind4);
+            printSDFLine(ind4,['<pose>0 0 0 0 0 0</pose>']);
+        printSDFLine(ind3,'</visual>');
+    end
+    
     printSDFLine(ind2,'</link>');
 end
 
@@ -133,7 +158,7 @@ printSDFLine(ind0,'</sdf>');
 fclose(fid);
 
 %% Print file to command line
-fid = fopen([P.RobotName '_' P.VersionName '_robot.sdf'],'r');
+fid = fopen([fileLocation P.RobotName '_' P.VersionName '_robot.sdf'],'r');
 notComplete = 0;
 while notComplete == 0
    line = fgetl(fid);
@@ -143,6 +168,9 @@ while notComplete == 0
        disp(line)
    end
 end
+fclose(fid);
+
+%PlotAthena
 
 %% Rotation Matrix function
 function RPY = extractRPY(Rin)
@@ -172,4 +200,15 @@ else
 end
 conv = 180/pi;
 RPY = [thx*conv thy*conv thz*conv];
+end
+
+%%material values
+function addMaterial_White(printSDFLine,ind)
+    ind1 = '    ';
+    printSDFLine(ind,'<material>');
+        printSDFLine([ind ind1],'<ambient>1 1 1 1</ambient>');
+        printSDFLine([ind ind1],'<diffuse>0.5 0.5 0.5 1</diffuse>');
+        printSDFLine([ind ind1],'<emissive>0 0 0 1</emissive>');
+        printSDFLine([ind ind1],'<specular>1 1 1 1</specular>');
+    printSDFLine(ind,'</material>');
 end
