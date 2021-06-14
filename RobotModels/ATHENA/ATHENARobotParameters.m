@@ -97,14 +97,14 @@ JointLimits = [
     %lower	upper	effort	velocity
     -0.6	0.6     100     12; % ll1_hip_yaw
     -0.6	0.6     100     10; % ll2_hip_rol
-    -0.6	1.2     100     12; % ll3_hip_pit
-    -0  	1.0     100     12; % ll4_kne_pit
-    -0.6	0.9     100     12; % ll5_ank_pit
+    -1.0	1.2     100     12; % ll3_hip_pit
+    -1.0  	0.0     100     12; % ll4_kne_pit
+    -0.6	0.6     100     12; % ll5_ank_pit
     -0.6	0.6     100     12; % ll6_ank_rol
     -0.6	0.6     100     12; % rl1_hip_yaw
     -0.6	0.6     100     10; % rl2_hip_rol
-    -0.6	1.2     100     12; % rl3_hip_pit
-    -0  	1.0     100     12; % rl4_kne_pit
+    -1.0	1.2     100     12; % rl3_hip_pit
+    -1.0	0.0     100     12; % rl4_kne_pit
     -0.6	0.9     100     12; % rl5_ank_pit
     -0.6	0.6     100     12];% rl6_ank_rol
 %Define dynamic parameters of joint
