@@ -127,6 +127,7 @@ for i = 1:P.NB
                 printSDFLine(ind6,['<uri>model://meshFiles/' Visuals.STLFileNames{i,1} '</uri>']);
                 printSDFLine(ind5,'</mesh>');
             printSDFLine(ind4,'</geometry>');
+            addMaterial_DarkBlue(printSDFLine,ind4);
             printSDFLine(ind4,['<pose>' num2str(stlPos(1)) ' ' num2str(stlPos(2)) ' ' num2str(stlPos(3)) ...
             ' ' num2str(stlRPY(1)) ' ' num2str(stlRPY(2)) ' ' num2str(stlRPY(3)) '</pose>']);
         printSDFLine(ind3,'</visual>');
@@ -210,5 +211,15 @@ function addMaterial_White(printSDFLine,ind)
         printSDFLine([ind ind1],'<diffuse>0.5 0.5 0.5 1</diffuse>');
         printSDFLine([ind ind1],'<emissive>0 0 0 1</emissive>');
         printSDFLine([ind ind1],'<specular>1 1 1 1</specular>');
+    printSDFLine(ind,'</material>');
+end
+
+function addMaterial_DarkBlue(printSDFLine,ind)
+    ind1 = '    ';
+    printSDFLine(ind,'<material>');
+        printSDFLine([ind ind1],'<ambient>0.7 0.7 0.7 1</ambient>');
+        printSDFLine([ind ind1],'<diffuse>0.5 0.5 0.5 1</diffuse>');
+        printSDFLine([ind ind1],'<emissive>0 0 0 1</emissive>');
+        printSDFLine([ind ind1],'<specular>0 0 0 1</specular>');
     printSDFLine(ind,'</material>');
 end
