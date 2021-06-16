@@ -1,0 +1,381 @@
+<?xml version="1.0" ?>
+<robot name="UpperBodyXo">
+  <link name="base">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.0001"/>
+      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+    </inertial>
+    <visual><!-- cylinder -->
+      <origin rpy="0 0 0" xyz="-0.09 0 0.6"/>
+      <geometry>
+        <cylinder length="1.2" radius="0.1"/>
+      </geometry>
+      <material name="darkgray">
+        <color rgba=".2 .2 .2 1"/>
+      </material>
+    </visual>
+    <visual><!-- backplate -->
+      <origin rpy="0 0 0" xyz="0.05 0 0.85"/>
+      <geometry>
+        <box size="0.07 0.2 0.3"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0.3 0.3 0.3"/>
+      </material>
+    </visual>
+    <visual><!-- utorso crossbar -->
+      <origin rpy="0 0.8726 0" xyz="0 0 1"/>
+      <geometry>
+        <box size="0.1 0.7 0.07"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0.3 0.3 0.3"/>
+      </material>
+    </visual>
+  </link>
+
+<link name="l_ushou">
+    <inertial>
+        <origin rpy="0 0 0" xyz="0.01647 0.00381 0.19425"/>
+        <mass value="4.8909"/>
+        <inertia ixx="1e-1" ixy="0" ixz="0" iyy="1e-1" iyz="0" izz="1e-1"/>
+    </inertial>
+    <visual><!-- l_ushou cylinder vis -->
+      <origin rpy="0 0.8726 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.07" radius="0.03"/>
+      </geometry>
+      <material name="darkgray">
+        <color rgba=".2 .2 .2 1"/>
+      </material>
+    </visual>
+    <visual><!-- l_ushou link vis -->
+      <origin rpy="0 0.8726 0" xyz="0.12 0 0.12"/>
+      <geometry>
+        <box size="0.1 0.06 0.3302"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0.3 0.3 0.3"/>
+      </material>
+    </visual>
+</link>
+<link name="l_lshou">
+    <inertial>
+        <origin rpy="0 0 0" xyz="0.11087 0.0182 -0.02557"/>
+        <mass value="3.231"/>
+        <inertia ixx="1e-1" ixy="0" ixz="0" iyy="1e-1" iyz="0" izz="1e-1"/>
+    </inertial>
+    <visual><!-- l_lshou cylinder vis -->
+      <origin rpy="1.57 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.07" radius="0.03"/>
+      </geometry>
+      <material name="darkgray">
+        <color rgba=".2 .2 .2 1"/>
+      </material>
+    </visual>
+    <visual><!-- l_lshou link vis -->
+      <origin rpy="-1.57 0 1.657" xyz="0.0245364 0.024638 -0.0772033"/>
+      <geometry>
+        <box size="0.15494 0.1 0.06"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0.3 0.3 0.3"/>
+      </material>
+    </visual>
+</link>
+<link name="l_uarm">
+    <inertial>
+        <origin rpy="0 0 0" xyz="-0.00112 -0.00157 -0.11125"/>
+        <mass value="4.8803"/>
+        <inertia ixx="1e-1" ixy="0" ixz="0" iyy="1e-1" iyz="0" izz="1e-1"/>
+    </inertial>
+    <visual><!-- l_uarm cylinder vis -->
+      <origin rpy="0 0.08726 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.07" radius="0.03"/>
+      </geometry>
+      <material name="darkgray">
+        <color rgba=".2 .2 .2 1"/>
+      </material>
+    </visual>
+    <visual><!-- l_uarm link vis -->
+      <origin rpy="0 0.08726 1.57" xyz="-0.008 0 -0.09398"/>
+      <geometry>
+        <box size="0.06 0.1 0.18796"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0.3 0.3 0.3"/>
+      </material>
+    </visual>
+</link>
+<link name="l_larm">
+    <inertial>
+        <origin rpy="0 0 0" xyz="0.11918 -0.02395 0.0337"/>
+        <mass value="0.69113"/>
+        <inertia ixx="1e-1" ixy="0" ixz="0" iyy="1e-1" iyz="0" izz="1e-1"/>
+    </inertial>
+    <visual><!-- l_larm cylinder vis -->
+      <origin rpy="1.57 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.07" radius="0.03"/>
+      </geometry>
+      <material name="darkgray">
+        <color rgba=".2 .2 .2 1"/>
+      </material>
+    </visual>
+    <visual><!-- l_larm link vis -->
+      <origin rpy="0 0 0" xyz="0.003048 -0.03683 -0.17145"/>
+      <geometry>
+        <box size="0.05 0.05 0.3429"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0.3 0.3 0.3"/>
+      </material>
+    </visual>
+</link>
+<link name="l_hand">
+    <inertial>
+        <origin rpy="0 0 0" xyz="0.07931 0.00146 -0.0648"/>
+        <mass value="3.231"/>
+        <inertia ixx="1e-1" ixy="0" ixz="0" iyy="1e-1" iyz="0" izz="1e-1"/>
+    </inertial>
+    <visual><!-- l_hand cylinder vis -->
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.07" radius="0.03"/>
+      </geometry>
+      <material name="darkgray">
+        <color rgba=".2 .2 .2 1"/>
+      </material>
+    </visual>
+    <visual><!-- l_hand link vis -->
+      <origin rpy="0 0 0" xyz="0 -0.0762 -0.0833882"/>
+      <geometry>
+        <box size="0.1 0.1524 0.06"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0.3 0.3 0.3"/>
+      </material>
+    </visual>
+</link>
+
+<link name="r_ushou">
+    <inertial>
+        <origin rpy="0 0 0" xyz="0.01647 -0.00381 0.19425"/>
+        <mass value="4.8909"/>
+        <inertia ixx="1e-1" ixy="0" ixz="0" iyy="1e-1" iyz="0" izz="1e-1"/>
+    </inertial>
+    <visual><!-- r_ushou cylinder vis -->
+      <origin rpy="0 0.8726 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.07" radius="0.03"/>
+      </geometry>
+      <material name="darkgray">
+        <color rgba=".2 .2 .2 1"/>
+      </material>
+    </visual>
+    <visual><!-- r_ushou link vis -->
+      <origin rpy="0 0.8726 0" xyz="0.12 0 0.12"/>
+      <geometry>
+        <box size="0.1 0.06 0.3302"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0.3 0.3 0.3"/>
+      </material>
+    </visual>
+</link>
+<link name="r_lshou">
+    <inertial>
+        <origin rpy="0 0 0" xyz="0.11087 -0.0182 -0.02557"/>
+        <mass value="3.231"/>
+        <inertia ixx="1e-1" ixy="0" ixz="0" iyy="1e-1" iyz="0" izz="1e-1"/>
+    </inertial>
+    <visual><!-- r_lshou cylinder vis -->
+      <origin rpy="1.57 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.07" radius="0.03"/>
+      </geometry>
+      <material name="darkgray">
+        <color rgba=".2 .2 .2 1"/>
+      </material>
+    </visual>
+    <visual><!-- r_lshou link vis -->
+      <origin rpy="-1.57 0 1.657" xyz="0.0245364 -0.024638 -0.0772033"/>
+      <geometry>
+        <box size="0.15494 0.1 0.06"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0.3 0.3 0.3"/>
+      </material>
+    </visual>
+</link>
+<link name="r_uarm">
+    <inertial>
+        <origin rpy="0 0 0" xyz="-0.00112 0.00157 -0.11125"/>
+        <mass value="4.8803"/>
+        <inertia ixx="1e-1" ixy="0" ixz="0" iyy="1e-1" iyz="0" izz="1e-1"/>
+    </inertial>
+    <visual><!-- r_uarm cylinder vis -->
+      <origin rpy="0 0.08726 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.07" radius="0.03"/>
+      </geometry>
+      <material name="darkgray">
+        <color rgba=".2 .2 .2 1"/>
+      </material>
+    </visual>
+    <visual><!-- r_uarm link vis -->
+      <origin rpy="0 0.08726 1.57" xyz="-0.008 0 -0.09398"/>
+      <geometry>
+        <box size="0.06 0.1 0.18796"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0.3 0.3 0.3"/>
+      </material>
+    </visual>
+</link>
+<link name="r_larm">
+    <inertial>
+        <origin rpy="0 0 0" xyz="0.11918 0.02395 0.0337"/>
+        <mass value="0.69113"/>
+        <inertia ixx="1e-1" ixy="0" ixz="0" iyy="1e-1" iyz="0" izz="1e-1"/>
+    </inertial>
+    <visual><!-- r_larm cylinder vis -->
+      <origin rpy="1.57 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.07" radius="0.03"/>
+      </geometry>
+      <material name="darkgray">
+        <color rgba=".2 .2 .2 1"/>
+      </material>
+    </visual>
+    <visual><!-- r_larm link vis -->
+      <origin rpy="0 0 0" xyz="0.003048 0.03683 -0.17145"/>
+      <geometry>
+        <box size="0.05 0.05 0.3429"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0.3 0.3 0.3"/>
+      </material>
+    </visual>
+</link>
+<link name="r_hand">
+    <inertial>
+        <origin rpy="0 0 0" xyz="0.07931 -0.00146 -0.0648"/>
+        <mass value="3.231"/>
+        <inertia ixx="1e-1" ixy="0" ixz="0" iyy="1e-1" iyz="0" izz="1e-1"/>
+    </inertial>
+    <visual><!-- r_hand cylinder vis -->
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.07" radius="0.03"/>
+      </geometry>
+      <material name="darkgray">
+        <color rgba=".2 .2 .2 1"/>
+      </material>
+    </visual>
+    <visual><!-- r_hand link vis -->
+      <origin rpy="0 0 0" xyz="0 0.0762 -0.0833882"/>
+      <geometry>
+        <box size="0.1 0.1524 0.06"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0.3 0.3 0.3"/>
+      </material>
+    </visual>
+</link>
+
+<joint name="la1_sho_abad" type="revolute">
+    <axis xyz="0.766044443 0 0.64278761"/>
+    <origin rpy="0 0 0" xyz="0.000 0.314 1.045"/>
+    <parent link="base"/>
+    <child link="l_ushou"/>
+    <limit effort="100" lower="-0.174532925" upper="2.094395102" velocity="12"/>
+    <dynamics damping="0.1" friction="0.0"/>
+</joint>
+
+<joint name="la2_sho_flex" type="revolute">
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="0.282 0.000 0.171"/>
+    <parent link="l_ushou"/>
+    <child link="l_lshou"/>
+    <limit effort="100" lower="-0.476474886" upper="2.094395102" velocity="12"/>
+    <dynamics damping="0.1" friction="0.0"/>
+</joint>
+
+<joint name="la3_hum_rota" type="revolute">
+    <axis xyz="0.087155743 0 0.996194698"/>
+    <origin rpy="0 0 0" xyz="0.016 0.025 -0.154"/>
+    <parent link="l_lshou"/>
+    <child link="l_uarm"/>
+    <limit effort="100" lower="-1.396263402" upper="0.872664626" velocity="12"/>
+    <dynamics damping="0.1" friction="0.0"/>
+</joint>
+
+<joint name="la4_elb_flex" type="revolute">
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="-0.016 0.000 -0.188"/>
+    <parent link="l_uarm"/>
+    <child link="l_larm"/>
+    <limit effort="100" lower="0" upper="2.670353756" velocity="12"/>
+    <dynamics damping="0.1" friction="0.0"/>
+</joint>
+
+<joint name="la5_wri_rota" type="revolute">
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="-0.006 -0.037 -0.343"/>
+    <parent link="l_larm"/>
+    <child link="l_hand"/>
+    <limit effort="100" lower="-1.570796327" upper="1.570796327" velocity="12"/>
+    <dynamics damping="0.1" friction="0.0"/>
+</joint>
+
+<joint name="ra1_sho_abad" type="revolute">
+    <axis xyz="-0.766044443 0 -0.64278761"/>
+    <origin rpy="0 0 0" xyz="0.000 -0.314 1.045"/>
+    <parent link="base"/>
+    <child link="r_ushou"/>
+    <limit effort="100" lower="-0.174532925" upper="2.094395102" velocity="12"/>
+    <dynamics damping="0.1" friction="0.0"/>
+</joint>
+
+<joint name="ra2_sho_flex" type="revolute">
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="0.282 0.000 0.171"/>
+    <parent link="r_ushou"/>
+    <child link="r_lshou"/>
+    <limit effort="100" lower="-0.476474886" upper="2.094395102" velocity="12"/>
+    <dynamics damping="0.1" friction="0.0"/>
+</joint>
+
+<joint name="ra3_hum_rota" type="revolute">
+    <axis xyz="-0.087155743 0 -0.996194698"/>
+    <origin rpy="0 0 0" xyz="0.016 -0.025 -0.154"/>
+    <parent link="r_lshou"/>
+    <child link="r_uarm"/>
+    <limit effort="100" lower="-1.396263402" upper="0.872664626" velocity="12"/>
+    <dynamics damping="0.1" friction="0.0"/>
+</joint>
+
+<joint name="ra4_elb_flex" type="revolute">
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="-0.016 0.000 -0.188"/>
+    <parent link="r_uarm"/>
+    <child link="r_larm"/>
+    <limit effort="100" lower="0" upper="2.670353756" velocity="12"/>
+    <dynamics damping="0.1" friction="0.0"/>
+</joint>
+
+<joint name="ra5_wri_rota" type="revolute">
+    <axis xyz="0 0 -1"/>
+    <origin rpy="0 0 0" xyz="-0.006 0.037 -0.343"/>
+    <parent link="r_larm"/>
+    <child link="r_hand"/>
+    <limit effort="100" lower="-1.570796327" upper="1.570796327" velocity="12"/>
+    <dynamics damping="0.1" friction="0.0"/>
+</joint>
+
+
+</robot>
