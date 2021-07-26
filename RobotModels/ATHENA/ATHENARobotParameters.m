@@ -44,6 +44,8 @@ P.VersionName = 'v1';
 %                    0 - floating base
 P.jtype = [1 1 1 1 1 1 1 1 1 1 1 1]';
 
+P.robotPose = [0, 0, 0, 0, 0, 0];
+
 %% Joint Information
 %Name of each joint (numbered 1 to NB-1}
 jointNames = {
@@ -176,26 +178,21 @@ CNCTPTS = [
     13          P.d6   0       0];
 
 %% Visuals for Each Link
-%Visual Type to use: 1 - use stl
-%                    2 - use given box
-%                    3 - generate box from this link's parent to child joint
-%                    4 - generate cylinder from this link's parent to child joint
-%                    0 - nothing
 Visuals.Type = [
- %Type	ChildID	AddJointCylinder
-	1	0		0; %pelvis     
-	1	0		0; %l_hipgimbal
-	1	0		0; %l_glute    
-	1	0		0; %l_thigh    
-	1	0		0; %l_shin     
-	1	0		0; %l_ankle    
-	1	0		0; %l_foot     
-	1	0		0; %r_hipgimbal
-	1	0		0; %r_glute    
-	1	0		0; %r_thigh    
-	1	0		0; %r_shin     
-	1	0		0; %r_ankle    
-	1	0		0]; %r_foot     
+ %UseSTL	UseBox  UseAutoBox  ChildID	AddJointCylinder
+	1		0		0			0		0; %pelvis     
+	1		0		0			0		0; %l_hipgimbal
+	1		0		0			0		0; %l_glute    
+	1		0		0			0		0; %l_thigh    
+	1		0		0			0		0; %l_shin     
+	1		0		0			0		0; %l_ankle    
+	1		0		0			0		0; %l_foot     
+	1		0		0			0		0; %r_hipgimbal
+	1		0		0			0		0; %r_glute    
+	1		0		0			0		0; %r_thigh    
+	1		0		0			0		0; %r_shin     
+	1		0		0			0		0; %r_ankle    
+	1		0		0			0		0]; %r_foot     
 Visuals.JointCylinderLength = 0.04;
 Visuals.JointCylinderRadius = 0.015;
 

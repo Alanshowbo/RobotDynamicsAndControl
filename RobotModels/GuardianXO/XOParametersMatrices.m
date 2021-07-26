@@ -148,7 +148,7 @@ NAMES = {
 LINKPOSEROT = [
 %pRx	pRy	pRz	name
 0       	0       	0;%	pelvis
-0       	-1.570796327	0;%	ltorso
+0       	-1.5707963	0;%	ltorso
 0       	3.141592654	-1.570796327;%	utorso
 2.268928028	0       	-1.570796327;%	r_ushou
 0       	1.570796327	-1.570796327;%	r_lshou

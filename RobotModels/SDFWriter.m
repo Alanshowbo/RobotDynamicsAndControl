@@ -10,14 +10,17 @@ Rzd = @ (theta) [cosd(theta) -sind(theta) 0; sind(theta) cosd(theta) 0; 0 0 1];
 
 %% Load Robot
 
-ATHENARobotParameters
+% ATHENARobotParameters
+% q = [0 0 1.4 0 0 0 zeros(1,12)]'; %zero positon of Robot
 
+GuardianXORobotParameters
+q = [0 0 1.4 0 0 0 zeros(1,24) zeros(1,6)]'; %zero positon of Robot
 
 %% Robot Parameters
 [RobotLinks, RobotParam] = ProcessRobot(jointNames, linkNames, P, KINE, INER, CNCTPTS);
-q = [0 0 1.4 0 0 0 zeros(1,12)]'; %zero positon of Robot
 RobotFrame = DynFun_Frame_calc(RobotLinks,RobotParam,q);
-robotPose = '0 0 0 0 0 0';
+robotPose = [num2str(P.robotPose(1)) ' ' num2str(P.robotPose(2)) ' ' num2str(P.robotPose(3)) ...
+            ' ' num2str(P.robotPose(4)) ' ' num2str(P.robotPose(5)) ' ' num2str(P.robotPose(6))];
 
 %Extract RPY and position from world to each joint
 for i = 1:P.NB
@@ -115,6 +118,7 @@ for i = 1:P.NB
     printSDFLine(ind3,['<pose>' num2str(linksJoint_O_p_i(i,1)) ' ' num2str(linksJoint_O_p_i(i,2)) ' ' num2str(linksJoint_O_p_i(i,3)) ...
             ' ' num2str(linksJoint_RPY(i,1)) ' ' num2str(linksJoint_RPY(i,2)) ' ' num2str(linksJoint_RPY(i,3)) '</pose>']);
     
+    %add stl file for visuals
     if (Visuals.Type(i,1)==1)
         stlPos = Visuals.STL_KINE(i,1:3)*Visuals.STL_scale;
         stlRPY = flip(Visuals.STL_KINE(i,4:6))*pi/180;
@@ -133,8 +137,22 @@ for i = 1:P.NB
         printSDFLine(ind3,'</visual>');
     end
     
+    %add Box visuals
+    if (Visuals.Type(i,1)==2)
+        printSDFLine(ind3,['<visual name="' LinkName '_visual_box">']);
+            printSDFLine(ind4,'<geometry>');
+                printSDFLine(ind5,'<box>');
+                printSDFLine(ind6,['<size>' Visuals.BOX(i,1) ' ' Visuals.BOX(i,2) ' ' Visuals.BOX(i,3) '</size>']);
+                printSDFLine(ind5,'</box>');
+            printSDFLine(ind4,'</geometry>');
+            addMaterial_White(printSDFLine,ind4);
+            printSDFLine(ind4,['<pose>' num2str(stlPos(1)) ' ' num2str(stlPos(2)) ' ' num2str(stlPos(3)) ...
+            ' ' num2str(stlRPY(1)) ' ' num2str(stlRPY(2)) ' ' num2str(stlRPY(3)) '</pose>']);
+        printSDFLine(ind3,'</visual>');
+    end
+    
     %add joint Cylinder for visual
-    if (Visuals.Type(i,3)==0)
+    if (Visuals.Type(i,5)==1)
         printSDFLine(ind3,['<visual name="' LinkName '_visual_jointCylinder">']);
             printSDFLine(ind4,'<geometry>');
                 printSDFLine(ind5,'<cylinder>');
@@ -142,7 +160,7 @@ for i = 1:P.NB
                 printSDFLine(ind6,['<radius>' num2str(Visuals.JointCylinderRadius) '</radius>']);
                 printSDFLine(ind5,'</cylinder>');
             printSDFLine(ind4,'</geometry>');
-            addMaterial_White(printSDFLine,ind4);
+            addMaterial_Black(printSDFLine,ind4);
             printSDFLine(ind4,['<pose>0 0 0 0 0 0</pose>']);
         printSDFLine(ind3,'</visual>');
     end
@@ -218,6 +236,16 @@ function addMaterial_DarkBlue(printSDFLine,ind)
     ind1 = '    ';
     printSDFLine(ind,'<material>');
         printSDFLine([ind ind1],'<ambient>0.7 0.7 0.7 1</ambient>');
+        printSDFLine([ind ind1],'<diffuse>0.5 0.5 0.5 1</diffuse>');
+        printSDFLine([ind ind1],'<emissive>0 0 0 1</emissive>');
+        printSDFLine([ind ind1],'<specular>0 0 0 1</specular>');
+    printSDFLine(ind,'</material>');
+end
+
+function addMaterial_Black(printSDFLine,ind)
+    ind1 = '    ';
+    printSDFLine(ind,'<material>');
+        printSDFLine([ind ind1],'<ambient>0 0 0 1</ambient>');
         printSDFLine([ind ind1],'<diffuse>0.5 0.5 0.5 1</diffuse>');
         printSDFLine([ind ind1],'<emissive>0 0 0 1</emissive>');
         printSDFLine([ind ind1],'<specular>0 0 0 1</specular>');
