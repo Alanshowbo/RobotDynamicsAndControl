@@ -63,15 +63,16 @@ function [RobotLinks, RobotParam] = ProcessRobot(jointNames, linkNames, PARAMS, 
         RobotLinks(i).mass = INER(i,end-6); 
         inertia = INER(i,end-5:end);
         RobotLinks(i).i_rCOM_i = INER(i,2:4)'; 
+        %TODO: Add Inertial pose
         RobotLinks(i).I_MAT = [inertia(1:3); inertia(2) inertia(4:5); inertia(3) inertia(5) inertia(6)]; 
         if (j==0)
-            RobotLinks(i).pi_r_i = [0 0 0]'; 
-            RobotLinks(i).pi_R0_i = eye(3);
+            RobotLinks(i).pi_r_i = PARAMS.robotPose(1:3)'; 
+            RobotLinks(i).pi_R0_i = Rzd(PARAMS.robotPose(6))*Ryd(PARAMS.robotPose(5))*Rxd(PARAMS.robotPose(4));
             RobotLinks(i).jtype = 0; 
             RobotLinks(i).PARENTi = 0;
         else
             RobotLinks(i).pi_r_i = KINE(j,1:3)'; 
-            RobotLinks(i).pi_R0_i = Rzd(KINE(j,4))*Ryd(KINE(j,5))*Rxd(KINE(j,6));
+            RobotLinks(i).pi_R0_i = Rzd(KINE(j,6))*Ryd(KINE(j,5))*Rxd(KINE(j,4));
             RobotLinks(i).jtype = PARAMS.jtype(j); 
             RobotLinks(i).PARENTi = jointParentLinkID(j);
         end 

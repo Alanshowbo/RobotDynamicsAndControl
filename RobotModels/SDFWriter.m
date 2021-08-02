@@ -14,24 +14,27 @@ Rzd = @ (theta) [cosd(theta) -sind(theta) 0; sind(theta) cosd(theta) 0; 0 0 1];
 % q = [0 0 1.4 0 0 0 zeros(1,12)]'; %zero positon of Robot
 
 GuardianXORobotParameters
-q = [0 0 1.4 0 0 0 zeros(1,24) zeros(1,6)]'; %zero positon of Robot
+q = [0 0 0 0 0 0 zeros(1,24) zeros(1,6)]'; %zero positon of Robot
 
 %% Robot Parameters
 [RobotLinks, RobotParam] = ProcessRobot(jointNames, linkNames, P, KINE, INER, CNCTPTS);
 RobotFrame = DynFun_Frame_calc(RobotLinks,RobotParam,q);
 robotPose = [num2str(P.robotPose(1)) ' ' num2str(P.robotPose(2)) ' ' num2str(P.robotPose(3)) ...
-            ' ' num2str(P.robotPose(4)) ' ' num2str(P.robotPose(5)) ' ' num2str(P.robotPose(6))];
+            ' ' num2str(P.robotPose(4)*pi/180) ' ' num2str(P.robotPose(5)*pi/180) ' ' num2str(P.robotPose(6)*pi/180)];
 
 %Extract RPY and position from world to each joint
 for i = 1:P.NB
     spots = [6*i-5:6*i];
     O_X_i = RobotFrame.O_DX_i(spots,spots);
     O_R_i = O_X_i(1:3,1:3);
-    linksJoint_RPY(i,:) = extractRPY(O_R_i);
-    linksJoint_O_p_i(i,:) = RobotFrame.O_p_i(3*i-2:3*i,1)';
     j = linkNames{i,3};
     if j~=0
         globalJointAxes(:,j) = O_R_i*JointAxis(j,:)';
+        linksJoint_RPY(i,:) = extractRPY(O_R_i);
+        linksJoint_O_p_i(i,:) = RobotFrame.O_p_i(3*i-2:3*i,1)';
+    else
+        linksJoint_RPY(i,:) = [0 0 0];
+        linksJoint_O_p_i(i,:) = [0 0 0];
     end
 end
 jointParentLinkID = RobotParam.jointParentLinkID;
@@ -113,7 +116,7 @@ for i = 1:P.NB
         printSDFLine(ind4,'</inertia>');
         printSDFLine(ind4,['<mass>' num2str(INER(i,7)) '</mass>']);
         printSDFLine(ind4,['<pose>' num2str(INER(i,1)) ' ' num2str(INER(i,2)) ' ' num2str(INER(i,3)) ...
-            ' ' num2str(INER(i,4)) ' ' num2str(INER(i,5)) ' ' num2str(INER(i,6)) '</pose>']);
+            ' ' num2str(INER(i,4)*pi/180) ' ' num2str(INER(i,5)*pi/180) ' ' num2str(INER(i,6)*pi/180) '</pose>']);
     printSDFLine(ind3,'</inertial>');
     printSDFLine(ind3,['<pose>' num2str(linksJoint_O_p_i(i,1)) ' ' num2str(linksJoint_O_p_i(i,2)) ' ' num2str(linksJoint_O_p_i(i,3)) ...
             ' ' num2str(linksJoint_RPY(i,1)) ' ' num2str(linksJoint_RPY(i,2)) ' ' num2str(linksJoint_RPY(i,3)) '</pose>']);
@@ -122,7 +125,7 @@ for i = 1:P.NB
     if (Visuals.Type(i,1)==1)
         stlPos = Visuals.STL_KINE(i,1:3)*Visuals.STL_scale;
         stlRPY = flip(Visuals.STL_KINE(i,4:6))*pi/180;
-        RotMatSTL = Rzd(Visuals.STL_KINE(i,4))*Ryd(Visuals.STL_KINE(i,5))*Rxd(Visuals.STL_KINE(i,6));
+        RotMatSTL = Rzd(Visuals.STL_KINE(i,6))*Ryd(Visuals.STL_KINE(i,5))*Rxd(Visuals.STL_KINE(i,4));
         stlPos = RotMatSTL*stlPos'; %Rotate the displacement to be after rotation applied to stl
         printSDFLine(ind3,['<visual name="' LinkName '_visual_mesh">']);
             printSDFLine(ind4,'<geometry>');
@@ -132,20 +135,6 @@ for i = 1:P.NB
                 printSDFLine(ind5,'</mesh>');
             printSDFLine(ind4,'</geometry>');
             addMaterial_DarkBlue(printSDFLine,ind4);
-            printSDFLine(ind4,['<pose>' num2str(stlPos(1)) ' ' num2str(stlPos(2)) ' ' num2str(stlPos(3)) ...
-            ' ' num2str(stlRPY(1)) ' ' num2str(stlRPY(2)) ' ' num2str(stlRPY(3)) '</pose>']);
-        printSDFLine(ind3,'</visual>');
-    end
-    
-    %add Box visuals
-    if (Visuals.Type(i,1)==2)
-        printSDFLine(ind3,['<visual name="' LinkName '_visual_box">']);
-            printSDFLine(ind4,'<geometry>');
-                printSDFLine(ind5,'<box>');
-                printSDFLine(ind6,['<size>' Visuals.BOX(i,1) ' ' Visuals.BOX(i,2) ' ' Visuals.BOX(i,3) '</size>']);
-                printSDFLine(ind5,'</box>');
-            printSDFLine(ind4,'</geometry>');
-            addMaterial_White(printSDFLine,ind4);
             printSDFLine(ind4,['<pose>' num2str(stlPos(1)) ' ' num2str(stlPos(2)) ' ' num2str(stlPos(3)) ...
             ' ' num2str(stlRPY(1)) ' ' num2str(stlRPY(2)) ' ' num2str(stlRPY(3)) '</pose>']);
         printSDFLine(ind3,'</visual>');
@@ -164,6 +153,22 @@ for i = 1:P.NB
             printSDFLine(ind4,['<pose>0 0 0 0 0 0</pose>']);
         printSDFLine(ind3,'</visual>');
     end
+    
+    %add Box visuals
+    if (Visuals.Type(i,2)==1)
+        printSDFLine(ind3,['<visual name="' LinkName '_visual_box">']);
+            printSDFLine(ind4,'<geometry>');
+                printSDFLine(ind5,'<box>');
+                printSDFLine(ind6,['<size>' num2str(Visuals.BOX(i,1)) ' ' num2str(Visuals.BOX(i,2)) ' ' num2str(Visuals.BOX(i,3)) '</size>']);
+                printSDFLine(ind5,'</box>');
+            printSDFLine(ind4,'</geometry>');
+            addMaterial_White(printSDFLine,ind4);
+            printSDFLine(ind4,['<pose>' num2str(Visuals.BOX(i,4)) ' ' num2str(Visuals.BOX(i,5)) ' ' num2str(Visuals.BOX(i,6)) ...
+            ' ' num2str(Visuals.BOX(i,7)*pi/180) ' ' num2str(Visuals.BOX(i,8)*pi/180) ' ' num2str(Visuals.BOX(i,9)*pi/180) '</pose>']);
+        printSDFLine(ind3,'</visual>');
+    end
+    
+
     
     printSDFLine(ind2,'</link>');
 end
@@ -230,6 +235,7 @@ function addMaterial_White(printSDFLine,ind)
         printSDFLine([ind ind1],'<emissive>0 0 0 1</emissive>');
         printSDFLine([ind ind1],'<specular>1 1 1 1</specular>');
     printSDFLine(ind,'</material>');
+    printSDFLine(ind,'<transparency>0.2</transparency>');
 end
 
 function addMaterial_DarkBlue(printSDFLine,ind)
@@ -250,4 +256,15 @@ function addMaterial_Black(printSDFLine,ind)
         printSDFLine([ind ind1],'<emissive>0 0 0 1</emissive>');
         printSDFLine([ind ind1],'<specular>0 0 0 1</specular>');
     printSDFLine(ind,'</material>');
+end
+
+function addMaterial_XOMaroon(printSDFLine,ind)
+    ind1 = '    ';
+    printSDFLine(ind,'<material>');
+        printSDFLine([ind ind1],'<ambient>1 0.22 0 1</ambient>');
+        printSDFLine([ind ind1],'<diffuse>0.5 0.5 0.5 1</diffuse>');
+        printSDFLine([ind ind1],'<emissive>0 0 0 1</emissive>');
+        printSDFLine([ind ind1],'<specular>1 1 1 1</specular>');
+    printSDFLine(ind,'</material>');
+    printSDFLine(ind,'<transparency>0.2</transparency>');
 end

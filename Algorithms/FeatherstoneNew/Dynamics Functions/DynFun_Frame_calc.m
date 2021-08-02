@@ -82,6 +82,7 @@ function RobotFrame = Frame_calc(RobotLinks,RobotParam,q)
         if j == 0
             RobotFrame.O_DX_i(spots,spots) = RobotFrame.pi_X_i(spots,:);
             RobotFrame.i_X_O(spots,:) = RobotFrame.i_X_pi(spots,:);
+            %Here Need to set up transformation from inertial to pelvis pose coordinates
         else
             RobotFrame.O_DX_i(spots,spots) = RobotFrame.O_DX_i(Parent_spots,Parent_spots)*RobotFrame.pi_X_i(spots,:);
             RobotFrame.i_X_O(spots,:) = RobotFrame.i_X_pi(spots,:)*RobotFrame.i_X_O(Parent_spots,:);

@@ -40,7 +40,7 @@ P.VersionName = 'v1';
 %                    0 - floating base
 P.jtype = [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]';
 
-P.robotPose = [0, 0, 0, 0, -1.5708, 0];
+P.robotPose = [0, 0, 0, 0, -90, 0];
 
 %% Joint Information
 %Name of each joint (numbered 1 to NB-1}
@@ -54,10 +54,10 @@ jointNames = {
 	6 		'ra4_elb_flex'		5;
 	7 		'ra5_wri_rota'		6;
 	8 		'la1_sho_abad'		2;
-	9 		'la2_sho_flex'		3;
-	10 		'la3_hum_rota'		4;
-	11 		'la4_elb_flex'		5;
-	12 		'la5_wri_rota'		6;
+	9 		'la2_sho_flex'		8;
+	10 		'la3_hum_rota'		9;
+	11 		'la4_elb_flex'		10;
+	12 		'la5_wri_rota'      11;
 	13 		'rl1_hip_rota'		0;
 	14 		'rl2_hip_abad'		13;
 	15 		'rl3_hip_flex'		14;
@@ -70,8 +70,8 @@ jointNames = {
 	22 		'll4_kne_flex'		21;
 	23 		'll5_cal_rota'		22;
 	24 		'll6_ank_flex'		23;
-    25 		'ft1_l_foot'		18;
-    26 		'ft2_r_foot'		24;
+    25 		'ft1_l_foot'		24;
+    26 		'ft2_r_foot'		18;
     27 		'ft3_l_hand'		12;
     28 		'ft4_r_hand'		7;
     29 		'ft5_pelvis'		0;
@@ -82,37 +82,37 @@ jointNames = {
 %To get the rotations, rotate the parent coordinate system by z then y then
 %x to arrive at the child coordinates. Those numbers are the RPY
 KINE = [ %Parameterized Positions and Angles in degrees
-    %Jnt X   	Jnt Y   	Jnt Z   	Jnt Yaw     Jnt Pitch	Jnt Roll 	JointName
+    %Jnt X   	Jnt Y   	Jnt Z   	Jnt Roll   Jnt Pitch	Jnt Yaw 	JointName
     0.09525 	0       	0       	0       	0       	0       	; %TorsoTilt
-    0.2286  	0       	0.060401	-1.5708 	0       	1.5708  	; %TorsoRot
-    -0.31433	-0.0097288	-0.036922	-0.87266	0       	3.1416  	; %RShAbAd
-    -0.00635	-0.0508 	-0.33884	-1.5708 	-0.7854 	-1.5708  	; %RShFlex
-    0.1524  	0.029642	0.030912	0       	1.5708  	0       	; %RHumRot
-    -0.00635	0       	0.1892  	-1.5708 	-1.4835 	1.5708  	; %RElbFlex
-    0.3429  	-0.006096	-0.042977	0       	1.5708  	0       	; %RWriRot
-    0.314325	-0.00972876	-0.0369216	-2.26892803	0       	0       	; %LShAbAd
-    -0.00635	-0.0508 	0.338836	1.570796327	0.785398163	-1.57079633	; %LShFlex
-    0.1524  	0.0296418	-0.0309118	0       	-1.57079633	0       	; %LHumRot
-    -0.00635	0       	-0.1892046	1.570796327	1.483529864	1.570796327	; %LElbFlex
-    0.3429  	-0.006096	0.0429768	0       	-1.57079633	0       	; %LWriRot
-    0       	-0.09525	0       	-1.5708 	0       	1.5708  	; %RHipRot
-    -0.1016 	0       	0       	-1.57079633	0       	3.141592654	; %RHipAbAd
-    0.0793242	0       	-0.22225	-1.57079626	0       	-1.57079633	; %RHipFlex
+    0.2286  	0       	0.060401	-90     	0       	90      	; %TorsoRot
+    -0.31433	-0.0097288	-0.036922	-50     	0       	180         ; %RShAbAd
+    -0.00635	-0.0508 	-0.33884	-90     	-45         -90      	; %RShFlex
+    0.1524  	0.029642	0.030912	0       	90      	0       	; %RHumRot
+    -0.00635	0       	0.1892  	-90     	-85         90      	; %RElbFlex
+    0.3429  	-0.006096	-0.042977	0       	90      	0       	; %RWriRot
+    0.314325	-0.00972876	-0.0369216	-130        0       	0       	; %LShAbAd
+    -0.00635	-0.0508 	0.338836	90         	45          -90        	; %LShFlex
+    0.1524  	0.0296418	-0.0309118	0       	-90         0       	; %LHumRot
+    -0.00635	0       	-0.1892046	90         	85          90         	; %LElbFlex
+    0.3429  	-0.006096	0.0429768	0       	-90         0       	; %LWriRot
+    0       	-0.09525	0       	-90     	0       	90      	; %RHipRot
+    -0.1016 	0       	0       	-90         0       	180        	; %RHipAbAd
+    0.0793242	0       	-0.22225	-90       	0       	-90        	; %RHipFlex
     0.4318  	0       	0       	0       	0       	0       	; %RKneeFlex
-    0.1524  	0       	0       	0       	1.570796327	0       	; %RCalfRot
-    0       	0       	0.2794   	0       	-1.57079633	0       	; %RAnkFlex
-    0       	0.09525 	0       	-1.57079633	0       	-1.57079633	; %LHipRot
-    -0.1016 	0       	0       	1.570796327	0       	3.141592654	; %LHipAbAd
-    0.0793242	0       	0.22225 	1.570796327	0       	-1.57079633	; %LHipFlex
+    0.1524  	0       	0       	0       	90         	0       	; %RCalfRot
+    0       	0       	0.2794   	0       	-90         0       	; %RAnkFlex
+    0       	0.09525 	0       	-90         0       	-90        	; %LHipRot
+    -0.1016 	0       	0       	90         	0       	180        	; %LHipAbAd
+    0.0793242	0       	0.22225 	90         	0       	-90        	; %LHipFlex
     0.4318  	0       	0       	0       	0       	0       	; %LKneeFlex
-    0.1524  	0       	0       	0       	-1.57079633	0       	; %LCalfRot
-    0       	0       	-0.2794 	0       	1.570796327	0       	; %LAnkFlex
-    0       	0       	-0.0857   	-1.5708    	1.5708    	0       	; %LFootFT
-    0       	0       	-0.0857 	1.5708    	-1.5708    	0       	; %RHandFT
-    0.1470    	0       	0.1345     	0       	0       	1.5708    	; %LFootFT
-    0.1470    	0       	-0.1345    	0       	0       	1.5708    	; %RFootFT
-    0.0635    	0       	-0.0375    	-1.5708    	-1.5708    	0       	; %PelvisFT
-    0           0.635     	-0.1300    	-1.5708    	0       	-1.5708    	];%TorsoFT
+    0.1524  	0       	0       	0       	-90         0       	; %LCalfRot
+    0       	0       	-0.2794 	0       	90         	0       	; %LAnkFlex
+    0       	0       	-0.0857   	-90        	90        	0       	; %LFootFT
+    0       	0       	-0.0857 	90        	-90        	0       	; %RHandFT
+    0.1470    	0       	0.1345     	0       	0       	90        	; %LFootFT
+    0.1470    	0       	-0.1345    	0       	0       	90        	; %RFootFT
+    0.0635    	0       	-0.0375    	-90        	-90        	0       	; %PelvisFT
+    0           0.635     	-0.1300    	-90        	0       	-90        	];%TorsoFT
 %Define a vector in each joints coordinate system that is the joint axis for that joint
 JointAxis = [
     %X  Y   Z
@@ -254,7 +254,7 @@ linkNames = {
 %Should be the Center of Mass. The Moment of Inertia matrix is defined in these coordinates. 
 INER = [%                   kg      kg*m^2......
     %X       Y          Z           R	P       Y	Mass        Ixx         Ixy         Ixz         Iyy         Iyz         Izz 	LinkName
-    0.00115	 0.02425	0.00012 	0	-1.5708	0	12.8142188	0.0868309	 -9.80E-05	-1.40E-06	0.1276831	-0.0193677	0.1270887	; %Pelvis
+    0.00115	 0.02425	0.00012 	0	-90    	0	12.8142188	0.0868309	 -9.80E-05	-1.40E-06	0.1276831	-0.0193677	0.1270887	; %Pelvis
   0.1193	-0.00024	 0.05482	0	0   	0	6.4709707	0.0105008	-4.47E-05	0.0026378	0.083485	2.70E-06	0.0831262	; %TorsoTilt
 -0.00112	-0.01501	-0.10391	0	0   	0	 31.3577	0.531105	0.000923	-0.0007483	 1.18733	-0.0778626	 0.91496	; %TorsoRot
   0.0164	  0.0039	-0.19416	0	0   	0	4.8909121	0.0017929	0.0017929	0.0046508	0.0348741	0.0073972	0.0125237	; %RShAbAd
@@ -306,7 +306,7 @@ CNCTPTS = [
 %% Visuals for Each Link
 Visuals.Type = [
  %UseSTL	UseBox  UseAutoBox  ChildID	AddJointCylinder
-	0       1		0           0       1; 	%'pelvis'     
+	0       1		0           0       0; 	%'pelvis'     
 	0       1		0           0       1; 	%'ltorso'     
 	0       1		0           0       1; 	%'utorso'      
 	0       1		0           0       1; 	%'r_ushou'     
@@ -359,15 +359,15 @@ Visuals.BOX = [
     %sizex	sizey	sizez	vpx     vpy         vpz         vproll	vppitch	vpyaw	name
     0.1     0.1905	0.15	0       0           0.05        0	0	0	;%pelvis
     0.2286	0.2     0.1     0.1143	0           0.05        0	0	0	;%ltorso
-    0.7     0.1     0.07	0       -0.02       0           0.785398163	0	0	;%utorso
+    0.7     0.1     0.07	0       -0.02       0           45	0	0	;%utorso
     0.06	0.1     0.3302	0   	0           -0.163068	0	0	0	;%r_ushou
-    0.15494	0.1     0.06	0.07720	0.0245364	0.024638	0	0	-0.087266463	;%r_lshou
-    0.06	0.1     0.18796	0   	-0.0081788	0.09398     0	0	-0.087266463	;%r_uarm
+    0.15494	0.1     0.06	0.07720	0.0245364	0.024638	0	0	-5	;%r_lshou
+    0.06	0.1     0.18796	0   	-0.0081788	0.09398     0	0	-5	;%r_uarm
     0.3429	0.05	0.05	0.17145	0.003048	-0.03683	0	0	0	;%r_larm
     0.1524	0.1     0.06	0.0762	0           0.0833882	0	0	0	;%r_hand
     0.06	0.1     0.3302	0       0           0.163068	0	0	0	;%l_ushou
-    0.15494	0.1     0.06	0.07720	0.0245364	-0.024638	0	0	-0.087266463	;%l_lshou
-    0.06	0.1     0.18796	0       -0.0081788	-0.09398	0	0	-0.087266463	;%l_uarm
+    0.15494	0.1     0.06	0.07720	0.0245364	-0.024638	0	0	-5	;%l_lshou
+    0.06	0.1     0.18796	0       -0.0081788	-0.09398	0	0	-5	;%l_uarm
     0.3429	0.05	0.05	0.17145	0.003048	0.03683     0	0	0	;%l_larm
     0.1524	0.1     0.06	0.0762	0           -0.0833882	0	0	0	;%l_hand
     0.1     0.1     0.1     -0.05	0           0           0   0	0	;%r_glut

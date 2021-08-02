@@ -66,19 +66,19 @@ jointNames = {
 %of the parent joint. below is the xyz position of each joint wrt the previous joint coordinates, and the RPY
 %of the rotation from the joint coordinates to the parent joint coordinates. parent_R_child = Rz(Y)*Ry(P)*Rz(R)
 KINE = [ %Parameterized Positions and Angles in degrees
-    %Jnt X   	Jnt Y   	Jnt Z   	Jnt Yaw	Jnt Pitch	Jnt Roll 	JointName
-    0       	P.d7       	-P.d1      	0       	0       	0       ; %'ll1_hip_yaw'
-    0        	0       	-P.d2      	0       	90       	0       ; %'ll2_hip_rol'
-    P.d3        0       	0       	90        	-90       	0       ; %'ll3_hip_pit'
-    0       	-P.d4      	0       	0       	0       	0       ; %'ll4_kne_pit'
-    0       	-P.d5      	0       	0        	0        	0       ; %'ll5_ank_pit'
-    0         	0       	0       	-90       	0           -90     ; %'ll6_ank_rol'
-    0       	-P.d7     	-P.d1      	0       	0       	180     ; %'rl1_hip_yaw'
-    0        	0       	P.d2       	0       	-90       	0       ; %'rl2_hip_rol'
-    P.d3        0       	0       	90        	90       	0       ; %'rl3_hip_pit'
-    0       	-P.d4      	0       	0       	0       	0       ; %'rl4_kne_pit'
-    0       	-P.d5      	0       	0        	0        	0       ; %'rl5_ank_pit'
-    0         	0       	0       	-90       	0           90      ];%'rl6_ank_rol'
+    %Jnt X   	Jnt Y   	Jnt Z   	Jnt Roll Jnt Pitch	Jnt Yaw		JointName
+    0       	P.d7       	-P.d1      		0    	0       0          ; %'ll1_hip_yaw'
+    0        	0       	-P.d2      	 	0    	90      0          ; %'ll2_hip_rol'
+    P.d3        0       	0       	  	0      	-90     90         ; %'ll3_hip_pit'
+    0       	-P.d4      	0       		0    	0       0          ; %'ll4_kne_pit'
+    0       	-P.d5      	0       	 	0     	0       0          ; %'ll5_ank_pit'
+    0         	0       	0       	    -90    	0       -90        ; %'ll6_ank_rol'
+    0       	-P.d7     	-P.d1      		180  	0       0          ; %'rl1_hip_yaw'
+    0        	0       	P.d2       	  	0    	-90     0          ; %'rl2_hip_rol'
+    P.d3        0       	0       	 	0      	90      90         ; %'rl3_hip_pit'
+    0       	-P.d4      	0       		0    	0       0          ; %'rl4_kne_pit'
+    0       	-P.d5      	0       	 	0     	0       0          ; %'rl5_ank_pit'
+    0         	0       	0       	    90     	0       -90        ];%'rl6_ank_rol'
 %Define a vector in each joints coordinate system that is the joint axis for that joint
 JointAxis = [
     %X  Y   Z
@@ -218,20 +218,20 @@ Visuals.STLFileNames = {
 %Then the RPY rotation to be in the joint coordinates
 %   note, the sdf reader in java also does translation and then rotation
 Visuals.STL_KINE = [
-    %pRx	pRy		pRz		VisYaw		VisPitch	VisRoll 	LinkName
-	0       0   	-231.7	90			0			0       ; %pelvis     
-    0       -6  	-8		0       	0       	90      ; %l_hipgimbal
-    -120     3  	43.5	90       	0       	-90     ; %l_glute    
-    -120     0  	100		90        	90       	0       ; %l_thigh    
-    -1      -25 	0		-4.5       	0       	-90     ; %l_shin     
-    0       0   	-6		0        	0        	90      ; %l_ankle    
-    -120    6   	980		90       	0           -90     ; %l_foot     
-    0       -6  	-8		0       	0       	-90     ; %r_hipgimbal
-    120     -2  	44		-90       	0       	90      ; %r_glute    
-    120     0   	100		90        	90       	0       ; %r_thigh    
-    -1      -25 	0		-4.5       	0       	-90     ; %r_shin     
-    0       0   	-6		0        	0        	90      ; %r_ankle    
-    120     6   	980		-90       	0           90      ];%r_foot
+    %pRx	pRy		pRz		VisRoll VisPitch	VisYaw			LinkName
+	0       0   	-231.7	0       0			90			; %pelvis     
+    0       -6  	-8		90      0       	0       	; %l_hipgimbal
+    -120     3  	43.5	-90     0       	90       	; %l_glute    
+    -120     0  	100		0       90       	90        	; %l_thigh    
+    -1      -25 	0		-90     0       	-4.5       	; %l_shin     
+    0       0   	-6		90      0        	0        	; %l_ankle    
+    -120    6   	980		-90     0           90       	; %l_foot     
+    0       -6  	-8		-90     0       	0       	; %r_hipgimbal
+    120     -2  	44		90      0       	-90       	; %r_glute    
+    120     0   	100		0       90       	90        	; %r_thigh    
+    -1      -25 	0		-90     0       	-4.5       	; %r_shin     
+    0       0   	-6		90      0        	0        	; %r_ankle    
+    120     6   	980		90      0           -90       	];%r_foot
 %Scaling to apply to meshes to have output in m
 Visuals.STL_scale = 0.001;
 
