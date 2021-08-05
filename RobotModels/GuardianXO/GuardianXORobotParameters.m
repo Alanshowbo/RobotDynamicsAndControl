@@ -107,12 +107,12 @@ KINE = [ %Parameterized Positions and Angles in degrees
     0.4318  	0       	0       	0       	0       	0       	; %LKneeFlex
     0.1524  	0       	0       	0       	-90         0       	; %LCalfRot
     0       	0       	-0.2794 	0       	90         	0       	; %LAnkFlex
-    0       	0       	-0.0857   	-90        	90        	0       	; %LFootFT
-    0       	0       	-0.0857 	90        	-90        	0       	; %RHandFT
-    0.1470    	0       	0.1345     	0       	0       	90        	; %LFootFT
-    0.1470    	0       	-0.1345    	0       	0       	90        	; %RFootFT
-    0.0635    	0       	-0.0375    	-90        	-90        	0       	; %PelvisFT
-    0           0.635     	-0.1300    	-90        	0       	-90        	];%TorsoFT
+    0.1470    	0.0367     	0.1345     	90       	2       	0        	; %LFootFT
+    0.1470    	0.0367    	-0.1345    	90       	-2       	0        	; %RFootFT
+    0       	0       	-0.0834   	90        	90        	0       	; %LHandFT
+    0       	0       	-0.0834 	-90        	90        	0       	; %RHandFT
+    0.0635    	0       	-0.0375    	0        	-90        	-90       	; %PelvisFT
+    0           0.638     	-0.1299    	-90        	0       	-90        	];%TorsoFT
 %Define a vector in each joints coordinate system that is the joint axis for that joint
 JointAxis = [
     %X  Y   Z
