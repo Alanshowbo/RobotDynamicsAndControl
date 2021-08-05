@@ -121,6 +121,11 @@ for i = 1:P.NB
     printSDFLine(ind3,['<pose>' num2str(linksJoint_O_p_i(i,1)) ' ' num2str(linksJoint_O_p_i(i,2)) ' ' num2str(linksJoint_O_p_i(i,3)) ...
             ' ' num2str(linksJoint_RPY(i,1)) ' ' num2str(linksJoint_RPY(i,2)) ' ' num2str(linksJoint_RPY(i,3)) '</pose>']);
     
+    %if pelvis, add imu
+    if strcmp(LinkName,'pelvis')
+        addPelvisImu(printSDFLine,ind3)
+    end
+        
     %add stl file for visuals
     if (Visuals.Type(i,1)==1)
         stlPos = Visuals.STL_KINE(i,1:3)*Visuals.STL_scale;
@@ -196,6 +201,46 @@ fclose(fid);
 
 %PlotAthena
 
+%% Add Sensor Functions
+function addPelvisImu(printSDFLine,ind)
+    ind1 = '    ';
+    accelBiasMean = 0.1;
+    accelBiasSTDDEV = 0.001;
+    accelmean = 0;
+    accelSTDDEV = 0.017;
+    rateBiasMean = 0.0000075;
+    rateBiasSTDDEV = 0.0000008;
+    ratemean = 0;
+    rateSTDDEV = 0.0002;
+    typeSTR = 'gaussian';
+    imuPose = [0 0 0 0 0 0];
+    imuUpdateRate = 1000;
+    
+    printSDFLine(ind,'<sensor name="imu_sensor_at_pelvis_frame" type="imu">');
+    printSDFLine([ind ind1],'<imu>');
+    printSDFLine([ind ind1 ind1],'<noise>');
+    printSDFLine([ind ind1 ind1 ind1],'<accel>');
+    printSDFLine([ind ind1 ind1 ind1 ind1],['<bias_mean>' num2str(accelBiasMean) '</bias_mean>']);
+    printSDFLine([ind ind1 ind1 ind1 ind1],['<bias_stddev>' num2str(accelBiasSTDDEV) '</bias_stddev>']);
+    printSDFLine([ind ind1 ind1 ind1 ind1],['<mean>' num2str(accelmean) '</mean>']);
+    printSDFLine([ind ind1 ind1 ind1 ind1],['<stddev>' num2str(accelSTDDEV) '</stddev>']);
+    printSDFLine([ind ind1 ind1 ind1],'</accel>');
+    printSDFLine([ind ind1 ind1 ind1],'<rate>');
+    printSDFLine([ind ind1 ind1 ind1 ind1],['<bias_mean>' num2str(rateBiasMean) '</bias_mean>']);
+    printSDFLine([ind ind1 ind1 ind1 ind1],['<bias_stddev>' num2str(rateBiasSTDDEV) '</bias_stddev>']);
+    printSDFLine([ind ind1 ind1 ind1 ind1],['<mean>' num2str(ratemean) '</mean>']);
+    printSDFLine([ind ind1 ind1 ind1 ind1],['<stddev>' num2str(rateSTDDEV) '</stddev>']);
+    printSDFLine([ind ind1 ind1 ind1],'</rate>');
+    printSDFLine([ind ind1 ind1 ind1],['<type>' typeSTR '</type>']);
+    printSDFLine([ind ind1 ind1],'</noise>');
+    printSDFLine([ind ind1],'</imu>');
+    printSDFLine([ind ind1],['<pose>' num2str(imuPose(1)) ' ' num2str(imuPose(2)) ' ' num2str(imuPose(3)) ' ' ...
+                                      num2str(imuPose(4)) ' ' num2str(imuPose(5)) ' ' num2str(imuPose(6)) '</pose>']);
+    printSDFLine([ind ind1],['<update_rate>' num2str(imuUpdateRate) '</update_rate>']);
+    printSDFLine(ind,'</sensor>');
+end
+
+
 %% Rotation Matrix function
 function RPY = extractRPY(Rin)
 if (Rin(3,1)==1)||(Rin(3,1)==-1)
@@ -226,7 +271,7 @@ conv = 180/pi;
 RPY = [thx*conv thy*conv thz*conv];
 end
 
-%%material values
+%% material values
 function addMaterial_White(printSDFLine,ind)
     ind1 = '    ';
     printSDFLine(ind,'<material>');
