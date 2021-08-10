@@ -291,16 +291,16 @@ P.d6 = 0.050;     P.d7 = 0.119;
 P.La = 0.05;  P.Lb = 0.05;
 CNCTPTS = [
     %Body ID    px     py       pz
-    7          P.d6   P.La    P.Lb;
-    7          P.d6  -P.La    P.Lb;
-    7          P.d6   P.La   -P.Lb;
-    7          P.d6  -P.La   -P.Lb;
-    13          P.d6   P.La    P.Lb;
-    13          P.d6  -P.La    P.Lb;
-    13          P.d6   P.La   -P.Lb;
-    13          P.d6  -P.La   -P.Lb;
-    7          P.d6   0       0 ;
-    13          P.d6   0       0];
+    19          P.d6   P.La    P.Lb;
+    19          P.d6  -P.La    P.Lb;
+    19          P.d6   P.La   -P.Lb;
+    19          P.d6  -P.La   -P.Lb;
+    25          P.d6   P.La    P.Lb;
+    25          P.d6  -P.La    P.Lb;
+    25          P.d6   P.La   -P.Lb;
+    25          P.d6  -P.La   -P.Lb;
+    19          P.d6   0       0 ;
+    25          P.d6   0       0];
 
 %% Visuals for Each Link
 Visuals.Type = [

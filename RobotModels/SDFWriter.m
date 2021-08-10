@@ -10,11 +10,11 @@ Rzd = @ (theta) [cosd(theta) -sind(theta) 0; sind(theta) cosd(theta) 0; 0 0 1];
 
 %% Load Robot
 
-% ATHENARobotParameters
-% q = [0 0 1.4 0 0 0 zeros(1,12)]'; %zero positon of Robot
+ATHENARobotParameters
+q = [0 0 0 0 0 0 zeros(1,12)]'; %zero positon of Robot
 
-GuardianXORobotParameters
-q = [0 0 0 0 0 0 zeros(1,24) zeros(1,6)]'; %zero positon of Robot
+% GuardianXORobotParameters
+% q = [0 0 0 0 0 0 zeros(1,24) zeros(1,6)]'; %zero positon of Robot
 
 %% Robot Parameters
 [RobotLinks, RobotParam] = ProcessRobot(jointNames, linkNames, P, KINE, INER, CNCTPTS);
@@ -129,7 +129,7 @@ for i = 1:P.NB
     %add stl file for visuals
     if (Visuals.Type(i,1)==1)
         stlPos = Visuals.STL_KINE(i,1:3)*Visuals.STL_scale;
-        stlRPY = flip(Visuals.STL_KINE(i,4:6))*pi/180;
+        stlRPY = Visuals.STL_KINE(i,4:6)*pi/180;
         RotMatSTL = Rzd(Visuals.STL_KINE(i,6))*Ryd(Visuals.STL_KINE(i,5))*Rxd(Visuals.STL_KINE(i,4));
         stlPos = RotMatSTL*stlPos'; %Rotate the displacement to be after rotation applied to stl
         printSDFLine(ind3,['<visual name="' LinkName '_visual_mesh">']);

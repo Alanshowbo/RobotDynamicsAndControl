@@ -100,13 +100,13 @@ JointLimits = [
     -0.6	0.6     100     12; % ll1_hip_yaw
     -0.6	0.6     100     10; % ll2_hip_rol
     -1.0	1.2     100     12; % ll3_hip_pit
-    -1.0  	0.0     100     12; % ll4_kne_pit
+    -2.0  	0.0     100     12; % ll4_kne_pit
     -0.6	0.6     100     12; % ll5_ank_pit
     -0.6	0.6     100     12; % ll6_ank_rol
     -0.6	0.6     100     12; % rl1_hip_yaw
     -0.6	0.6     100     10; % rl2_hip_rol
     -1.0	1.2     100     12; % rl3_hip_pit
-    -1.0	0.0     100     12; % rl4_kne_pit
+    -2.0	0.0     100     12; % rl4_kne_pit
     -0.6	0.9     100     12; % rl5_ank_pit
     -0.6	0.6     100     12];% rl6_ank_rol
 %Define dynamic parameters of joint
@@ -146,21 +146,20 @@ linkNames = {
 %For Each link a Centroidal Coordinate system is defined. The origin of the coordinate 
 %Should be the Center of Mass. The Moment of Inertia matrix is defined in these coordinates. 
 INER = [%                   kg      kg*m^2......
-    %X  Y 	Z   R	P   Y	Mass    Ixx   Ixy    Ixz    Iyy   Iyz	 Izz 	LinkName
-    0   0   0   0   0   0   5       0.5   0.05   0.05   0.5   0.05   0.5;  %pelvis     
-    0   0   0   0   0   0   0.5     0.1   0.01   0.01   0.1   0.01   0.1;  %l_hipgimbal
-    0   0   0   0   0   0   1       0.1   0.01   0.01   0.1   0.01   0.1;  %l_glute    
-    0   0   0   0   0   0   3       0.3   0.03   0.03   0.3   0.03   0.3;  %l_thigh    
-    0   0   0   0   0   0   3       0.3   0.03   0.03   0.3   0.03   0.3;  %l_shin     
-    0   0   0   0   0   0   0.5     0.1   0.01   0.01   0.1   0.01   0.1;  %l_ankle    
-    0   0   0   0   0   0   2       0.2   0.02   0.02   0.2   0.02   0.2;  %l_foot     
-    0   0   0   0   0   0   0.5     0.1   0.01   0.01   0.1   0.01   0.1;  %r_hipgimbal
-    0   0   0   0   0   0   1       0.1   0.01   0.01   0.1   0.01   0.1;  %r_glute    
-    0   0   0   0   0   0   3       0.3   0.03   0.03   0.3   0.03   0.3;  %r_thigh    
-    0   0   0   0   0   0   3       0.3   0.03   0.03   0.3   0.03   0.3;  %r_shin     
-    0   0   0   0   0   0   0.5     0.1   0.01   0.01   0.1   0.01   0.1;  %r_ankle    
-    0   0   0   0   0   0   2       0.2   0.02   0.02   0.2   0.02   0.2]; %r_foot     
-
+    %X  	Y 		Z   	R	P   Y	Mass    Ixx   Ixy     Ixz     Iyy   Iyz	    Izz 	LinkName
+    0   	0   	-P.d1/2 0   0   0   10      0.4   0.005   0.005   0.2   0.005   0.5;  %pelvis     
+    0   	0   	-P.d2/2	0   0   0   0.5     0.1   0.001   0.001   0.1   0.001   0.1;  %l_hipgimbal
+    P.d3/2	0   	0   	0   0   0   1       0.1   0.001   0.001   0.1   0.001   0.1;  %l_glute    
+    0   	-P.d4/2	0   	0   0   0   3       0.3   0.003   0.003   0.3   0.003   0.3;  %l_thigh    
+    0   	-P.d4/2 0   	0   0   0   3       0.3   0.003   0.003   0.3   0.003   0.3;  %l_shin     
+    0   	0   	0   	0   0   0   0.5     0.1   0.001   0.001   0.1   0.001   0.1;  %l_ankle    
+    P.d6/2	0   	0   	0   0   0   2       0.2   0.002   0.002   0.2   0.002   0.2;  %l_foot     
+    0   	0   	P.d2/2	0   0   0   0.5     0.1   0.001   0.001   0.1   0.001   0.1;  %r_hipgimbal
+    P.d3/2	0   	0   	0   0   0   1       0.1   0.001   0.001   0.1   0.001   0.1;  %r_glute    
+    0   	-P.d4/2	0   	0   0   0   3       0.3   0.003   0.003   0.3   0.003   0.3;  %r_thigh    
+    0   	-P.d5/2 0   	0   0   0   3       0.3   0.003   0.003   0.3   0.003   0.3;  %r_shin     
+    0   	0   	0   	0   0   0   0.5     0.1   0.001   0.001   0.1   0.001   0.1;  %r_ankle    
+    P.d6/2	0   	0   	0   0   0   2       0.2   0.002   0.002   0.2   0.002   0.2]; %r_foot   
 
 
 %% Contact point Information
@@ -180,19 +179,19 @@ CNCTPTS = [
 %% Visuals for Each Link
 Visuals.Type = [
  %UseSTL	UseBox  UseAutoBox  ChildID	AddJointCylinder
-	1		0		0			0		0; %pelvis     
-	1		0		0			0		0; %l_hipgimbal
-	1		0		0			0		0; %l_glute    
-	1		0		0			0		0; %l_thigh    
-	1		0		0			0		0; %l_shin     
-	1		0		0			0		0; %l_ankle    
-	1		0		0			0		0; %l_foot     
-	1		0		0			0		0; %r_hipgimbal
-	1		0		0			0		0; %r_glute    
-	1		0		0			0		0; %r_thigh    
-	1		0		0			0		0; %r_shin     
-	1		0		0			0		0; %r_ankle    
-	1		0		0			0		0]; %r_foot     
+	1		0		0			0		1; %pelvis     
+	1		0		0			0		1; %l_hipgimbal
+	1		0		0			0		1; %l_glute    
+	1		0		0			0		1; %l_thigh    
+	1		0		0			0		1; %l_shin     
+	1		0		0			0		1; %l_ankle    
+	1		0		0			0		1; %l_foot     
+	1		0		0			0		1; %r_hipgimbal
+	1		0		0			0		1; %r_glute    
+	1		0		0			0		1; %r_thigh    
+	1		0		0			0		1; %r_shin     
+	1		0		0			0		1; %r_ankle    
+	1		0		0			0		1]; %r_foot     
 Visuals.JointCylinderLength = 0.04;
 Visuals.JointCylinderRadius = 0.015;
 
