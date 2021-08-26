@@ -26,7 +26,7 @@
 %   
 
 %% P - in mm
-P.isFloatingBase = true;
+P.isFloatingBase = true;%% what do here
 
 P.RobotName = 'guardianXO';
 P.VersionName = 'v1';
@@ -40,6 +40,7 @@ P.VersionName = 'v1';
 %                    0 - floating base
 P.jtype = [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]';
 
+% Pose of the base coordinate system in the world frame
 P.robotPose = [0, 0, 0, 0, -90, 0];
 
 %% Joint Information

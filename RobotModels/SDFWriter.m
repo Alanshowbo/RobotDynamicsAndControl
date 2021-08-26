@@ -10,11 +10,14 @@ Rzd = @ (theta) [cosd(theta) -sind(theta) 0; sind(theta) cosd(theta) 0; 0 0 1];
 
 %% Load Robot
 
-ATHENARobotParameters
-q = [0 0 0 0 0 0 zeros(1,12)]'; %zero positon of Robot
+% ATHENARobotParameters
+% q = [0 0 0 0 0 0 zeros(1,12)]'; %zero positon of Robot
 
 % GuardianXORobotParameters
 % q = [0 0 0 0 0 0 zeros(1,24) zeros(1,6)]'; %zero positon of Robot
+
+UpperBodyXORobotParameters
+q = [zeros(1,12)]'; %zero positon of Robot
 
 %% Robot Parameters
 [RobotLinks, RobotParam] = ProcessRobot(jointNames, linkNames, P, KINE, INER, CNCTPTS);
@@ -51,6 +54,8 @@ ind5 = [ind4 ind1];
 ind6 = [ind5 ind1];
 
 fileLocation = ['C:\repos\repository-group\trec-robotics-software\trec-robot-models\src\main\resources\models\' ...
+            P.RobotName '_model\'];
+fileLocation = ['D:\repos\repository-group\trec-robotics-software\trec-robot-models\src\main\resources\models\' ...
             P.RobotName '_model\'];
 fid = fopen([fileLocation P.RobotName '_' P.VersionName '_robot.sdf'],'wt');
 
