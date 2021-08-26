@@ -148,7 +148,7 @@ linkNames = {
 %Should be the Center of Mass. The Moment of Inertia matrix is defined in these coordinates. 
 INER = [%                   kg      kg*m^2......
     %X  	Y 		Z   	R	P   Y	Mass    Ixx   Ixy     Ixz     Iyy   Iyz	    Izz 	LinkName
-    0   	0   	-P.d1/2 0   0   0   10      0.4   0.005   0.005   0.2   0.005   0.5;  %pelvis     
+    0   	0   	-P.d1/2 0   0   0   50      0.4   0.005   0.005   0.2   0.005   0.5;  %pelvis     
     0   	0   	-P.d2/2	0   0   0   0.5     0.1   0.001   0.001   0.1   0.001   0.1;  %l_hipgimbal
     P.d3/2	0   	0   	0   0   0   1       0.1   0.001   0.001   0.1   0.001   0.1;  %l_glute    
     0   	-P.d4/2	0   	0   0   0   3       0.3   0.003   0.003   0.3   0.003   0.3;  %l_thigh    
@@ -179,20 +179,20 @@ CNCTPTS = [
 
 %% Visuals for Each Link
 Visuals.Type = [
- %UseSTL	UseBox  UseAutoBox  ChildID	AddJointCylinder
-	1		0		0			0		1; %pelvis     
-	1		0		0			0		1; %l_hipgimbal
-	1		0		0			0		1; %l_glute    
-	1		0		0			0		1; %l_thigh    
-	1		0		0			0		1; %l_shin     
-	1		0		0			0		1; %l_ankle    
-	1		0		0			0		1; %l_foot     
-	1		0		0			0		1; %r_hipgimbal
-	1		0		0			0		1; %r_glute    
-	1		0		0			0		1; %r_thigh    
-	1		0		0			0		1; %r_shin     
-	1		0		0			0		1; %r_ankle    
-	1		0		0			0		1]; %r_foot     
+ %UseSTL	UseBox  UseCylinder	UseAutoBox  ChildID	AddJointCylinder
+	1		0		0			0			0		1; %pelvis     
+	1		0		0			0			0		1; %l_hipgimbal
+	1		0		0			0			0		1; %l_glute    
+	1		0		0			0			0		1; %l_thigh    
+	1		0		0			0			0		1; %l_shin     
+	1		0		0			0			0		1; %l_ankle    
+	1		0		0			0			0		1; %l_foot     
+	1		0		0			0			0		1; %r_hipgimbal
+	1		0		0			0			0		1; %r_glute    
+	1		0		0			0			0		1; %r_thigh    
+	1		0		0			0			0		1; %r_shin     
+	1		0		0			0			0		1; %r_ankle    
+	1		0		0			0			0		1]; %r_foot       
 Visuals.JointCylinderLength = 0.04;
 Visuals.JointCylinderRadius = 0.015;
 
@@ -250,6 +250,10 @@ Visuals.BOX = [
     0		0		0		0		0			0			0		0		0	;%r_shin     
     0		0		0		0		0			0			0		0		0	;%r_ankle    
     0		0		0		0		0			0			0		0		0	];%r_foot
+
+Visuals.CYLINDER = [
+    %length	radius	vpx     vpy     vpz      vproll	vppitch	vpyaw	name
+    ];
 
 %% Finish Parameters
 P.mTot = sum(INER(:,7));

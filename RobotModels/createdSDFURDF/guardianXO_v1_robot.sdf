@@ -1,0 +1,1737 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sdf version="1.5">
+    <model name="guardianXO_v1">
+        <joint name="to1_tor_tilt" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.34907</lower>
+                    <upper>0.34907</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>-1 0 0</xyz>
+            </axis>
+            <child>ltorso</child>
+            <parent>pelvis</parent>
+        </joint>
+        <joint name="to2_tor_rota" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.34907</lower>
+                    <upper>0.34907</upper>
+                    <velocity>10</velocity>
+                </limit>
+                <xyz>0 0 -1</xyz>
+            </axis>
+            <child>utorso</child>
+            <parent>ltorso</parent>
+        </joint>
+        <joint name="ra1_sho_abad" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.17453</lower>
+                    <upper>2.0944</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>-0.76604 0 -0.64279</xyz>
+            </axis>
+            <child>r_ushou</child>
+            <parent>utorso</parent>
+        </joint>
+        <joint name="ra2_sho_flex" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.47647</lower>
+                    <upper>2.0944</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 -1 0</xyz>
+            </axis>
+            <child>r_lshou</child>
+            <parent>r_ushou</parent>
+        </joint>
+        <joint name="ra3_hum_rota" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-1.3963</lower>
+                    <upper>0.87266</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>-0.087156 0 -0.99619</xyz>
+            </axis>
+            <child>r_uarm</child>
+            <parent>r_lshou</parent>
+        </joint>
+        <joint name="ra4_elb_flex" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>0</lower>
+                    <upper>2.6704</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 -1 0</xyz>
+            </axis>
+            <child>r_larm</child>
+            <parent>r_uarm</parent>
+        </joint>
+        <joint name="ra5_wri_rota" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-1.5708</lower>
+                    <upper>1.5708</upper>
+                    <velocity>10</velocity>
+                </limit>
+                <xyz>-9.7145e-17 0 -1</xyz>
+            </axis>
+            <child>r_hand</child>
+            <parent>r_larm</parent>
+        </joint>
+        <joint name="la1_sho_abad" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.17453</lower>
+                    <upper>2.0944</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0.76604 0 0.64279</xyz>
+            </axis>
+            <child>l_ushou</child>
+            <parent>utorso</parent>
+        </joint>
+        <joint name="la2_sho_flex" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.47647</lower>
+                    <upper>2.0944</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 -1 0</xyz>
+            </axis>
+            <child>l_lshou</child>
+            <parent>l_ushou</parent>
+        </joint>
+        <joint name="la3_hum_rota" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-1.3963</lower>
+                    <upper>0.87266</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0.087156 0 0.99619</xyz>
+            </axis>
+            <child>l_uarm</child>
+            <parent>l_lshou</parent>
+        </joint>
+        <joint name="la4_elb_flex" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>0</lower>
+                    <upper>2.6704</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 -1 0</xyz>
+            </axis>
+            <child>l_larm</child>
+            <parent>l_uarm</parent>
+        </joint>
+        <joint name="la5_wri_rota" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-1.5708</lower>
+                    <upper>1.5708</upper>
+                    <velocity>10</velocity>
+                </limit>
+                <xyz>9.7145e-17 0 1</xyz>
+            </axis>
+            <child>l_hand</child>
+            <parent>l_larm</parent>
+        </joint>
+        <joint name="rl1_hip_rota" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.2618</lower>
+                    <upper>0.5236</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 0 -1</xyz>
+            </axis>
+            <child>r_glut</child>
+            <parent>pelvis</parent>
+        </joint>
+        <joint name="rl2_hip_abad" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.5236</lower>
+                    <upper>0.5236</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>-1 0 0</xyz>
+            </axis>
+            <child>r_hip</child>
+            <parent>r_glut</parent>
+        </joint>
+        <joint name="rl3_hip_flex" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.43633</lower>
+                    <upper>2.5307</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 -1 0</xyz>
+            </axis>
+            <child>r_thigh</child>
+            <parent>r_hip</parent>
+        </joint>
+        <joint name="rl4_kne_flex" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-2.1817</lower>
+                    <upper>0</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 -1 0</xyz>
+            </axis>
+            <child>r_ucalf</child>
+            <parent>r_thigh</parent>
+        </joint>
+        <joint name="rl5_cal_rota" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.7854</lower>
+                    <upper>0.7854</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 0 -1</xyz>
+            </axis>
+            <child>r_lcalf</child>
+            <parent>r_ucalf</parent>
+        </joint>
+        <joint name="rl6_ank_flex" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.7854</lower>
+                    <upper>1.0472</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 -1 0</xyz>
+            </axis>
+            <child>r_foot</child>
+            <parent>r_lcalf</parent>
+        </joint>
+        <joint name="ll1_hip_rota" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.2618</lower>
+                    <upper>0.5236</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+            <child>l_glut</child>
+            <parent>pelvis</parent>
+        </joint>
+        <joint name="ll2_hip_abad" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.5236</lower>
+                    <upper>0.5236</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>1 0 0</xyz>
+            </axis>
+            <child>l_hip</child>
+            <parent>l_glut</parent>
+        </joint>
+        <joint name="ll3_hip_flex" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.43633</lower>
+                    <upper>2.5307</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 -1 0</xyz>
+            </axis>
+            <child>l_thigh</child>
+            <parent>l_hip</parent>
+        </joint>
+        <joint name="ll4_kne_flex" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-2.1817</lower>
+                    <upper>0</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 -1 0</xyz>
+            </axis>
+            <child>l_ucalf</child>
+            <parent>l_thigh</parent>
+        </joint>
+        <joint name="ll5_cal_rota" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.7854</lower>
+                    <upper>0.7854</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+            <child>l_lcalf</child>
+            <parent>l_ucalf</parent>
+        </joint>
+        <joint name="ll6_ank_flex" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <lower>-0.7854</lower>
+                    <upper>1.0472</upper>
+                    <velocity>12</velocity>
+                </limit>
+                <xyz>0 -1 0</xyz>
+            </axis>
+            <child>l_foot</child>
+            <parent>l_lcalf</parent>
+        </joint>
+        <joint name="ft1_l_foot" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>200</effort>
+                    <lower>-0.005</lower>
+                    <upper>0.005</upper>
+                    <velocity>1</velocity>
+                </limit>
+                <xyz>-1 0 0</xyz>
+            </axis>
+            <child>l_foot_FT</child>
+            <parent>l_foot</parent>
+        </joint>
+        <joint name="ft2_r_foot" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>200</effort>
+                    <lower>-0.005</lower>
+                    <upper>0.005</upper>
+                    <velocity>2</velocity>
+                </limit>
+                <xyz>-1 0 0</xyz>
+            </axis>
+            <child>r_foot_FT</child>
+            <parent>r_foot</parent>
+        </joint>
+        <joint name="ft3_l_hand" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>200</effort>
+                    <lower>-0.005</lower>
+                    <upper>0.005</upper>
+                    <velocity>3</velocity>
+                </limit>
+                <xyz>-1 0 9.7145e-17</xyz>
+            </axis>
+            <child>l_hand_FT</child>
+            <parent>l_hand</parent>
+        </joint>
+        <joint name="ft4_r_hand" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>200</effort>
+                    <lower>-0.005</lower>
+                    <upper>0.005</upper>
+                    <velocity>4</velocity>
+                </limit>
+                <xyz>1 0 -9.7145e-17</xyz>
+            </axis>
+            <child>r_hand_FT</child>
+            <parent>r_hand</parent>
+        </joint>
+        <joint name="ft5_pelvis" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>200</effort>
+                    <lower>-0.005</lower>
+                    <upper>0.005</upper>
+                    <velocity>5</velocity>
+                </limit>
+                <xyz>0 1 0</xyz>
+            </axis>
+            <child>pelvis_FT</child>
+            <parent>pelvis</parent>
+        </joint>
+        <joint name="ft6_torso" type="revolute">
+            <axis>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                </dynamics>
+                <limit>
+                    <effort>200</effort>
+                    <lower>-0.005</lower>
+                    <upper>0.005</upper>
+                    <velocity>6</velocity>
+                </limit>
+                <xyz>0 1 0</xyz>
+            </axis>
+            <child>torso_FT</child>
+            <parent>utorso</parent>
+        </joint>
+        <link name="pelvis">
+            <inertial>
+                <inertia>
+                    <ixx>0.086831</ixx>
+                    <ixy>-9.8e-05</ixy>
+                    <ixz>-1.4e-06</ixz>
+                    <iyy>0.12768</iyy>
+                    <iyz>-0.019368</iyz>
+                    <izz>0.12709</izz>
+                </inertia>
+                <mass>12.8142</mass>
+                <pose>0.00115 0.02425 0.00012 0 -1.5708 0</pose>
+            </inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <sensor name="imu_sensor_at_pelvis_frame" type="imu">
+                <imu>
+                    <noise>
+                        <accel>
+                            <bias_mean>0.1</bias_mean>
+                            <bias_stddev>0.001</bias_stddev>
+                            <mean>0</mean>
+                            <stddev>0.017</stddev>
+                        </accel>
+                        <rate>
+                            <bias_mean>7.5e-06</bias_mean>
+                            <bias_stddev>8e-07</bias_stddev>
+                            <mean>0</mean>
+                            <stddev>0.0002</stddev>
+                        </rate>
+                        <type>gaussian</type>
+                    </noise>
+                </imu>
+                <pose>0 0 0 0 0 0</pose>
+                <update_rate>1000</update_rate>
+            </sensor>
+            <visual name="pelvis_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.1 0.1905 0.15</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0 0 0.05 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="ltorso">
+            <inertial>
+                <inertia>
+                    <ixx>0.010501</ixx>
+                    <ixy>-4.47e-05</ixy>
+                    <ixz>0.0026378</ixz>
+                    <iyy>0.083485</iyy>
+                    <iyz>2.7e-06</iyz>
+                    <izz>0.083126</izz>
+                </inertia>
+                <mass>6.471</mass>
+                <pose>0.1193 -0.00024 0.05482 0 0 0</pose>
+            </inertial>
+            <pose>0 0 0.09525 0 -1.5708 0</pose>
+            <visual name="ltorso_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="ltorso_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.2286 0.2 0.1</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0.1143 0 0.05 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="utorso">
+            <inertial>
+                <inertia>
+                    <ixx>0.53111</ixx>
+                    <ixy>0.000923</ixy>
+                    <ixz>-0.0007483</ixz>
+                    <iyy>1.1873</iyy>
+                    <iyz>-0.077863</iyz>
+                    <izz>0.91496</izz>
+                </inertia>
+                <mass>31.3577</mass>
+                <pose>-0.00112 -0.01501 -0.10391 0 0 0</pose>
+            </inertial>
+            <pose>-0.060401 0 0.32385 3.1416 0 1.5708</pose>
+            <visual name="utorso_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="utorso_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.7 0.1 0.07</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0 -0.02 0 0.7854 0 0</pose>
+            </visual>
+        </link>
+        <link name="r_ushou">
+            <inertial>
+                <inertia>
+                    <ixx>0.0017929</ixx>
+                    <ixy>0.0017929</ixy>
+                    <ixz>0.0046508</ixz>
+                    <iyy>0.034874</iyy>
+                    <iyz>0.0073972</iyz>
+                    <izz>0.012524</izz>
+                </inertia>
+                <mass>4.8909</mass>
+                <pose>0.0164 0.0039 -0.19416 0 0 0</pose>
+            </inertial>
+            <pose>-0.07013 -0.31433 0.36077 2.2689 0 -1.5708</pose>
+            <visual name="r_ushou_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="r_ushou_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.06 0.1 0.3302</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0 0 -0.16307 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="r_lshou">
+            <inertial>
+                <inertia>
+                    <ixx>0.0042548</ixx>
+                    <ixy>0.0002492</ixy>
+                    <ixz>-0.0002769</ixz>
+                    <iyy>0.0076126</iyy>
+                    <iyz>-5.2e-05</iyz>
+                    <izz>0.007705</izz>
+                </inertia>
+                <mass>3.2262</mass>
+                <pose>0.11093 0.01825 0.02571 0 0 0</pose>
+            </inertial>
+            <pose>0.22209 -0.30798 0.53966 -1.5708 1.4835 3.1416</pose>
+            <visual name="r_lshou_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="r_lshou_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.15494 0.1 0.06</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0.0772 0.024536 0.024638 0 0 -0.087266</pose>
+            </visual>
+        </link>
+        <link name="r_uarm">
+            <inertial>
+                <inertia>
+                    <ixx>0.019109</ixx>
+                    <ixy>0.0001927</ixy>
+                    <ixz>-0.0025684</ixz>
+                    <iyy>0.018812</iyy>
+                    <iyz>-0.0002236</iyz>
+                    <izz>0.011074</izz>
+                </inertia>
+                <mass>4.8829</mass>
+                <pose>-0.00114 -0.00151 0.11122 0 0 0</pose>
+            </inertial>
+            <pose>0.23834 -0.33889 0.38526 -3.0543 0 1.5708</pose>
+            <visual name="r_uarm_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="r_uarm_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.06 0.1 0.18796</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0 -0.0081788 0.09398 0 0 -0.087266</pose>
+            </visual>
+        </link>
+        <link name="r_larm">
+            <inertial>
+                <inertia>
+                    <ixx>0.0004628</ixx>
+                    <ixy>0.0009098</ixy>
+                    <ixz>-0.0004177</ixz>
+                    <iyy>0.010386</iyy>
+                    <iyz>-1.28e-05</iyz>
+                    <izz>0.010507</izz>
+                </inertia>
+                <mass>0.69113</mass>
+                <pose>0.11918 -0.02395 -0.03337 0 0 0</pose>
+            </inertial>
+            <pose>0.22185 -0.34524 0.19678 -1.5708 1.5708 3.1416</pose>
+            <visual name="r_larm_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="r_larm_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.3429 0.05 0.05</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0.17145 0.003048 -0.03683 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="r_hand">
+            <inertial>
+                <inertia>
+                    <ixx>0.016224</ixx>
+                    <ixy>0.000437</ixy>
+                    <ixz>0.0051128</ixz>
+                    <iyy>0.039465</iyy>
+                    <iyz>-0.0003224</iyz>
+                    <izz>0.034758</izz>
+                </inertia>
+                <mass>3.2281</mass>
+                <pose>0.07931 0.00146 0.0648 0 0 0</pose>
+            </inertial>
+            <pose>0.21575 -0.30226 -0.14612 -3.1416 0 1.5708</pose>
+            <visual name="r_hand_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="r_hand_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.1524 0.1 0.06</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0.0762 0 0.083388 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="l_ushou">
+            <inertial>
+                <inertia>
+                    <ixx>0.036159</ixx>
+                    <ixy>0.0018219</ixy>
+                    <ixz>-0.0046394</ixz>
+                    <iyy>0.034888</iyy>
+                    <iyz>-0.0074231</iyz>
+                    <izz>0.012539</izz>
+                </inertia>
+                <mass>4.8909</mass>
+                <pose>0.01647 0.00381 0.19425 0 0 0</pose>
+            </inertial>
+            <pose>-0.07013 0.31432 0.36077 0.87266 0 1.5708</pose>
+            <visual name="l_ushou_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="l_ushou_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.06 0.1 0.3302</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0 0 0.16307 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="l_lshou">
+            <inertial>
+                <inertia>
+                    <ixx>0.0042649</ixx>
+                    <ixy>0.0002646</ixy>
+                    <ixz>0.0002986</ixz>
+                    <iyy>0.0076452</iyy>
+                    <iyz>5.18e-05</iyz>
+                    <izz>0.0077414</izz>
+                </inertia>
+                <mass>3.231</mass>
+                <pose>0.11087 0.0182 -0.02557 0 0 0</pose>
+            </inertial>
+            <pose>0.22209 0.30797 0.53966 -1.5708 1.4835 3.1416</pose>
+            <visual name="l_lshou_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="l_lshou_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.15494 0.1 0.06</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0.0772 0.024536 -0.024638 0 0 -0.087266</pose>
+            </visual>
+        </link>
+        <link name="l_uarm">
+            <inertial>
+                <inertia>
+                    <ixx>0.019132</ixx>
+                    <ixy>0.0001585</ixy>
+                    <ixz>0.0025749</ixz>
+                    <iyy>0.018815</iyy>
+                    <iyz>0.0002531</iyz>
+                    <izz>0.011079</izz>
+                </inertia>
+                <mass>4.8803</mass>
+                <pose>-0.00112 -0.00157 -0.11125 0 0 0</pose>
+            </inertial>
+            <pose>0.23833 0.33889 0.38525 -0.087266 0 -1.5708</pose>
+            <visual name="l_uarm_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="l_uarm_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.06 0.1 0.18796</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0 -0.0081788 -0.09398 0 0 -0.087266</pose>
+            </visual>
+        </link>
+        <link name="l_larm">
+            <inertial>
+                <inertia>
+                    <ixx>0.0004628</ixx>
+                    <ixy>0.0009098</ixy>
+                    <ixz>0.0004177</ixz>
+                    <iyy>0.010386</iyy>
+                    <iyz>1.28e-05</iyz>
+                    <izz>0.010507</izz>
+                </inertia>
+                <mass>0.69113</mass>
+                <pose>0.11918 -0.02395 0.0337 0 0 0</pose>
+            </inertial>
+            <pose>0.22184 0.34524 0.19677 -1.5708 1.5708 3.1416</pose>
+            <visual name="l_larm_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="l_larm_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.3429 0.05 0.05</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0.17145 0.003048 0.03683 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="l_hand">
+            <inertial>
+                <inertia>
+                    <ixx>0.015967</ixx>
+                    <ixy>0.0002098</ixy>
+                    <ixz>-0.0057656</ixz>
+                    <iyy>0.039945</iyy>
+                    <iyz>0.0002799</iyz>
+                    <izz>0.034993</izz>
+                </inertia>
+                <mass>3.231</mass>
+                <pose>0.07931 0.00146 -0.0648 0 0 0</pose>
+            </inertial>
+            <pose>0.21575 0.30226 -0.14613 -9.7145e-17 0 -1.5708</pose>
+            <visual name="l_hand_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="l_hand_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.1524 0.1 0.06</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0.0762 0 -0.083388 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="r_glut">
+            <inertial>
+                <inertia>
+                    <ixx>0.0096119</ixx>
+                    <ixy>0.00066364</ixy>
+                    <ixz>-4.03e-05</ixz>
+                    <iyy>0.0047752</iyy>
+                    <iyz>1.88e-05</iyz>
+                    <izz>0.0081957</izz>
+                </inertia>
+                <mass>1.6525</mass>
+                <pose>-0.051696 -0.020482 -0.004015 0 0 0</pose>
+            </inertial>
+            <pose>0 -0.09525 0 3.1416 0 1.5708</pose>
+            <visual name="r_glut_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="r_glut_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 0.1</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>-0.05 0 0 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="r_hip">
+            <inertial>
+                <inertia>
+                    <ixx>0.11557</ixx>
+                    <ixy>6.62e-05</ixy>
+                    <ixz>-0.019291</ixz>
+                    <iyy>0.12858</iyy>
+                    <iyz>0.00061499</iyz>
+                    <izz>0.052472</izz>
+                </inertia>
+                <mass>11.9738</mass>
+                <pose>0.06256 -0.00065 -0.05684 0 0 0</pose>
+            </inertial>
+            <pose>0 -0.19685 0 1.5708 0 -1.5708</pose>
+            <visual name="r_hip_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="r_hip_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 0.27</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0.07932 0 -0.105 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="r_thigh">
+            <inertial>
+                <inertia>
+                    <ixx>0.055358</ixx>
+                    <ixy>-0.02765</ixy>
+                    <ixz>-0.0079492</ixz>
+                    <iyy>0.19792</iyy>
+                    <iyz>0.0023908</iyz>
+                    <izz>0.23096</izz>
+                </inertia>
+                <mass>11.5655</mass>
+                <pose>0.2582 0.03897 0.00593 0 0 0</pose>
+            </inertial>
+            <pose>0.22225 -0.27617 0 0 1.5708 -1.5708</pose>
+            <visual name="r_thigh_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="r_thigh_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.4318 0.1 0.07</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0.2159 0 0 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="r_ucalf">
+            <inertial>
+                <inertia>
+                    <ixx>0.019191</ixx>
+                    <ixy>-0.012582</ixy>
+                    <ixz>-0.00022245</ixz>
+                    <iyy>0.035278</iyy>
+                    <iyz>-1.16e-05</iyz>
+                    <izz>0.042714</izz>
+                </inertia>
+                <mass>5.0013</mass>
+                <pose>0.14182 0.01863 0.00066 0 0 0</pose>
+            </inertial>
+            <pose>0.22225 -0.27617 -0.4318 0 1.5708 -1.5708</pose>
+            <visual name="r_ucalf_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="r_ucalf_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.1524 0.1 0.07</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0.0762 0 0 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="r_lcalf">
+            <inertial>
+                <inertia>
+                    <ixx>0.024212</ixx>
+                    <ixy>7.56e-05</ixy>
+                    <ixz>0.0032577</ixz>
+                    <iyy>0.022567</iyy>
+                    <iyz>2.4e-05</iyz>
+                    <izz>0.01153</izz>
+                </inertia>
+                <mass>4.7446</mass>
+                <pose>-0.01761 0.00083 0.18404 0 0 0</pose>
+            </inertial>
+            <pose>0.22225 -0.27617 -0.5842 3.1416 0 1.5708</pose>
+            <visual name="r_lcalf_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="r_lcalf_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.07 0.07 0.2794</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0 0 0.1397 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="r_foot">
+            <inertial>
+                <inertia>
+                    <ixx>0.035371</ixx>
+                    <ixy>0.00089975</ixy>
+                    <ixz>-0.0066994</ixz>
+                    <iyy>0.025373</iyy>
+                    <iyz>-0.0048519</iyz>
+                    <izz>0.032481</izz>
+                </inertia>
+                <mass>3.6694</mass>
+                <pose>0.11143 0.0358 -0.09939 0 0 0</pose>
+            </inertial>
+            <pose>0.22225 -0.27617 -0.8636 0 1.5708 -1.5708</pose>
+            <visual name="r_foot_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="r_foot_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.03012 0.22078 0.1397</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0.14702 0.028677 -0.13454 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="l_glut">
+            <inertial>
+                <inertia>
+                    <ixx>0.0096112</ixx>
+                    <ixy>0.00066352</ixy>
+                    <ixz>4.04e-05</ixz>
+                    <iyy>0.0047752</iyy>
+                    <iyz>-1.84e-05</iyz>
+                    <izz>0.008195</izz>
+                </inertia>
+                <mass>1.6525</mass>
+                <pose>-0.0556 -0.01481 0.0038 0 0 0</pose>
+            </inertial>
+            <pose>0 0.09525 0 0 0 -1.5708</pose>
+            <visual name="l_glut_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="l_glut_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 0.1</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>-0.05 0 0 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="l_hip">
+            <inertial>
+                <inertia>
+                    <ixx>0.11554</ixx>
+                    <ixy>-4.84e-05</ixy>
+                    <ixz>0.019297</ixz>
+                    <iyy>0.12856</iyy>
+                    <iyz>-0.00070911</iyz>
+                    <izz>0.052463</izz>
+                </inertia>
+                <mass>11.9732</mass>
+                <pose>0.06256 -0.00092 0.05683 0 0 0</pose>
+            </inertial>
+            <pose>0 0.19685 0 1.5708 0 1.5708</pose>
+            <visual name="l_hip_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="l_hip_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 0.27</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0.07932 0 0.105 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="l_thigh">
+            <inertial>
+                <inertia>
+                    <ixx>0.055644</ixx>
+                    <ixy>-0.027764</ixy>
+                    <ixz>0.0078621</ixz>
+                    <iyy>0.19807</iyy>
+                    <iyz>-0.0024714</iyz>
+                    <izz>0.2314</izz>
+                </inertia>
+                <mass>11.5656</mass>
+                <pose>0.25783 0.03881 -0.00593 0 0 0</pose>
+            </inertial>
+            <pose>0.22225 0.27617 0 0 1.5708 -1.5708</pose>
+            <visual name="l_thigh_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="l_thigh_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.4318 0.1 0.07</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0.2159 0 0 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="l_ucalf">
+            <inertial>
+                <inertia>
+                    <ixx>0.019177</ixx>
+                    <ixy>-0.012539</ixy>
+                    <ixz>5.57e-05</ixz>
+                    <iyy>0.035279</iyy>
+                    <iyz>0.000114</iyz>
+                    <izz>0.042701</izz>
+                </inertia>
+                <mass>5.0017</mass>
+                <pose>0.14183 0.01872 -0.00041 0 0 0</pose>
+            </inertial>
+            <pose>0.22225 0.27617 -0.4318 0 1.5708 -1.5708</pose>
+            <visual name="l_ucalf_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="l_ucalf_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.1524 0.1 0.07</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0.0762 0 0 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="l_lcalf">
+            <inertial>
+                <inertia>
+                    <ixx>0.023824</ixx>
+                    <ixy>0.00015254</ixy>
+                    <ixz>-0.0032161</ixz>
+                    <iyy>0.022268</iyy>
+                    <iyz>-0.00019447</iyz>
+                    <izz>0.011414</izz>
+                </inertia>
+                <mass>4.7149</mass>
+                <pose>-0.01771 0.0012 -0.18346 0 0 0</pose>
+            </inertial>
+            <pose>0.22225 0.27617 -0.5842 0 0 -1.5708</pose>
+            <visual name="l_lcalf_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="l_lcalf_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.07 0.07 0.2794</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0 0 -0.1397 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="l_foot">
+            <inertial>
+                <inertia>
+                    <ixx>0.034394</ixx>
+                    <ixy>0.0018656</ixy>
+                    <ixz>0.0065531</ixz>
+                    <iyy>0.027417</iyy>
+                    <iyz>0.0047328</iyz>
+                    <izz>0.033535</izz>
+                </inertia>
+                <mass>3.6694</mass>
+                <pose>0.10949 0.03324 0.09945 0 0 0</pose>
+            </inertial>
+            <pose>0.22225 0.27617 -0.8636 0 1.5708 -1.5708</pose>
+            <visual name="l_foot_visual_jointCylinder">
+                <geometry>
+                    <cylinder>
+                        <length>0.04</length>
+                        <radius>0.015</radius>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0 0 0 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>0 0 0 1</specular>
+                </material>
+                <pose>0 0 0 0 0 0</pose>
+            </visual>
+            <visual name="l_foot_visual_box">
+                <geometry>
+                    <box>
+                        <size>0.03012 0.22078 0.1397</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1 1 1 1</ambient>
+                    <diffuse>0.5 0.5 0.5 1</diffuse>
+                    <emissive>0 0 0 1</emissive>
+                    <specular>1 1 1 1</specular>
+                </material>
+                <transparency>0.2</transparency>
+                <pose>0.14701 0.028677 0.13454 0 0 0</pose>
+            </visual>
+        </link>
+        <link name="l_foot_FT">
+            <inertial>
+                <inertia>
+                    <ixx>0.001</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.001</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.001</izz>
+                </inertia>
+                <mass>0.001</mass>
+                <pose>0 0 0 0 0 1.7453e-05</pose>
+            </inertial>
+            <pose>0.25895 0.14167 -1.0106 -1.5708 1.5359 1.5708</pose>
+        </link>
+        <link name="r_foot_FT">
+            <inertial>
+                <inertia>
+                    <ixx>0.001</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.001</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.001</izz>
+                </inertia>
+                <mass>0.001</mass>
+                <pose>0 0 0 0 0 1.7453e-05</pose>
+            </inertial>
+            <pose>0.25895 -0.14167 -1.0106 1.5708 1.5359 -1.5708</pose>
+        </link>
+        <link name="l_hand_FT">
+            <inertial>
+                <inertia>
+                    <ixx>0.001</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.001</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.001</izz>
+                </inertia>
+                <mass>0.001</mass>
+                <pose>0 0 0 0 0 1.7453e-05</pose>
+            </inertial>
+            <pose>0.21575 0.30226 -0.22953 0 1.5708 3.1416</pose>
+        </link>
+        <link name="r_hand_FT">
+            <inertial>
+                <inertia>
+                    <ixx>0.001</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.001</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.001</izz>
+                </inertia>
+                <mass>0.001</mass>
+                <pose>0 0 0 0 0 1.7453e-05</pose>
+            </inertial>
+            <pose>0.21575 -0.30226 -0.062724 3.1416 -1.5708 0</pose>
+        </link>
+        <link name="pelvis_FT">
+            <inertial>
+                <inertia>
+                    <ixx>0.001</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.001</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.001</izz>
+                </inertia>
+                <mass>0.001</mass>
+                <pose>0 0 0 0 0 1.7453e-05</pose>
+            </inertial>
+            <pose>0.0375 0 0.0635 1.5708 0 3.1416</pose>
+        </link>
+        <link name="torso_FT">
+            <inertial>
+                <inertia>
+                    <ixx>0.001</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.001</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.001</izz>
+                </inertia>
+                <mass>0.001</mass>
+                <pose>0 0 0 0 0 1.7453e-05</pose>
+            </inertial>
+            <pose>0.5776 0 0.45375 1.5708 0 3.1416</pose>
+        </link>
+        <pose>0 0 0 0 -1.5708 0</pose>
+    </model>
+</sdf>

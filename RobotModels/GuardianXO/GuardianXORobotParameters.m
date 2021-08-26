@@ -305,38 +305,38 @@ CNCTPTS = [
 
 %% Visuals for Each Link
 Visuals.Type = [
- %UseSTL	UseBox  UseAutoBox  ChildID	AddJointCylinder
-	0       1		0           0       0; 	%'pelvis'     
-	0       1		0           0       1; 	%'ltorso'     
-	0       1		0           0       1; 	%'utorso'      
-	0       1		0           0       1; 	%'r_ushou'     
-	0       1		0           0       1; 	%'r_lshou'     
-	0       1		0           0       1; 	%'r_uarm'      
-	0       1		0           0       1; 	%'r_larm'      
-	0       1		0           0       1; 	%'r_hand'     
-	0       1		0           0       1; 	%'l_ushou'     
-	0       1		0           0       1; 	%'l_lshou'     
-	0       1		0           0       1; 	%'l_uarm'      
-	0       1		0           0       1; 	%'l_larm'      
-	0       1		0           0       1; 	%'l_hand'      
-	0       1		0           0       1; 	%'r_glut'     
-	0       1		0           0       1; 	%'r_hip'      
-	0       1		0           0       1; 	%'r_thigh'     
-	0       1		0           0       1; 	%'r_ucalf'     
-	0       1		0           0       1; 	%'r_lcalf'     
-	0       1		0           0       1; 	%'r_foot'      
-	0       1		0           0       1; 	%'l_glut'      
-	0       1		0           0       1; 	%'l_hip'      
-	0       1		0           0       1; 	%'l_thigh'     
-	0       1		0           0       1; 	%'l_ucalf'     
-	0       1		0           0       1; 	%'l_lcalf'     
-	0       1		0           0       1; %'l_foot'      
-	0       0		0           0       0; %'ft'           
-	0       0		0           0       0; %'ft'           
-	0       0		0           0       0; %'ft'           
-	0       0		0           0       0; %'ft'           
-	0       0		0           0       0; %'ft'           
-	0       0		0           0       0]; %'ft'     
+ %UseSTL	UseBox  UseCylinder UseAutoBox  ChildID	AddJointCylinder
+	0       1		0			0           0       0; 	%'pelvis'     
+	0       1		0			0           0       1; 	%'ltorso'     
+	0       1		0			0           0       1; 	%'utorso'      
+	0       1		0			0           0       1; 	%'r_ushou'     
+	0       1		0			0           0       1; 	%'r_lshou'     
+	0       1		0			0           0       1; 	%'r_uarm'      
+	0       1		0			0           0       1; 	%'r_larm'      
+	0       1		0			0           0       1; 	%'r_hand'     
+	0       1		0			0           0       1; 	%'l_ushou'     
+	0       1		0			0           0       1; 	%'l_lshou'     
+	0       1		0			0           0       1; 	%'l_uarm'      
+	0       1		0			0           0       1; 	%'l_larm'      
+	0       1		0			0           0       1; 	%'l_hand'      
+	0       1		0			0           0       1; 	%'r_glut'     
+	0       1		0			0           0       1; 	%'r_hip'      
+	0       1		0			0           0       1; 	%'r_thigh'     
+	0       1		0			0           0       1; 	%'r_ucalf'     
+	0       1		0			0           0       1; 	%'r_lcalf'     
+	0       1		0			0           0       1; 	%'r_foot'      
+	0       1		0			0           0       1; 	%'l_glut'      
+	0       1		0			0           0       1; 	%'l_hip'      
+	0       1		0			0           0       1; 	%'l_thigh'     
+	0       1		0			0           0       1; 	%'l_ucalf'     
+	0       1		0			0           0       1; 	%'l_lcalf'     
+	0       1		0			0           0       1; %'l_foot'      
+	0       0		0			0           0       0; %'ft'           
+	0       0		0			0           0       0; %'ft'           
+	0       0		0			0           0       0; %'ft'           
+	0       0		0			0           0       0; %'ft'           
+	0       0		0			0           0       0; %'ft'           
+	0       0		0			0           0       0]; %'ft'     
 Visuals.JointCylinderLength = 0.04;
 Visuals.JointCylinderRadius = 0.015;
 
@@ -388,6 +388,10 @@ Visuals.BOX = [
     0       0       0       0       0           0           0   0   0   ;%ft
     0       0       0       0       0           0           0   0   0   ;%ft
     0       0       0       0       0           0           0   0   0   ];%ft
+
+Visuals.CYLINDER = [
+    %length	radius	vpx     vpy     vpz      vproll	vppitch	vpyaw	name
+    ];
 
 %% Finish Parameters
 P.mTot = sum(INER(:,7));

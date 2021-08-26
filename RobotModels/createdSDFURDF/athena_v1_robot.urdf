@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<robot name="athena_v1">
+  <joint name="ll1_hip_yaw" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="pelvis"/>
+    <child link="l_hipgimbal"/>
+    <limit effort="100" lower="-0.6" upper="0.6" velocity="12"/>
+    <limit damping="0.1" friction="0"/>
+  </joint>
+  <joint name="ll2_hip_rol" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0.119 -0.275"/>
+    <parent link="l_hipgimbal"/>
+    <child link="l_glute"/>
+    <limit effort="100" lower="-0.6" upper="0.6" velocity="10"/>
+    <limit damping="0.1" friction="0"/>
+  </joint>
+  <joint name="ll3_hip_pit" type="revolute">
+    <origin rpy="0 1.5708 0" xyz="0 0.119 -0.275"/>
+    <parent link="l_glute"/>
+    <child link="l_thigh"/>
+    <limit effort="100" lower="-1" upper="1.2" velocity="12"/>
+    <limit damping="0.1" friction="0"/>
+  </joint>
+  <joint name="ll4_kne_pit" type="revolute">
+    <origin rpy="1.5708 0 0" xyz="0 0.119 -0.33"/>
+    <parent link="l_thigh"/>
+    <child link="l_shin"/>
+    <limit effort="100" lower="-2" upper="0" velocity="12"/>
+    <limit damping="0.1" friction="0"/>
+  </joint>
+  <joint name="ll5_ank_pit" type="revolute">
+    <origin rpy="1.5708 0 0" xyz="0 0.119 -0.778"/>
+    <parent link="l_shin"/>
+    <child link="l_ankle"/>
+    <limit effort="100" lower="-0.6" upper="0.6" velocity="12"/>
+    <limit damping="0.1" friction="0"/>
+  </joint>
+  <joint name="ll6_ank_rol" type="revolute">
+    <origin rpy="1.5708 0 0" xyz="0 0.119 -1.213"/>
+    <parent link="l_ankle"/>
+    <child link="l_foot"/>
+    <limit effort="100" lower="-0.6" upper="0.6" velocity="12"/>
+    <limit damping="0.1" friction="0"/>
+  </joint>
+  <joint name="rl1_hip_yaw" type="revolute">
+    <origin rpy="0 1.5708 0" xyz="0 0.119 -1.213"/>
+    <parent link="pelvis"/>
+    <child link="r_hipgimbal"/>
+    <limit effort="100" lower="-0.6" upper="0.6" velocity="12"/>
+    <limit damping="0.1" friction="0"/>
+  </joint>
+  <joint name="rl2_hip_rol" type="revolute">
+    <origin rpy="3.1416 0 0" xyz="0 -0.119 -0.275"/>
+    <parent link="r_hipgimbal"/>
+    <child link="r_glute"/>
+    <limit effort="100" lower="-0.6" upper="0.6" velocity="10"/>
+    <limit damping="0.1" friction="0"/>
+  </joint>
+  <joint name="rl3_hip_pit" type="revolute">
+    <origin rpy="0 1.5708 3.1416" xyz="0 -0.119 -0.275"/>
+    <parent link="r_glute"/>
+    <child link="r_thigh"/>
+    <limit effort="100" lower="-1" upper="1.2" velocity="12"/>
+    <limit damping="0.1" friction="0"/>
+  </joint>
+  <joint name="rl4_kne_pit" type="revolute">
+    <origin rpy="1.5708 0 0" xyz="0 -0.119 -0.33"/>
+    <parent link="r_thigh"/>
+    <child link="r_shin"/>
+    <limit effort="100" lower="-2" upper="0" velocity="12"/>
+    <limit damping="0.1" friction="0"/>
+  </joint>
+  <joint name="rl5_ank_pit" type="revolute">
+    <origin rpy="1.5708 0 0" xyz="0 -0.119 -0.778"/>
+    <parent link="r_shin"/>
+    <child link="r_ankle"/>
+    <limit effort="100" lower="-0.6" upper="0.9" velocity="12"/>
+    <limit damping="0.1" friction="0"/>
+  </joint>
+  <joint name="rl6_ank_rol" type="revolute">
+    <origin rpy="1.5708 0 0" xyz="0 -0.119 -1.213"/>
+    <parent link="r_ankle"/>
+    <child link="r_foot"/>
+    <limit effort="100" lower="-0.6" upper="0.6" velocity="12"/>
+    <limit damping="0.1" friction="0"/>
+  </joint>
+  <link name="pelvis">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 -0.1375"/>
+      <mass value="50"/>
+      <inertia ixx="0.4" ixy="0.005" ixz="0.005" iyy="0.2" iyz="0.005" izz="0.5"/>
+    </inertial>
+    <visual><!--pelvis_visual_mesh-->
+      <origin rpy="0 0 1.5708" xyz="0 0 -0.2317"/>
+      <geometry>
+        <mesh filename="package://meshFiles/Hip_Assembly.stl" scale="0.001"/>
+      </geometry>
+    </visual>
+    </link>
+  <link name="l_hipgimbal">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.1" ixy="0.001" ixz="0.001" iyy="0.1" iyz="0.001" izz="0.1"/>
+    </inertial>
+    <visual><!--l_hipgimbal_visual_mesh-->
+      <origin rpy="1.5708 0 0" xyz="0 0.008 -0.006"/>
+      <geometry>
+        <mesh filename="package://meshFiles/Cross_Gimble.stl" scale="0.001"/>
+      </geometry>
+    </visual>
+    </link>
+  <link name="l_glute">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0275 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0.1" ixy="0.001" ixz="0.001" iyy="0.1" iyz="0.001" izz="0.1"/>
+    </inertial>
+    <visual><!--l_glute_visual_mesh-->
+      <origin rpy="-1.5708 0 1.5708" xyz="-0.0435 -0.12 -0.003"/>
+      <geometry>
+        <mesh filename="package://meshFiles/Thigh_Top_Left_Ass.stl" scale="0.001"/>
+      </geometry>
+    </visual>
+    </link>
+  <link name="l_thigh">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 -0.224 0"/>
+      <mass value="3"/>
+      <inertia ixx="0.3" ixy="0.003" ixz="0.003" iyy="0.3" iyz="0.003" izz="0.3"/>
+    </inertial>
+    <visual><!--l_thigh_visual_mesh-->
+      <origin rpy="0 1.5708 1.5708" xyz="0 0.1 0.12"/>
+      <geometry>
+        <mesh filename="package://meshFiles/Thigh_Left_Assembly.stl" scale="0.001"/>
+      </geometry>
+    </visual>
+    </link>
+  <link name="l_shin">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 -0.224 0"/>
+      <mass value="3"/>
+      <inertia ixx="0.3" ixy="0.003" ixz="0.003" iyy="0.3" iyz="0.003" izz="0.3"/>
+    </inertial>
+    <visual><!--l_shin_visual_mesh-->
+      <origin rpy="-1.5708 0 -0.07854" xyz="-0.00099692 7.8459e-05 0.025"/>
+      <geometry>
+        <mesh filename="package://meshFiles/Left_Shin_Assembly.stl" scale="0.001"/>
+      </geometry>
+    </visual>
+    </link>
+  <link name="l_ankle">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.1" ixy="0.001" ixz="0.001" iyy="0.1" iyz="0.001" izz="0.1"/>
+    </inertial>
+    <visual><!--l_ankle_visual_mesh-->
+      <origin rpy="1.5708 0 0" xyz="0 0.006 0"/>
+      <geometry>
+        <mesh filename="package://meshFiles/Legs_Ankle_CrossGimbal2.stl" scale="0.001"/>
+      </geometry>
+    </visual>
+    </link>
+  <link name="l_foot">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.025 0 0"/>
+      <mass value="2"/>
+      <inertia ixx="0.2" ixy="0.002" ixz="0.002" iyy="0.2" iyz="0.002" izz="0.2"/>
+    </inertial>
+    <visual><!--l_foot_visual_mesh-->
+      <origin rpy="-1.5708 0 1.5708" xyz="-0.98 -0.12 -0.006"/>
+      <geometry>
+        <mesh filename="package://meshFiles/Left_Foot_Assembly.stl" scale="0.001"/>
+      </geometry>
+    </visual>
+    </link>
+  <link name="r_hipgimbal">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.1" ixy="0.001" ixz="0.001" iyy="0.1" iyz="0.001" izz="0.1"/>
+    </inertial>
+    <visual><!--r_hipgimbal_visual_mesh-->
+      <origin rpy="-1.5708 0 0" xyz="0 -0.008 0.006"/>
+      <geometry>
+        <mesh filename="package://meshFiles/Cross_Gimble.stl" scale="0.001"/>
+      </geometry>
+    </visual>
+    </link>
+  <link name="r_glute">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0275 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="0.1" ixy="0.001" ixz="0.001" iyy="0.1" iyz="0.001" izz="0.1"/>
+    </inertial>
+    <visual><!--r_glute_visual_mesh-->
+      <origin rpy="1.5708 0 -1.5708" xyz="-0.044 -0.12 -0.002"/>
+      <geometry>
+        <mesh filename="package://meshFiles/Thigh_Right_Top_Bracket.stl" scale="0.001"/>
+      </geometry>
+    </visual>
+    </link>
+  <link name="r_thigh">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 -0.224 0"/>
+      <mass value="3"/>
+      <inertia ixx="0.3" ixy="0.003" ixz="0.003" iyy="0.3" iyz="0.003" izz="0.3"/>
+    </inertial>
+    <visual><!--r_thigh_visual_mesh-->
+      <origin rpy="0 1.5708 1.5708" xyz="0 0.1 -0.12"/>
+      <geometry>
+        <mesh filename="package://meshFiles/Thigh_Right_Assembly.stl" scale="0.001"/>
+      </geometry>
+    </visual>
+    </link>
+  <link name="r_shin">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 -0.2175 0"/>
+      <mass value="3"/>
+      <inertia ixx="0.3" ixy="0.003" ixz="0.003" iyy="0.3" iyz="0.003" izz="0.3"/>
+    </inertial>
+    <visual><!--r_shin_visual_mesh-->
+      <origin rpy="-1.5708 0 -0.07854" xyz="-0.00099692 7.8459e-05 0.025"/>
+      <geometry>
+        <mesh filename="package://meshFiles/Right_Shin_Assembly.stl" scale="0.001"/>
+      </geometry>
+    </visual>
+    </link>
+  <link name="r_ankle">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.1" ixy="0.001" ixz="0.001" iyy="0.1" iyz="0.001" izz="0.1"/>
+    </inertial>
+    <visual><!--r_ankle_visual_mesh-->
+      <origin rpy="1.5708 0 0" xyz="0 0.006 0"/>
+      <geometry>
+        <mesh filename="package://meshFiles/Legs_Ankle_CrossGimbal2.stl" scale="0.001"/>
+      </geometry>
+    </visual>
+    </link>
+  <link name="r_foot">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.025 0 0"/>
+      <mass value="2"/>
+      <inertia ixx="0.2" ixy="0.002" ixz="0.002" iyy="0.2" iyz="0.002" izz="0.2"/>
+    </inertial>
+    <visual><!--r_foot_visual_mesh-->
+      <origin rpy="1.5708 0 -1.5708" xyz="-0.98 -0.12 0.006"/>
+      <geometry>
+        <mesh filename="package://meshFiles/Right_Foot_Assembly.stl" scale="0.001"/>
+      </geometry>
+    </visual>
+    </link>
+  </robot>

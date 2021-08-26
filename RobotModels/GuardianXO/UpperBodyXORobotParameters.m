@@ -173,20 +173,20 @@ CNCTPTS = [
 
 %% Visuals for Each Link
 Visuals.Type = [
- %UseSTL	UseBox  UseAutoBox  ChildID	AddJointCylinder
-	0       1		0           0       0; 	%'pelvis'    
-	0       1		0           0       1; 	%'r_ushou'     
-	0       1		0           0       1; 	%'r_lshou'     
-	0       1		0           0       1; 	%'r_uarm'      
-	0       1		0           0       1; 	%'r_larm'      
-	0       1		0           0       1; 	%'r_hand'     
-	0       1		0           0       1; 	%'l_ushou'     
-	0       1		0           0       1; 	%'l_lshou'     
-	0       1		0           0       1; 	%'l_uarm'      
-	0       1		0           0       1; 	%'l_larm'      
-	0       1		0           0       1; 	%'l_hand'       
-	0       0		0           0       0; %'ft'           
-	0       0		0           0       0]; %'ft'     
+ %UseSTL	UseBox  UseCylinder UseAutoBox  ChildID	AddJointCylinder
+	0       1		1			0           0       0; 	%'pelvis'    
+	0       1		0			0           0       1; 	%'r_ushou'     
+	0       1		0			0           0       1; 	%'r_lshou'     
+	0       1		0			0           0       1; 	%'r_uarm'      
+	0       1		0			0           0       1; 	%'r_larm'      
+	0       1		0			0           0       1; 	%'r_hand'     
+	0       1		0			0           0       1; 	%'l_ushou'     
+	0       1		0			0           0       1; 	%'l_lshou'     
+	0       1		0			0           0       1; 	%'l_uarm'      
+	0       1		0			0           0       1; 	%'l_larm'      
+	0       1		0			0           0       1; 	%'l_hand'       
+	0       0		0			0           0       0;  %'ft'           
+	0       0		0			0           0       0]; %'ft'  
 Visuals.JointCylinderLength = 0.04;
 Visuals.JointCylinderRadius = 0.015;
 
@@ -220,6 +220,10 @@ Visuals.BOX = [
     0.1524	0.1     0.06	0.0762	0           -0.0833882	0	0	0	;%l_hand
     0       0       0       0       0           0           0   0   0   ;%ft
     0       0       0       0       0           0           0   0   0   ];%ft
+
+Visuals.CYLINDER = [
+    %length	radius	vpx     vpy     vpz      vproll	vppitch	vpyaw	name
+    0.1     0.1905	0       0       0.05     0      0       0       ];%pelvis
 
 %% Finish Parameters
 P.mTot = sum(INER(:,7));
