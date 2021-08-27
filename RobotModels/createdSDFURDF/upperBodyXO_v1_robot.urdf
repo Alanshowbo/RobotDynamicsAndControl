@@ -1,0 +1,388 @@
+<?xml version="1.0"?>
+<robot name="upperBodyXO_v1">
+  <link name="pelvis">
+    <inertial>
+      <origin rpy="0 -1.5708 0" xyz="0.00115 0.02425 0.00012"/>
+      <mass value="12.8142"/>
+      <inertia ixx="0.086831" ixy="-9.8e-05" ixz="-1.4e-06" iyy="0.12768" iyz="-0.019368" izz="0.12709"/>
+    </inertial>
+    <visual><!--pelvis_visual_box-->
+      <origin rpy="0.7854 0 0" xyz="0 -0.02 0"/>
+      <geometry>
+        <box size="0.7 0.1 0.07"/>
+      </geometry>
+      <material name="XOred">
+        <color rgba="0.8 0.3 0.3 0.8"/>
+      </material>
+    </visual>
+    <visual><!--pelvis_visual_cylinder-->
+      <origin rpy="0 0 0" xyz="0 0 0.6"/>
+      <geometry>
+        <cylinder length="1.2" radius="0.1905"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 0.8"/>
+      </material>
+    </visual>
+    </link>
+  <link name="r_ushou">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0164 0.0039 -0.19416"/>
+      <mass value="4.8909"/>
+      <inertia ixx="0.0017929" ixy="0.0017929" ixz="0.0046508" iyy="0.034874" iyz="0.0073972" izz="0.012524"/>
+    </inertial>
+    <visual><!--r_ushou_visual_jointCylinder-->
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.015"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 0.8"/>
+      </material>
+    </visual>
+    <visual><!--r_ushou_visual_box-->
+      <origin rpy="0 0 0" xyz="0 0 -0.16307"/>
+      <geometry>
+        <box size="0.06 0.1 0.3302"/>
+      </geometry>
+      <material name="XOred">
+        <color rgba="0.8 0.3 0.3 0.8"/>
+      </material>
+    </visual>
+    </link>
+  <link name="r_lshou">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.11093 0.01825 0.02571"/>
+      <mass value="3.2262"/>
+      <inertia ixx="0.0042548" ixy="0.0002492" ixz="-0.0002769" iyy="0.0076126" iyz="-5.2e-05" izz="0.007705"/>
+    </inertial>
+    <visual><!--r_lshou_visual_jointCylinder-->
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.015"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 0.8"/>
+      </material>
+    </visual>
+    <visual><!--r_lshou_visual_box-->
+      <origin rpy="0 0 -0.087266" xyz="0.0772 0.024536 0.024638"/>
+      <geometry>
+        <box size="0.15494 0.1 0.06"/>
+      </geometry>
+      <material name="XOred">
+        <color rgba="0.8 0.3 0.3 0.8"/>
+      </material>
+    </visual>
+    </link>
+  <link name="r_uarm">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00114 -0.00151 0.11122"/>
+      <mass value="4.8829"/>
+      <inertia ixx="0.019109" ixy="0.0001927" ixz="-0.0025684" iyy="0.018812" iyz="-0.0002236" izz="0.011074"/>
+    </inertial>
+    <visual><!--r_uarm_visual_jointCylinder-->
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.015"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 0.8"/>
+      </material>
+    </visual>
+    <visual><!--r_uarm_visual_box-->
+      <origin rpy="0 0 -0.087266" xyz="0 -0.0081788 0.09398"/>
+      <geometry>
+        <box size="0.06 0.1 0.18796"/>
+      </geometry>
+      <material name="XOred">
+        <color rgba="0.8 0.3 0.3 0.8"/>
+      </material>
+    </visual>
+    </link>
+  <link name="r_larm">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.11918 -0.02395 -0.03337"/>
+      <mass value="0.69113"/>
+      <inertia ixx="0.0004628" ixy="0.0009098" ixz="-0.0004177" iyy="0.010386" iyz="-1.28e-05" izz="0.010507"/>
+    </inertial>
+    <visual><!--r_larm_visual_jointCylinder-->
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.015"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 0.8"/>
+      </material>
+    </visual>
+    <visual><!--r_larm_visual_box-->
+      <origin rpy="0 0 0" xyz="0.17145 0.003048 -0.03683"/>
+      <geometry>
+        <box size="0.3429 0.05 0.05"/>
+      </geometry>
+      <material name="XOred">
+        <color rgba="0.8 0.3 0.3 0.8"/>
+      </material>
+    </visual>
+    </link>
+  <link name="r_hand">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.07931 0.00146 0.0648"/>
+      <mass value="3.2281"/>
+      <inertia ixx="0.016224" ixy="0.000437" ixz="0.0051128" iyy="0.039465" iyz="-0.0003224" izz="0.034758"/>
+    </inertial>
+    <visual><!--r_hand_visual_jointCylinder-->
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.015"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 0.8"/>
+      </material>
+    </visual>
+    <visual><!--r_hand_visual_box-->
+      <origin rpy="0 0 0" xyz="0.0762 0 0.083388"/>
+      <geometry>
+        <box size="0.1524 0.1 0.06"/>
+      </geometry>
+      <material name="XOred">
+        <color rgba="0.8 0.3 0.3 0.8"/>
+      </material>
+    </visual>
+    </link>
+  <link name="l_ushou">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.01647 0.00381 0.19425"/>
+      <mass value="4.8909"/>
+      <inertia ixx="0.036159" ixy="0.0018219" ixz="-0.0046394" iyy="0.034888" iyz="-0.0074231" izz="0.012539"/>
+    </inertial>
+    <visual><!--l_ushou_visual_jointCylinder-->
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.015"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 0.8"/>
+      </material>
+    </visual>
+    <visual><!--l_ushou_visual_box-->
+      <origin rpy="0 0 0" xyz="0 0 0.16307"/>
+      <geometry>
+        <box size="0.06 0.1 0.3302"/>
+      </geometry>
+      <material name="XOred">
+        <color rgba="0.8 0.3 0.3 0.8"/>
+      </material>
+    </visual>
+    </link>
+  <link name="l_lshou">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.11087 0.0182 -0.02557"/>
+      <mass value="3.231"/>
+      <inertia ixx="0.0042649" ixy="0.0002646" ixz="0.0002986" iyy="0.0076452" iyz="5.18e-05" izz="0.0077414"/>
+    </inertial>
+    <visual><!--l_lshou_visual_jointCylinder-->
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.015"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 0.8"/>
+      </material>
+    </visual>
+    <visual><!--l_lshou_visual_box-->
+      <origin rpy="0 0 -0.087266" xyz="0.0772 0.024536 -0.024638"/>
+      <geometry>
+        <box size="0.15494 0.1 0.06"/>
+      </geometry>
+      <material name="XOred">
+        <color rgba="0.8 0.3 0.3 0.8"/>
+      </material>
+    </visual>
+    </link>
+  <link name="l_uarm">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00112 -0.00157 -0.11125"/>
+      <mass value="4.8803"/>
+      <inertia ixx="0.019132" ixy="0.0001585" ixz="0.0025749" iyy="0.018815" iyz="0.0002531" izz="0.011079"/>
+    </inertial>
+    <visual><!--l_uarm_visual_jointCylinder-->
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.015"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 0.8"/>
+      </material>
+    </visual>
+    <visual><!--l_uarm_visual_box-->
+      <origin rpy="0 0 -0.087266" xyz="0 -0.0081788 -0.09398"/>
+      <geometry>
+        <box size="0.06 0.1 0.18796"/>
+      </geometry>
+      <material name="XOred">
+        <color rgba="0.8 0.3 0.3 0.8"/>
+      </material>
+    </visual>
+    </link>
+  <link name="l_larm">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.11918 -0.02395 0.0337"/>
+      <mass value="0.69113"/>
+      <inertia ixx="0.0004628" ixy="0.0009098" ixz="0.0004177" iyy="0.010386" iyz="1.28e-05" izz="0.010507"/>
+    </inertial>
+    <visual><!--l_larm_visual_jointCylinder-->
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.015"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 0.8"/>
+      </material>
+    </visual>
+    <visual><!--l_larm_visual_box-->
+      <origin rpy="0 0 0" xyz="0.17145 0.003048 0.03683"/>
+      <geometry>
+        <box size="0.3429 0.05 0.05"/>
+      </geometry>
+      <material name="XOred">
+        <color rgba="0.8 0.3 0.3 0.8"/>
+      </material>
+    </visual>
+    </link>
+  <link name="l_hand">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.07931 0.00146 -0.0648"/>
+      <mass value="3.231"/>
+      <inertia ixx="0.015967" ixy="0.0002098" ixz="-0.0057656" iyy="0.039945" iyz="0.0002799" izz="0.034993"/>
+    </inertial>
+    <visual><!--l_hand_visual_jointCylinder-->
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.015"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 0.8"/>
+      </material>
+    </visual>
+    <visual><!--l_hand_visual_box-->
+      <origin rpy="0 0 0" xyz="0.0762 0 -0.083388"/>
+      <geometry>
+        <box size="0.1524 0.1 0.06"/>
+      </geometry>
+      <material name="XOred">
+        <color rgba="0.8 0.3 0.3 0.8"/>
+      </material>
+    </visual>
+    </link>
+  <link name="l_hand_FT">
+    <inertial>
+      <origin rpy="0 0 1.7453e-05" xyz="0 0 0"/>
+      <mass value="0.001"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    </link>
+  <link name="r_hand_FT">
+    <inertial>
+      <origin rpy="0 0 1.7453e-05" xyz="0 0 0"/>
+      <mass value="0.001"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    </link>
+  <joint name="ra1_sho_abad" type="revolute">
+    <axis xyz="0 0 1"/>
+    <origin rpy="-0.87266 0 3.1416" xyz="-0.31433 -0.0097288 -0.036922"/>
+    <parent link="pelvis"/>
+    <child link="r_ushou"/>
+    <limit effort="100" lower="-0.17453" upper="2.0944" velocity="12"/>
+    <dynamics damping="0.1" friction="0"/>
+  </joint>
+  <joint name="ra2_sho_flex" type="revolute">
+    <axis xyz="0 0 1"/>
+    <origin rpy="-1.5708 -0.7854 -1.5708" xyz="-0.00635 -0.0508 -0.33884"/>
+    <parent link="r_ushou"/>
+    <child link="r_lshou"/>
+    <limit effort="100" lower="-0.47647" upper="2.0944" velocity="12"/>
+    <dynamics damping="0.1" friction="0"/>
+  </joint>
+  <joint name="ra3_hum_rota" type="revolute">
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 1.5708 0" xyz="0.1524 0.029642 0.030912"/>
+    <parent link="r_lshou"/>
+    <child link="r_uarm"/>
+    <limit effort="100" lower="-1.3963" upper="0.87266" velocity="12"/>
+    <dynamics damping="0.1" friction="0"/>
+  </joint>
+  <joint name="ra4_elb_flex" type="revolute">
+    <axis xyz="0 0 1"/>
+    <origin rpy="-1.5708 -1.4835 1.5708" xyz="-0.00635 0 0.1892"/>
+    <parent link="r_uarm"/>
+    <child link="r_larm"/>
+    <limit effort="100" lower="0" upper="2.6704" velocity="12"/>
+    <dynamics damping="0.1" friction="0"/>
+  </joint>
+  <joint name="ra5_wri_rota" type="revolute">
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 1.5708 0" xyz="0.3429 -0.006096 -0.042977"/>
+    <parent link="r_larm"/>
+    <child link="r_hand"/>
+    <limit effort="100" lower="-1.5708" upper="1.5708" velocity="10"/>
+    <dynamics damping="0.1" friction="0"/>
+  </joint>
+  <joint name="la1_sho_abad" type="revolute">
+    <axis xyz="0 0 1"/>
+    <origin rpy="-2.2689 0 0" xyz="0.31433 -0.0097288 -0.036922"/>
+    <parent link="pelvis"/>
+    <child link="l_ushou"/>
+    <limit effort="100" lower="-0.17453" upper="2.0944" velocity="12"/>
+    <dynamics damping="0.1" friction="0"/>
+  </joint>
+  <joint name="la2_sho_flex" type="revolute">
+    <axis xyz="0 0 1"/>
+    <origin rpy="1.5708 0.7854 -1.5708" xyz="-0.00635 -0.0508 0.33884"/>
+    <parent link="l_ushou"/>
+    <child link="l_lshou"/>
+    <limit effort="100" lower="-0.47647" upper="2.0944" velocity="12"/>
+    <dynamics damping="0.1" friction="0"/>
+  </joint>
+  <joint name="la3_hum_rota" type="revolute">
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 -1.5708 0" xyz="0.1524 0.029642 -0.030912"/>
+    <parent link="l_lshou"/>
+    <child link="l_uarm"/>
+    <limit effort="100" lower="-1.3963" upper="0.87266" velocity="12"/>
+    <dynamics damping="0.1" friction="0"/>
+  </joint>
+  <joint name="la4_elb_flex" type="revolute">
+    <axis xyz="0 0 1"/>
+    <origin rpy="1.5708 1.4835 1.5708" xyz="-0.00635 0 -0.1892"/>
+    <parent link="l_uarm"/>
+    <child link="l_larm"/>
+    <limit effort="100" lower="0" upper="2.6704" velocity="12"/>
+    <dynamics damping="0.1" friction="0"/>
+  </joint>
+  <joint name="la5_wri_rota" type="revolute">
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 -1.5708 0" xyz="0.3429 -0.006096 0.042977"/>
+    <parent link="l_larm"/>
+    <child link="l_hand"/>
+    <limit effort="100" lower="-1.5708" upper="1.5708" velocity="10"/>
+    <dynamics damping="0.1" friction="0"/>
+  </joint>
+  <joint name="ft3_l_hand" type="revolute">
+    <axis xyz="0 0 1"/>
+    <origin rpy="1.5708 1.5708 0" xyz="0 0 -0.0834"/>
+    <parent link="l_hand"/>
+    <child link="l_hand_FT"/>
+    <limit effort="200" lower="-0.005" upper="0.005" velocity="3"/>
+    <dynamics damping="0.1" friction="0"/>
+  </joint>
+  <joint name="ft4_r_hand" type="revolute">
+    <axis xyz="0 0 1"/>
+    <origin rpy="-1.5708 1.5708 0" xyz="0 0 -0.0834"/>
+    <parent link="r_hand"/>
+    <child link="r_hand_FT"/>
+    <limit effort="200" lower="-0.005" upper="0.005" velocity="4"/>
+    <dynamics damping="0.1" friction="0"/>
+  </joint>
+  </robot>

@@ -3,7 +3,7 @@ clc
 
 %% Choose Robot
 
-switch 1
+switch 3
     case 1
         ATHENARobotParameters
         q = [0 0 0 0 0 0 zeros(1,12)]'; %zero positon of Robot
@@ -12,7 +12,7 @@ switch 1
         q = [0 0 0 0 0 0 zeros(1,24) zeros(1,6)]'; %zero positon of Robot
     case 3
         UpperBodyXORobotParameters
-        q = [zeros(1,12)]'; %zero positon of Robot
+        q = [zeros(1,6) zeros(1,12)]'; %zero positon of Robot
 end
 
 %% Create SDF
@@ -21,8 +21,8 @@ SDFWritingScript
 
 fileLocation = ['C:\repos\repository-group\trec-robotics-software\trec-robot-models\src\main\resources\models\' ...
                 P.RobotName '_model\'];
-% fileLocation = ['D:\repos\repository-group\trec-robotics-software\trec-robot-models\src\main\resources\models\' ...
-%                 P.RobotName '_model\'];
+fileLocation = ['D:\repos\repository-group\trec-robotics-software\trec-robot-models\src\main\resources\models\' ...
+                P.RobotName '_model\'];
 SDFWritingScript
 
 %% Create URDF

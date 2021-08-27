@@ -47,39 +47,7 @@ printURDFLine = @(ind_,line) fprintf(fid, [ind_ line '\n']);
 printURDFLine(ind0,'<?xml version="1.0"?>');
 printURDFLine(ind0,['<robot name="' P.RobotName '_' P.VersionName '">']);
 
-%% Print Joints
-for j = 1:P.n
-    jointName = jointNames{j,2};
-    switch P.jtype(j)
-        case 1
-            jtypeName = 'revolute';
-        case 2
-            jtypeName = 'revolute';
-        case 3
-            jtypeName = 'revolute';
-        case 4
-            jtypeName = 'prismatic';
-        case 5
-            jtypeName = 'prismatic';
-        case 6
-            jtypeName = 'prismatic';
-    end
-    if isempty(jointName)
-        continue;
-    end
-    printURDFLine(ind1,['<joint name="' jointName '" type="' jtypeName '">']);
-    printURDFLine(ind2,['<origin rpy="' num2str(linksJoint_RPY(j,1)) ' ' num2str(linksJoint_RPY(j,2)) ' ' num2str(linksJoint_RPY(j,3)) ...
-                              '" xyz="' num2str(linksJoint_O_p_i(j,1)) ' ' num2str(linksJoint_O_p_i(j,2)) ' ' num2str(linksJoint_O_p_i(j,3)) '"/>']);
-    printURDFLine(ind2,['<parent link="' linkNames{jointParentLinkID(j),2} '"/>']);
-    printURDFLine(ind2,['<child link="' linkNames{jointChildLinkID(j),2} '"/>']);
-    printURDFLine(ind2,['<limit effort="' num2str(JointLimits(j,3)) ...
-                             '" lower="' num2str(JointLimits(j,1)) ...
-                             '" upper="' num2str(JointLimits(j,2)) ...
-                             '" velocity="' num2str(JointLimits(j,4)) '"/>']);
-    printURDFLine(ind2,['<limit damping="' num2str(JointParams(j,1)) ...
-                             '" friction="' num2str(JointParams(j,2))  '"/>']);
-    printURDFLine(ind1,['</joint>']);
-end
+
 
 %% Print Links
 %inertial and visual poses are defined in relation to the link frame
@@ -116,7 +84,7 @@ for i = 1:P.NB
     end
     
     %add joint Cylinder for visual
-    if (Visuals.Type(i,5)==1)
+    if (Visuals.Type(i,6)==1)
         printURDFLine(ind2,['<visual><!--' LinkName '_visual_jointCylinder-->']);
             printURDFLine(ind3,['<origin rpy="0 0 0" xyz="0 0 0"/>']);
             printURDFLine(ind3,'<geometry>');
@@ -151,6 +119,42 @@ for i = 1:P.NB
     end
     
     printURDFLine(ind2,'</link>');
+end
+
+%% Print Joints
+for j = 1:P.n
+    jointName = jointNames{j,2};
+    switch P.jtype(j)
+        case 1
+            jtypeName = 'revolute';
+        case 2
+            jtypeName = 'revolute';
+        case 3
+            jtypeName = 'revolute';
+        case 4
+            jtypeName = 'prismatic';
+        case 5
+            jtypeName = 'prismatic';
+        case 6
+            jtypeName = 'prismatic';
+    end
+    if isempty(jointName)
+        continue;
+    end
+    printURDFLine(ind1,['<joint name="' jointName '" type="' jtypeName '">']);
+%     printURDFLine(ind2,['<axis xyz="' num2str(globalJointAxes(1,j)) ' ' num2str(globalJointAxes(2,j)) ' ' num2str(globalJointAxes(3,j)) '"/>']);
+    printURDFLine(ind2,['<axis xyz="' num2str(JointAxis(j,1)) ' ' num2str(JointAxis(j,2)) ' ' num2str(JointAxis(j,3)) '"/>']);
+    printURDFLine(ind2,['<origin rpy="' num2str(KINE(j,4)*pi/180) ' ' num2str(KINE(j,5)*pi/180) ' ' num2str(KINE(j,6)*pi/180) ...
+                              '" xyz="' num2str(KINE(j,1)) ' ' num2str(KINE(j,2)) ' ' num2str(KINE(j,3)) '"/>']);
+    printURDFLine(ind2,['<parent link="' linkNames{jointParentLinkID(j),2} '"/>']);
+    printURDFLine(ind2,['<child link="' linkNames{jointChildLinkID(j),2} '"/>']);
+    printURDFLine(ind2,['<limit effort="' num2str(JointLimits(j,3)) ...
+                             '" lower="' num2str(JointLimits(j,1)) ...
+                             '" upper="' num2str(JointLimits(j,2)) ...
+                             '" velocity="' num2str(JointLimits(j,4)) '"/>']);
+    printURDFLine(ind2,['<dynamics damping="' num2str(JointParams(j,1)) ...
+                                '" friction="' num2str(JointParams(j,2))  '"/>']);
+    printURDFLine(ind1,['</joint>']);
 end
 
 %% Close file
@@ -206,12 +210,12 @@ end
 
 function addMaterial_darkgrey(printURDFLine,ind,ind1)
     printURDFLine(ind,'<material name="black">');
-        printURDFLine([ind ind1],'<color rgba="0 0 0 1"/>');
+        printURDFLine([ind ind1],'<color rgba="0.1 0.1 0.1 0.8"/>');
     printURDFLine(ind,'</material>');
 end
 
 function addMaterial_XOred(printURDFLine,ind,ind1)
     printURDFLine(ind,'<material name="XOred">');
-        printURDFLine([ind ind1],'<color rgba="0.8 0.3 0.3 0.3"/>');
+        printURDFLine([ind ind1],'<color rgba="0.8 0.3 0.3 0.8"/>');
     printURDFLine(ind,'</material>');
 end

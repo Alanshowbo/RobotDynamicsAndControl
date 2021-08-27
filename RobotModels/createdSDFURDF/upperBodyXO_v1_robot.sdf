@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <sdf version="1.5">
-    <model name="guardianXO_v1">
+    <model name="upperBodyXO_v1">
         <joint name="ra1_sho_abad" type="revolute">
             <axis>
                 <dynamics>
@@ -258,7 +258,7 @@
             <visual name="pelvis_visual_box">
                 <geometry>
                     <cylinder>
-                        <length>0.1</length>
+                        <length>1.2</length>
                         <radius>0.1905</radius>
                     </cylinder>
                 </geometry>
@@ -269,7 +269,7 @@
                     <specular>1 1 1 1</specular>
                 </material>
                 <transparency>0.2</transparency>
-                <pose>0 0 0.05 0 0 0</pose>
+                <pose>0 0 0.6 0 0 0</pose>
             </visual>
         </link>
         <link name="r_ushou">

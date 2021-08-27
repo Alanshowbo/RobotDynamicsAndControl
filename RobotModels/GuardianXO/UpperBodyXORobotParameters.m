@@ -28,7 +28,7 @@
 %% P - in mm
 P.isFloatingBase = true;
 
-P.RobotName = 'guardianXO';
+P.RobotName = 'upperBodyXO';
 P.VersionName = 'v1';
 
 %Type of each joint. 1 - revolute about z axis
@@ -135,13 +135,13 @@ linkNames = {
 	4		'r_uarm'    		3;
 	5		'r_larm'    		4;
 	6		'r_hand'			5;
-	7		'l_ushou'    		0;
+	7		'l_ushou'    		6;
 	8		'l_lshou'    		7;
 	9		'l_uarm'    		8;
 	10		'l_larm'    		9;
 	11		'l_hand'    		10;
     12		'l_hand_FT'     	11;
-    13		'r_hand_FT'     	6};
+    13		'r_hand_FT'     	12};
 %For Each link a Centroidal Coordinate system is defined. The origin of the coordinate 
 %Should be the Center of Mass. The Moment of Inertia matrix is defined in these coordinates. 
 INER = [%                   kg      kg*m^2......
@@ -223,7 +223,7 @@ Visuals.BOX = [
 
 Visuals.CYLINDER = [
     %length	radius	vpx     vpy     vpz      vproll	vppitch	vpyaw	name
-    0.1     0.1905	0       0       0.05     0      0       0       ];%pelvis
+    1.2     0.1905	0       0       0.6     0      0       0       ];%pelvis
 
 %% Finish Parameters
 P.mTot = sum(INER(:,7));
